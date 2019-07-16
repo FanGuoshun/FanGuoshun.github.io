@@ -16,7 +16,7 @@
 <meta property="og:site_name" content="Aaron">
 <meta property="og:description" content="概念：  Java Server Pages: java服务器端页面 既可以定义html标签，又可以定义java代码     原理：  JSP本质上就是一个Servlet">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-07-16T06:14:09.566Z">
+<meta property="og:updated_time" content="2019-07-16T06:21:11.743Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="JSP入门">
 <meta name="twitter:description" content="概念：  Java Server Pages: java服务器端页面 既可以定义html标签，又可以定义java代码     原理：  JSP本质上就是一个Servlet">
@@ -167,7 +167,7 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <ol>
+        <ul>
 <li><p>概念：</p>
 <ul>
 <li>Java Server Pages: java服务器端页面<ul>
@@ -181,36 +181,36 @@
 <li>JSP本质上就是一个Servlet</li>
 </ul>
 </li>
-</ol>
+</ul>
 <a id="more"></a>
 
-<ol start="3">
+<ul>
 <li><p>JSP的脚本：JSP定义Java代码的方式</p>
-<ol>
+<ul>
 <li>&lt;% %&gt;：定义的java代码在service方法中。service方法可以定义什么，该脚本就可以定义什么。</li>
 <li>&lt;%! %&gt;：定义的Java代码，在JSP转换之后的Java类的成员位置。</li>
 <li>&lt;%= %&gt;：定义的Java代码，会输出到页面上。输出语句中可以定义什么，该脚本中就可以定义什么。</li>
-</ol>
+</ul>
 </li>
 <li><p>JSP的内置对象：</p>
-<ol>
+<ul>
 <li>在JSP页面中不需要获取和常见，可以直接使用。</li>
-<li>JSP一共有9个内置对象：<ol>
+<li>JSP一共有9个内置对象：<ul>
 <li>request</li>
 <li>response</li>
-<li>out：字符流。可将数据输出到页面上。<ol>
+<li>out：字符流。可将数据输出到页面上。<ul>
 <li>与response.getWriter()的区别：<ul>
 <li>在tomcat服务器真正做出响应之前，会先找response缓冲区的数据，在找out缓冲区数据。</li>
 <li>response.getWriter()数据输出永远在out.write()之前。</li>
 </ul>
 </li>
-</ol>
+</ul>
 </li>
-</ol>
+</ul>
 </li>
-</ol>
+</ul>
 </li>
-</ol>
+</ul>
 
       
 

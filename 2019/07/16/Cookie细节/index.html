@@ -16,7 +16,7 @@
 <meta property="og:site_name" content="Aaron">
 <meta property="og:description" content="一次可以发送多个Cookie。可以创建多个Cookie对象，使用response多次调用addCookie方法发送Cookie即可。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-07-16T03:06:30.411Z">
+<meta property="og:updated_time" content="2019-07-16T06:20:13.886Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Cookie细节">
 <meta name="twitter:description" content="一次可以发送多个Cookie。可以创建多个Cookie对象，使用response多次调用addCookie方法发送Cookie即可。">
@@ -167,12 +167,12 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <ol>
+        <ul>
 <li>一次可以发送多个Cookie。可以创建多个Cookie对象，使用response多次调用addCookie方法发送Cookie即可。</li>
-</ol>
+</ul>
 <a id="more"></a>
 
-<ol start="2">
+<ul>
 <li><p>Cookie在浏览器中的保存时间：</p>
 <ol>
 <li>默认情况下，浏览器关闭后，Cookie数据会被销毁。</li>
@@ -197,7 +197,7 @@
 </ul>
 </li>
 <li><p>Cookie共享问题：</p>
-<ol>
+<ul>
 <li><p>在部署多个项目的tomcat服务器中，默认情况下cookie不能被共享。</p>
 <ul>
 <li>setPath(String path)：设置为cookie的获取范围。默认情况下为当前的虚拟目录。<ul>
@@ -214,7 +214,7 @@
 </li>
 </ul>
 </li>
-</ol>
+</ul>
 </li>
 <li><p>Cookie的特点和作用</p>
 <ol>
@@ -229,7 +229,7 @@
 </li>
 </ol>
 </li>
-</ol>
+</ul>
 <p>代码展示：</p>
 <pre><code>public class CookieTest extends HttpServlet {
 protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
