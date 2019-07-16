@@ -16,7 +16,7 @@
 <meta property="og:site_name" content="Aaron">
 <meta property="og:description" content="概念：服务器端会话技术，在一次会话的多次请求间共享数据，将数据保存在服务器端的对象中。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-07-16T09:06:05.791Z">
+<meta property="og:updated_time" content="2019-07-16T09:07:45.535Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Session介绍">
 <meta name="twitter:description" content="概念：服务器端会话技术，在一次会话的多次请求间共享数据，将数据保存在服务器端的对象中。">
@@ -210,9 +210,9 @@ protected void doGet(HttpServletRequest request, HttpServletResponse response) t
 <li><p>细节：</p>
 <ul>
 <li>浏览器关闭后，服务器不关闭，两次获取的Session不相同<ul>
-<li>如果需要相同，可以在服务器内部创建Cookie，键为JSESSIONID，将其持久化。<pre><code>`Cookie c = new Cookie(&quot;JSESSIONID&quot;, session.getId());
+<li>如果需要相同，可以在服务器内部创建Cookie，键为JSESSIONID，将其持久化。<pre><code>Cookie c = new Cookie(&quot;JSESSIONID&quot;, session.getId());
 c.setMaxAge(60 * 60);
-response.addCookie(c);`</code></pre></li>
+response.addCookie(c);</code></pre></li>
 </ul>
 </li>
 <li>客户端不关闭，服务器关闭后，两次获取的Session不是同一个。<ul>
