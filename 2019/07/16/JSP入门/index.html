@@ -6,20 +6,20 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>Cookie入门介绍 | Aaron</title>
+  <title>JSP入门 | Aaron</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="Cookie原理简介：    1. 服务器创建Cookie对象。    2. 浏览器访问对应的Servlet，服务器将创建的Cookie对象通过响应头发送给浏览器。    3. 浏览器再次访问服务器时，会在请求头里包含刚才获得的Cookie，这时服务器可以解析从浏览器发送来的Cookie">
+  <meta name="description" content="概念：  Java Server Pages: java服务器端页面 既可以定义html标签，又可以定义java代码     原理：  JSP本质上就是一个Servlet">
 <meta name="keywords" content="JavaWeb">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Cookie入门介绍">
-<meta property="og:url" content="http://yoursite.com/2019/07/15/Cookie入门介绍/index.html">
+<meta property="og:title" content="JSP入门">
+<meta property="og:url" content="http://yoursite.com/2019/07/16/JSP入门/index.html">
 <meta property="og:site_name" content="Aaron">
-<meta property="og:description" content="Cookie原理简介：    1. 服务器创建Cookie对象。    2. 浏览器访问对应的Servlet，服务器将创建的Cookie对象通过响应头发送给浏览器。    3. 浏览器再次访问服务器时，会在请求头里包含刚才获得的Cookie，这时服务器可以解析从浏览器发送来的Cookie">
+<meta property="og:description" content="概念：  Java Server Pages: java服务器端页面 既可以定义html标签，又可以定义java代码     原理：  JSP本质上就是一个Servlet">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-07-15T09:38:06.559Z">
+<meta property="og:updated_time" content="2019-07-16T06:14:09.566Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Cookie入门介绍">
-<meta name="twitter:description" content="Cookie原理简介：    1. 服务器创建Cookie对象。    2. 浏览器访问对应的Servlet，服务器将创建的Cookie对象通过响应头发送给浏览器。    3. 浏览器再次访问服务器时，会在请求头里包含刚才获得的Cookie，这时服务器可以解析从浏览器发送来的Cookie">
+<meta name="twitter:title" content="JSP入门">
+<meta name="twitter:description" content="概念：  Java Server Pages: java服务器端页面 既可以定义html标签，又可以定义java代码     原理：  JSP本质上就是一个Servlet">
   
     <link rel="alternative" href="/atom.xml" title="Aaron" type="application/atom+xml">
   
@@ -147,61 +147,71 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-Cookie入门介绍" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-JSP入门" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      Cookie入门介绍
+      JSP入门
     </h1>
   
 
         
-        <a href="/2019/07/15/Cookie入门介绍/" class="archive-article-date">
-  	<time datetime="2019-07-15T09:33:01.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-07-15</time>
+        <a href="/2019/07/16/JSP入门/" class="archive-article-date">
+  	<time datetime="2019-07-16T02:31:01.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-07-16</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>Cookie原理简介：<br><br><br>    1. 服务器创建Cookie对象。<br><br>    2. 浏览器访问对应的Servlet，服务器将创建的Cookie对象通过响应头发送给浏览器。<br><br>    3. 浏览器再次访问服务器时，会在请求头里包含刚才获得的Cookie，这时服务器可以解析从浏览器发送来的Cookie</p>
+        <ol>
+<li><p>概念：</p>
+<ul>
+<li>Java Server Pages: java服务器端页面<ul>
+<li>既可以定义html标签，又可以定义java代码</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>原理：</p>
+<ul>
+<li>JSP本质上就是一个Servlet</li>
+</ul>
+</li>
+</ol>
 <a id="more"></a>
 
-<p>代码展示：</p>
-<pre><code>public class CookieDemo1 extends HttpServlet {
-protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-    //1.创建Cookie对象
-    Cookie c = new Cookie(&quot;msg&quot;, &quot;hello&quot;);
-    //2.发送Cookie
-    response.addCookie(c);
-    }
+<ol start="3">
+<li><p>JSP的脚本：JSP定义Java代码的方式</p>
+<ol>
+<li>&lt;% %&gt;：定义的java代码在service方法中。service方法可以定义什么，该脚本就可以定义什么。</li>
+<li>&lt;%! %&gt;：定义的Java代码，在JSP转换之后的Java类的成员位置。</li>
+<li>&lt;%= %&gt;：定义的Java代码，会输出到页面上。输出语句中可以定义什么，该脚本中就可以定义什么。</li>
+</ol>
+</li>
+<li><p>JSP的内置对象：</p>
+<ol>
+<li>在JSP页面中不需要获取和常见，可以直接使用。</li>
+<li>JSP一共有9个内置对象：<ol>
+<li>request</li>
+<li>response</li>
+<li>out：字符流。可将数据输出到页面上。<ol>
+<li>与response.getWriter()的区别：<ul>
+<li>在tomcat服务器真正做出响应之前，会先找response缓冲区的数据，在找out缓冲区数据。</li>
+<li>response.getWriter()数据输出永远在out.write()之前。</li>
+</ul>
+</li>
+</ol>
+</li>
+</ol>
+</li>
+</ol>
+</li>
+</ol>
 
-protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-    this.doPost(request, response);
-    }
-}
-
-public class CookieDemo2 extends HttpServlet {
-protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-    //3.获取Cookie
-    Cookie[] cs = request.getCookies();
-    //获取数据，遍历Cookies
-    if(cs != null){
-        for (Cookie c : cs) {
-            String name = c.getName();
-            String value = c.getValue();
-            System.out.println(name + &quot;:&quot; + value);
-        }
-    }
-    }
-
-protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-    this.doPost(request, response);
-    }
-}</code></pre>
       
 
       
@@ -291,7 +301,7 @@ protected void doGet(HttpServletRequest request, HttpServletResponse response) t
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2019/07/15/Cookie入门介绍/" alt="微信分享二维码">
+      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2019/07/16/JSP入门/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -305,18 +315,9 @@ protected void doGet(HttpServletRequest request, HttpServletResponse response) t
   
 <nav id="article-nav">
   
-    <a href="/2019/07/16/Cookie细节/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          Cookie细节
-        
-      </div>
-    </a>
   
-  
-    <a href="/2019/07/15/文件下载/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">文件下载</div>
+    <a href="/2019/07/16/Cookie细节/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Cookie细节</div>
       <i class="icon-circle-right"></i>
     </a>
   
@@ -344,7 +345,7 @@ protected void doGet(HttpServletRequest request, HttpServletResponse response) t
   
   <div class="duoshuo">
 	<!-- 多说评论框 start -->
-	<div class="ds-thread" data-thread-key="Cookie入门介绍" data-title="Cookie入门介绍" data-url="http://yoursite.com/2019/07/15/Cookie入门介绍/"></div>
+	<div class="ds-thread" data-thread-key="JSP入门" data-title="JSP入门" data-url="http://yoursite.com/2019/07/16/JSP入门/"></div>
 	<!-- 多说评论框 end -->
 	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
 	<script type="text/javascript">

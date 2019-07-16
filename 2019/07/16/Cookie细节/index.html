@@ -6,20 +6,20 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>Cookie入门介绍 | Aaron</title>
+  <title>Cookie细节 | Aaron</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="Cookie原理简介：    1. 服务器创建Cookie对象。    2. 浏览器访问对应的Servlet，服务器将创建的Cookie对象通过响应头发送给浏览器。    3. 浏览器再次访问服务器时，会在请求头里包含刚才获得的Cookie，这时服务器可以解析从浏览器发送来的Cookie">
+  <meta name="description" content="一次可以发送多个Cookie。可以创建多个Cookie对象，使用response多次调用addCookie方法发送Cookie即可。">
 <meta name="keywords" content="JavaWeb">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Cookie入门介绍">
-<meta property="og:url" content="http://yoursite.com/2019/07/15/Cookie入门介绍/index.html">
+<meta property="og:title" content="Cookie细节">
+<meta property="og:url" content="http://yoursite.com/2019/07/16/Cookie细节/index.html">
 <meta property="og:site_name" content="Aaron">
-<meta property="og:description" content="Cookie原理简介：    1. 服务器创建Cookie对象。    2. 浏览器访问对应的Servlet，服务器将创建的Cookie对象通过响应头发送给浏览器。    3. 浏览器再次访问服务器时，会在请求头里包含刚才获得的Cookie，这时服务器可以解析从浏览器发送来的Cookie">
+<meta property="og:description" content="一次可以发送多个Cookie。可以创建多个Cookie对象，使用response多次调用addCookie方法发送Cookie即可。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-07-15T09:38:06.559Z">
+<meta property="og:updated_time" content="2019-07-16T03:06:30.411Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Cookie入门介绍">
-<meta name="twitter:description" content="Cookie原理简介：    1. 服务器创建Cookie对象。    2. 浏览器访问对应的Servlet，服务器将创建的Cookie对象通过响应头发送给浏览器。    3. 浏览器再次访问服务器时，会在请求头里包含刚才获得的Cookie，这时服务器可以解析从浏览器发送来的Cookie">
+<meta name="twitter:title" content="Cookie细节">
+<meta name="twitter:description" content="一次可以发送多个Cookie。可以创建多个Cookie对象，使用response多次调用addCookie方法发送Cookie即可。">
   
     <link rel="alternative" href="/atom.xml" title="Aaron" type="application/atom+xml">
   
@@ -147,60 +147,153 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-Cookie入门介绍" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-Cookie细节" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      Cookie入门介绍
+      Cookie细节
     </h1>
   
 
         
-        <a href="/2019/07/15/Cookie入门介绍/" class="archive-article-date">
-  	<time datetime="2019-07-15T09:33:01.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-07-15</time>
+        <a href="/2019/07/16/Cookie细节/" class="archive-article-date">
+  	<time datetime="2019-07-16T00:46:14.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-07-16</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>Cookie原理简介：<br><br><br>    1. 服务器创建Cookie对象。<br><br>    2. 浏览器访问对应的Servlet，服务器将创建的Cookie对象通过响应头发送给浏览器。<br><br>    3. 浏览器再次访问服务器时，会在请求头里包含刚才获得的Cookie，这时服务器可以解析从浏览器发送来的Cookie</p>
+        <ol>
+<li>一次可以发送多个Cookie。可以创建多个Cookie对象，使用response多次调用addCookie方法发送Cookie即可。</li>
+</ol>
 <a id="more"></a>
 
+<ol start="2">
+<li><p>Cookie在浏览器中的保存时间：</p>
+<ol>
+<li>默认情况下，浏览器关闭后，Cookie数据会被销毁。</li>
+<li>持久化存储：<ul>
+<li>setMaxAge(int seconds)<ol>
+<li>正数：将Cookie数据写到硬盘的文件中。持久化存储。seconds代表Cookie的存活时间。</li>
+<li>负数：默认值。</li>
+<li>零：删除Cookie信息</li>
+</ol>
+</li>
+</ul>
+</li>
+</ol>
+</li>
+<li><p>Cookie能不能存中文？</p>
+<ul>
+<li>在tomcat 8 之前，Cookie中不能直接存储中文数据。<ul>
+<li>需要将中文数据转码，一般采用URL编码（%E3）</li>
+</ul>
+</li>
+<li>在8之后，支持存储中文数据。特殊字符还是不支持，建议使用URL编码存储，URL解码解析。</li>
+</ul>
+</li>
+<li><p>Cookie共享问题：</p>
+<ol>
+<li><p>在部署多个项目的tomcat服务器中，默认情况下cookie不能被共享。</p>
+<ul>
+<li>setPath(String path)：设置为cookie的获取范围。默认情况下为当前的虚拟目录。<ul>
+<li>如果要共享，则可以将path设置为”/“</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>不同的tomcat服务器之间Cookie如何共享？</p>
+<ul>
+<li>setDomain(String path)：如果设置一级域名相同，那么多个服务器之间cookie可以共享。<ul>
+<li>setDomain(“.baidu.com”)，那么tieba.baidu.com和news.baidu.com中cookie可以共享。</li>
+</ul>
+</li>
+</ul>
+</li>
+</ol>
+</li>
+<li><p>Cookie的特点和作用</p>
+<ol>
+<li>cookie存储数据在客户端浏览器</li>
+<li>浏览器对单个cookie的大小有限制（4kb）以及对同一个域名下的总cookie数量也有限制（20个）<ol start="3">
+<li>作用：<ol>
+<li>cookie一般用于存储少量的不太敏感的数据</li>
+<li>在不登录的情况下，完成服务器对客户端的身份识别</li>
+</ol>
+</li>
+</ol>
+</li>
+</ol>
+</li>
+</ol>
 <p>代码展示：</p>
-<pre><code>public class CookieDemo1 extends HttpServlet {
+<pre><code>public class CookieTest extends HttpServlet {
 protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-    //1.创建Cookie对象
-    Cookie c = new Cookie(&quot;msg&quot;, &quot;hello&quot;);
-    //2.发送Cookie
-    response.addCookie(c);
+    //设置响应的消息体的数据格式以及编码
+    response.setContentType(&quot;text/html;charset=utf-8&quot;);
+    //1.获取所有Cookie
+    Cookie[] cookies = request.getCookies();
+    boolean flag = false; //没有cookie则为false
+    //2.便利Cookie数组
+    if (cookies != null &amp;&amp; cookies.length &gt; 0) {
+        for (Cookie cookie : cookies) {
+            //3. 获取Cookie的名称
+            String name = cookie.getName();
+            //4.判断名称是否是：lastTime
+            if (&quot;lastTime&quot;.equals(name)) {
+                flag = true;
+                //获取Cookie的value，时间
+                String value = cookie.getValue();
+                //URL解码
+                value = URLDecoder.decode(value, &quot;utf-8&quot;);
+                response.getWriter().write(&quot;&lt;h1&gt;欢迎回来，您上次访问的时间为：&quot;
+                        + value + &quot;&lt;/h1&gt;&quot;);
+                //有该Cookie，不是第一次访问
+                //响应数据
+                //获取当前时间的字符串，重新设置Cookie的值，重新发送Cookie
+                Date date = new Date();
+                SimpleDateFormat sdf = new SimpleDateFormat(&quot;yyyy年MM月dd日 HH:mm:ss&quot;);
+                String str_date = sdf.format(date);
+                System.out.println(&quot;编码前：&quot; + str_date);
+                //URL编码
+                str_date = URLEncoder.encode(str_date, &quot;utf-8&quot;);
+                System.out.println(&quot;编码后：&quot; + str_date);
+                cookie.setValue(str_date);
+                //设置Cookie的存活时间
+                cookie.setMaxAge(60 * 60 * 24 * 30);//一个月
+
+                response.addCookie(cookie);
+
+
+                break;
+            }
+        }
     }
 
-protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-    this.doPost(request, response);
+    if (cookies == null || cookies.length == 0 || flag == false) {
+        //没有，第一次访问
+        //获取当前时间的字符串，重新设置Cookie的值，重新发送Cookie
+        Date date = new Date();
+        SimpleDateFormat sdf = new SimpleDateFormat(&quot;yyyy年MM月dd日 HH:mm:ss&quot;);
+        String str_date = sdf.format(date);
+        str_date = URLEncoder.encode(str_date, &quot;utf-8&quot;);
+        Cookie cookie = new Cookie(&quot;lastTime&quot;, str_date);
+
+        //设置Cookie的存活时间
+        cookie.setMaxAge(60 * 60 * 24 * 30);//一个月
+
+        response.addCookie(cookie);
+        response.getWriter().write(&quot;&lt;h1&gt;您好，欢迎您首次访问。&lt;/h1&gt;&quot;);
     }
 }
 
-public class CookieDemo2 extends HttpServlet {
-protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-    //3.获取Cookie
-    Cookie[] cs = request.getCookies();
-    //获取数据，遍历Cookies
-    if(cs != null){
-        for (Cookie c : cs) {
-            String name = c.getName();
-            String value = c.getValue();
-            System.out.println(name + &quot;:&quot; + value);
-        }
-    }
-    }
-
 protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
     this.doPost(request, response);
-    }
+}
 }</code></pre>
       
 
@@ -291,7 +384,7 @@ protected void doGet(HttpServletRequest request, HttpServletResponse response) t
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2019/07/15/Cookie入门介绍/" alt="微信分享二维码">
+      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2019/07/16/Cookie细节/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -305,18 +398,18 @@ protected void doGet(HttpServletRequest request, HttpServletResponse response) t
   
 <nav id="article-nav">
   
-    <a href="/2019/07/16/Cookie细节/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/2019/07/16/JSP入门/" id="article-nav-newer" class="article-nav-link-wrap">
       <i class="icon-circle-left"></i>
       <div class="article-nav-title">
         
-          Cookie细节
+          JSP入门
         
       </div>
     </a>
   
   
-    <a href="/2019/07/15/文件下载/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">文件下载</div>
+    <a href="/2019/07/15/Cookie入门介绍/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Cookie入门介绍</div>
       <i class="icon-circle-right"></i>
     </a>
   
@@ -344,7 +437,7 @@ protected void doGet(HttpServletRequest request, HttpServletResponse response) t
   
   <div class="duoshuo">
 	<!-- 多说评论框 start -->
-	<div class="ds-thread" data-thread-key="Cookie入门介绍" data-title="Cookie入门介绍" data-url="http://yoursite.com/2019/07/15/Cookie入门介绍/"></div>
+	<div class="ds-thread" data-thread-key="Cookie细节" data-title="Cookie细节" data-url="http://yoursite.com/2019/07/16/Cookie细节/"></div>
 	<!-- 多说评论框 end -->
 	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
 	<script type="text/javascript">
