@@ -6,20 +6,20 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>文件下载 | Aaron</title>
+  <title>MCV开发模式 | Aaron</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="代码展示：">
+  <meta name="description" content="MCV: M: Model，模型。 JavaBean 完成具体的也为u操作，如：查询数据库，封装对象   V：View，视图。JSP 展示数据   C: Controller，控制器。Servlet 获取用户的输入 调用模型 将数据交给视图进行展示">
 <meta name="keywords" content="JavaWeb">
 <meta property="og:type" content="article">
-<meta property="og:title" content="文件下载">
-<meta property="og:url" content="http://yoursite.com/2019/07/15/文件下载/index.html">
+<meta property="og:title" content="MCV开发模式">
+<meta property="og:url" content="http://yoursite.com/2019/07/18/MCV开发模式/index.html">
 <meta property="og:site_name" content="Aaron">
-<meta property="og:description" content="代码展示：">
+<meta property="og:description" content="MCV: M: Model，模型。 JavaBean 完成具体的也为u操作，如：查询数据库，封装对象   V：View，视图。JSP 展示数据   C: Controller，控制器。Servlet 获取用户的输入 调用模型 将数据交给视图进行展示">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-07-15T08:06:38.427Z">
+<meta property="og:updated_time" content="2019-07-18T02:23:38.675Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="文件下载">
-<meta name="twitter:description" content="代码展示：">
+<meta name="twitter:title" content="MCV开发模式">
+<meta name="twitter:description" content="MCV: M: Model，模型。 JavaBean 完成具体的也为u操作，如：查询数据库，封装对象   V：View，视图。JSP 展示数据   C: Controller，控制器。Servlet 获取用户的输入 调用模型 将数据交给视图进行展示">
   
     <link rel="alternative" href="/atom.xml" title="Aaron" type="application/atom+xml">
   
@@ -147,80 +147,61 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-文件下载" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-MCV开发模式" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      文件下载
+      MCV开发模式
     </h1>
   
 
         
-        <a href="/2019/07/15/文件下载/" class="archive-article-date">
-  	<time datetime="2019-07-15T08:02:15.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-07-15</time>
+        <a href="/2019/07/18/MCV开发模式/" class="archive-article-date">
+  	<time datetime="2019-07-18T02:16:25.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-07-18</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>代码展示：</p>
+        <ul>
+<li>MCV:<ul>
+<li>M: Model，模型。 JavaBean<ul>
+<li>完成具体的也为u操作，如：查询数据库，封装对象</li>
+</ul>
+</li>
+<li>V：View，视图。JSP<ul>
+<li>展示数据</li>
+</ul>
+</li>
+<li>C: Controller，控制器。Servlet<ul>
+<li>获取用户的输入</li>
+<li>调用模型</li>
+<li>将数据交给视图进行展示</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
 <a id="more"></a>
 
-<pre><code>public class DownloadServlet extends HttpServlet {
-protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-    //1.获取请求参数，文件名称
-    String filename = request.getParameter(&quot;filename&quot;);
-    //2.使用字节输入流加载文件进内存
-    //2.1找到文件服务器路径
-    ServletContext servletContext = this.getServletContext();
-    String realPath = servletContext.getRealPath(&quot;/img/&quot; + filename);
-    //2.2用字节流关联
-    FileInputStream fis = new FileInputStream(realPath);
-
-    //3.设置response的响应头
-    //3.1设置响应头类型
-    String mimeType = servletContext.getMimeType(filename);//获取文件的mime类型
-    response.setHeader(&quot;content-type&quot;, mimeType);
-    //3.2设置响应头打开方式
-    //解决中文文件名问题
-    //1.获取user-agent请求头
-    String agent = request.getHeader(&quot;user-agent&quot;);
-    String fileName = DownLoadUtils.getFileName(agent, filename);
-
-    response.setHeader(&quot;content-disposition&quot;, &quot;attachment;filename=&quot;+fileName);
-
-
-    //4.将输入流的数据写出到输出流中
-    ServletOutputStream sos = response.getOutputStream();
-    byte[] buff = new byte[1024 * 8];
-    int len = 0;
-    while((len = fis.read(buff)) != -1){
-        sos.write(buff, 0, len);
-    }
-
-    fis.close();
-}</code></pre><p>如果要下载的文件名称为中文的话，很可能出现乱码问题，这时候需要根据不同的浏览器设置不同的字节编码。</p>
-<pre><code>public class DownLoadUtils {
-
-public static String getFileName(String agent, String filename) throws UnsupportedEncodingException {
-    if (agent.contains(&quot;MSIE&quot;)) {
-        // IE浏览器
-        filename = URLEncoder.encode(filename, &quot;utf-8&quot;);
-        filename = filename.replace(&quot;+&quot;, &quot; &quot;);
-    } else if (agent.contains(&quot;Firefox&quot;)) {
-        // 火狐浏览器
-        BASE64Encoder base64Encoder = new BASE64Encoder();
-        filename = &quot;=?utf-8?B?&quot; + base64Encoder.encode(filename.getBytes(&quot;utf-8&quot;)) + &quot;?=&quot;;
-    } else {
-        // 其它浏览器
-        filename = URLEncoder.encode(filename, &quot;utf-8&quot;);
-    }
-    return filename;
-}</code></pre><p>}</p>
+<ul>
+<li>优缺点：<ul>
+<li>优点<ul>
+<li>耦合性低，方便维护，利于分工协作</li>
+<li>重用性高</li>
+</ul>
+</li>
+<li>缺点<ul>
+<li>使得项目架构变得复杂，对开发人员要求高</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
 
       
 
@@ -311,7 +292,7 @@ public static String getFileName(String agent, String filename) throws Unsupport
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2019/07/15/文件下载/" alt="微信分享二维码">
+      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2019/07/18/MCV开发模式/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -325,18 +306,18 @@ public static String getFileName(String agent, String filename) throws Unsupport
   
 <nav id="article-nav">
   
-    <a href="/2019/07/15/Cookie入门介绍/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/2019/07/18/EL表达式/" id="article-nav-newer" class="article-nav-link-wrap">
       <i class="icon-circle-left"></i>
       <div class="article-nav-title">
         
-          Cookie入门介绍
+          EL表达式
         
       </div>
     </a>
   
   
-    <a href="/2019/07/15/ServletContext的功能介绍/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">ServletContext的功能介绍</div>
+    <a href="/2019/07/16/Session介绍/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Session介绍</div>
       <i class="icon-circle-right"></i>
     </a>
   
@@ -364,7 +345,7 @@ public static String getFileName(String agent, String filename) throws Unsupport
   
   <div class="duoshuo">
 	<!-- 多说评论框 start -->
-	<div class="ds-thread" data-thread-key="文件下载" data-title="文件下载" data-url="http://yoursite.com/2019/07/15/文件下载/"></div>
+	<div class="ds-thread" data-thread-key="MCV开发模式" data-title="MCV开发模式" data-url="http://yoursite.com/2019/07/18/MCV开发模式/"></div>
 	<!-- 多说评论框 end -->
 	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
 	<script type="text/javascript">

@@ -16,7 +16,7 @@
 <meta property="og:site_name" content="Aaron">
 <meta property="og:description" content="概念：  Java Server Pages: java服务器端页面 既可以定义html标签，又可以定义java代码     原理：  JSP本质上就是一个Servlet">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-07-16T06:21:11.743Z">
+<meta property="og:updated_time" content="2019-07-18T03:09:48.707Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="JSP入门">
 <meta name="twitter:description" content="概念：  Java Server Pages: java服务器端页面 既可以定义html标签，又可以定义java代码     原理：  JSP本质上就是一个Servlet">
@@ -187,14 +187,14 @@
 <ul>
 <li><p>JSP的脚本：JSP定义Java代码的方式</p>
 <ul>
-<li>&lt;% %&gt;：定义的java代码在service方法中。service方法可以定义什么，该脚本就可以定义什么。</li>
-<li>&lt;%! %&gt;：定义的Java代码，在JSP转换之后的Java类的成员位置。</li>
-<li>&lt;%= %&gt;：定义的Java代码，会输出到页面上。输出语句中可以定义什么，该脚本中就可以定义什么。</li>
+<li>&lt;% 代码 %&gt;：定义的java代码在service方法中。service方法可以定义什么，该脚本就可以定义什么。</li>
+<li>&lt;%! 代码 %&gt;：定义的Java代码，在JSP转换之后的Java类的成员位置。</li>
+<li>&lt;%= 代码 %&gt;：定义的Java代码，会输出到页面上。输出语句中可以定义什么，该脚本中就可以定义什么。</li>
 </ul>
 </li>
 <li><p>JSP的内置对象：</p>
 <ul>
-<li>在JSP页面中不需要获取和常见，可以直接使用。</li>
+<li>在JSP页面中不需要获取和创建，可以直接使用。</li>
 <li>JSP一共有9个内置对象：<ul>
 <li>request</li>
 <li>response</li>
@@ -204,6 +204,75 @@
 <li>response.getWriter()数据输出永远在out.write()之前。</li>
 </ul>
 </li>
+</ul>
+</li>
+<li>pageContext</li>
+<li>session</li>
+<li>application</li>
+<li>page</li>
+<li>config</li>
+<li>exception</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="JSP细节"><a href="#JSP细节" class="headerlink" title="JSP细节"></a>JSP细节</h2><ul>
+<li>指令<ul>
+<li>作用：用于配置JSP页面</li>
+<li>格式：<ul>
+<li>&lt;&amp;@ 指令名称 属性名1=属性值1 … %&gt;</li>
+</ul>
+</li>
+<li>类型：<ul>
+<li>page: 配置JSP<ul>
+<li>contentType: 等同于response.setContentType()<ul>
+<li>设置响应体的mime类型以及字符集</li>
+<li>设置当前JSP页面的编码（高级IDE）</li>
+</ul>
+</li>
+<li>import: 导包</li>
+<li>errorpage：当前页面发生异常后，自动跳转到指定页面</li>
+<li>isErrorPage：标识当前页面是否是错误页面<ul>
+<li>true：可以使用exception内置对象，否则不行</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>include: 导入页面的资源文件<ul>
+<li>&lt;%@include file=”top.jsp”%&gt;</li>
+</ul>
+</li>
+<li>taglib： 导入资源 <ul>
+<li>&lt;%@taglib prefix=”” uri=”…” %&gt; </li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>注释<ul>
+<li>html注释：<ul>
+<li><!-- -->：只能注释html代码片段</li>
+</ul>
+</li>
+<li>jsp注释<ul>
+<li>&lt;%– –%&gt;: 注释所有片段</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>内置对象：<ul>
+<li>一共9个：<br>   变量名                &nbsp;&nbsp;真实类型                &nbsp;&nbsp;作用范围<ul>
+<li>pageContext        &nbsp;&nbsp;PageContext            &nbsp;&nbsp;当前页面共享数据,可以获取其它8个内置对象<ul>
+<li>request            &nbsp;&nbsp;HttPServletRequest    &nbsp;&nbsp;一次请求访问的多个资源</li>
+<li>session            &nbsp;&nbsp;HttpSession            &nbsp;&nbsp;一次会话的多个请求间</li>
+<li>application        &nbsp;&nbsp;ServletContext        &nbsp;&nbsp;所有用户间共享数据</li>
+<li>response            &nbsp;&nbsp;HttpServletResponse    &nbsp;&nbsp;响应对象</li>
+<li>page                &nbsp;&nbsp;Object                &nbsp;&nbsp;当前页面的对象 this</li>
+<li>out                &nbsp;&nbsp;JspWriter            &nbsp;&nbsp;输出对象，数据输出到页面上</li>
+<li>config            &nbsp;&nbsp;ServletConfig        &nbsp;&nbsp;Servlet的配置对象</li>
+<li>exception            &nbsp;&nbsp;Throwable            &nbsp;&nbsp;异常对象    </li>
 </ul>
 </li>
 </ul>
@@ -468,11 +537,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">前端</a>
+                <a href="javascript:void(0)" class="js-tag color5">主题配置</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">主题配置</a>
+                <a href="javascript:void(0)" class="js-tag color3">前端</a>
               </li>
             
             <div class="clearfix"></div>

@@ -6,20 +6,20 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>文件下载 | Aaron</title>
+  <title>EL表达式 | Aaron</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="代码展示：">
+  <meta name="description" content="EL表达式:  概念：Expression Language  作用：替换和简化JSP中Java代码书写 语法：${表达式} 注意： jsp默认支持el表达式。如果要忽略el表达式： 设置jsp中page指令中：isELIgnored=”true” 忽略当前页面所有EL表达式 ${表达式}: 忽略这个el表达式">
 <meta name="keywords" content="JavaWeb">
 <meta property="og:type" content="article">
-<meta property="og:title" content="文件下载">
-<meta property="og:url" content="http://yoursite.com/2019/07/15/文件下载/index.html">
+<meta property="og:title" content="EL表达式">
+<meta property="og:url" content="http://yoursite.com/2019/07/18/EL表达式/index.html">
 <meta property="og:site_name" content="Aaron">
-<meta property="og:description" content="代码展示：">
+<meta property="og:description" content="EL表达式:  概念：Expression Language  作用：替换和简化JSP中Java代码书写 语法：${表达式} 注意： jsp默认支持el表达式。如果要忽略el表达式： 设置jsp中page指令中：isELIgnored=”true” 忽略当前页面所有EL表达式 ${表达式}: 忽略这个el表达式">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-07-15T08:06:38.427Z">
+<meta property="og:updated_time" content="2019-07-18T03:47:56.932Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="文件下载">
-<meta name="twitter:description" content="代码展示：">
+<meta name="twitter:title" content="EL表达式">
+<meta name="twitter:description" content="EL表达式:  概念：Expression Language  作用：替换和简化JSP中Java代码书写 语法：${表达式} 注意： jsp默认支持el表达式。如果要忽略el表达式： 设置jsp中page指令中：isELIgnored=”true” 忽略当前页面所有EL表达式 ${表达式}: 忽略这个el表达式">
   
     <link rel="alternative" href="/atom.xml" title="Aaron" type="application/atom+xml">
   
@@ -147,80 +147,110 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-文件下载" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-EL表达式" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      文件下载
+      EL表达式
     </h1>
   
 
         
-        <a href="/2019/07/15/文件下载/" class="archive-article-date">
-  	<time datetime="2019-07-15T08:02:15.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-07-15</time>
+        <a href="/2019/07/18/EL表达式/" class="archive-article-date">
+  	<time datetime="2019-07-18T02:38:05.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-07-18</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>代码展示：</p>
-<a id="more"></a>
-
-<pre><code>public class DownloadServlet extends HttpServlet {
-protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-    //1.获取请求参数，文件名称
-    String filename = request.getParameter(&quot;filename&quot;);
-    //2.使用字节输入流加载文件进内存
-    //2.1找到文件服务器路径
-    ServletContext servletContext = this.getServletContext();
-    String realPath = servletContext.getRealPath(&quot;/img/&quot; + filename);
-    //2.2用字节流关联
-    FileInputStream fis = new FileInputStream(realPath);
-
-    //3.设置response的响应头
-    //3.1设置响应头类型
-    String mimeType = servletContext.getMimeType(filename);//获取文件的mime类型
-    response.setHeader(&quot;content-type&quot;, mimeType);
-    //3.2设置响应头打开方式
-    //解决中文文件名问题
-    //1.获取user-agent请求头
-    String agent = request.getHeader(&quot;user-agent&quot;);
-    String fileName = DownLoadUtils.getFileName(agent, filename);
-
-    response.setHeader(&quot;content-disposition&quot;, &quot;attachment;filename=&quot;+fileName);
-
-
-    //4.将输入流的数据写出到输出流中
-    ServletOutputStream sos = response.getOutputStream();
-    byte[] buff = new byte[1024 * 8];
-    int len = 0;
-    while((len = fis.read(buff)) != -1){
-        sos.write(buff, 0, len);
-    }
-
-    fis.close();
-}</code></pre><p>如果要下载的文件名称为中文的话，很可能出现乱码问题，这时候需要根据不同的浏览器设置不同的字节编码。</p>
-<pre><code>public class DownLoadUtils {
-
-public static String getFileName(String agent, String filename) throws UnsupportedEncodingException {
-    if (agent.contains(&quot;MSIE&quot;)) {
-        // IE浏览器
-        filename = URLEncoder.encode(filename, &quot;utf-8&quot;);
-        filename = filename.replace(&quot;+&quot;, &quot; &quot;);
-    } else if (agent.contains(&quot;Firefox&quot;)) {
-        // 火狐浏览器
-        BASE64Encoder base64Encoder = new BASE64Encoder();
-        filename = &quot;=?utf-8?B?&quot; + base64Encoder.encode(filename.getBytes(&quot;utf-8&quot;)) + &quot;?=&quot;;
-    } else {
-        // 其它浏览器
-        filename = URLEncoder.encode(filename, &quot;utf-8&quot;);
-    }
-    return filename;
-}</code></pre><p>}</p>
+        <ul>
+<li><p>EL表达式:</p>
+<ul>
+<li>概念：Expression Language </li>
+<li>作用：替换和简化JSP中Java代码书写</li>
+<li>语法：${表达式}</li>
+<li>注意：<ul>
+<li>jsp默认支持el表达式。如果要忽略el表达式：<ul>
+<li>设置jsp中page指令中：isELIgnored=”true” 忽略当前页面所有EL表达式</li>
+<li>${表达式}: 忽略这个el表达式<a id="more"></a>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>使用：</p>
+<ul>
+<li>运算：<ul>
+<li>运算符：<ul>
+<li>算数运算符</li>
+<li>比较运算符</li>
+<li>逻辑运算符</li>
+<li>空运算符 empty<ul>
+<li>判断字符串、集合、数组对象是否为NULL并且长度是否为0</li>
+<li>${empty list}</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>获取值：<ul>
+<li>只能从域对象中获取值</li>
+<li>语法：<ul>
+<li>${域名称,键名}:从指定域中获取键值<ul>
+<li>域名称：<ul>
+<li>pageScope     –&gt; pageContext</li>
+<li>requestScope    –&gt; request</li>
+<li>sessionScope    –&gt; session</li>
+<li>applicationScope    –&gt; application</li>
+</ul>
+</li>
+<li>举例：在request域中存储了name=张三</li>
+<li>获取：${requestScope.name}</li>
+</ul>
+</li>
+<li>${键名}:标识依次从最小的域中查找是否有该键对应的值，直到找到为止。<ul>
+<li>获取对象List集合、Map集合的值</li>
+<li>对象：${域名称.键名.属性名}<ul>
+<li>实际上是调用对象的getter方法</li>
+</ul>
+</li>
+<li>List集合：${域名称.键名[索引]}<ul>
+<li>若发生数组越界，服务器不会报错，页面显示空字符串</li>
+</ul>
+</li>
+<li>Map集合：<ul>
+<li>${域名称.键名.key名称}</li>
+<li>${域名称.键名[“key名称”]}</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>隐式对象：</p>
+<ul>
+<li>el表达式中有11个隐式对象</li>
+<li>pageContext:<ul>
+<li>获取jsp中其它八个内置对象<ul>
+<li>${pageContext.request.contextPath}:动态获取虚拟目录</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
 
       
 
@@ -311,7 +341,7 @@ public static String getFileName(String agent, String filename) throws Unsupport
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2019/07/15/文件下载/" alt="微信分享二维码">
+      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2019/07/18/EL表达式/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -325,18 +355,9 @@ public static String getFileName(String agent, String filename) throws Unsupport
   
 <nav id="article-nav">
   
-    <a href="/2019/07/15/Cookie入门介绍/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          Cookie入门介绍
-        
-      </div>
-    </a>
   
-  
-    <a href="/2019/07/15/ServletContext的功能介绍/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">ServletContext的功能介绍</div>
+    <a href="/2019/07/18/MCV开发模式/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">MCV开发模式</div>
       <i class="icon-circle-right"></i>
     </a>
   
@@ -364,7 +385,7 @@ public static String getFileName(String agent, String filename) throws Unsupport
   
   <div class="duoshuo">
 	<!-- 多说评论框 start -->
-	<div class="ds-thread" data-thread-key="文件下载" data-title="文件下载" data-url="http://yoursite.com/2019/07/15/文件下载/"></div>
+	<div class="ds-thread" data-thread-key="EL表达式" data-title="EL表达式" data-url="http://yoursite.com/2019/07/18/EL表达式/"></div>
 	<!-- 多说评论框 end -->
 	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
 	<script type="text/javascript">
