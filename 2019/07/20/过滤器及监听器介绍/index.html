@@ -6,20 +6,20 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>Session介绍 | Aaron</title>
+  <title>过滤器及监听器介绍 | Aaron</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="概念：服务器端会话技术，在一次会话的多次请求间共享数据，将数据保存在服务器端的对象中。">
+  <meta name="description" content="过滤器">
 <meta name="keywords" content="JavaWeb">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Session介绍">
-<meta property="og:url" content="http://yoursite.com/2019/07/16/Session介绍/index.html">
+<meta property="og:title" content="过滤器及监听器介绍">
+<meta property="og:url" content="http://yoursite.com/2019/07/20/过滤器及监听器介绍/index.html">
 <meta property="og:site_name" content="Aaron">
-<meta property="og:description" content="概念：服务器端会话技术，在一次会话的多次请求间共享数据，将数据保存在服务器端的对象中。">
+<meta property="og:description" content="过滤器">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-07-16T09:07:45.535Z">
+<meta property="og:updated_time" content="2019-07-21T13:46:42.434Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Session介绍">
-<meta name="twitter:description" content="概念：服务器端会话技术，在一次会话的多次请求间共享数据，将数据保存在服务器端的对象中。">
+<meta name="twitter:title" content="过滤器及监听器介绍">
+<meta name="twitter:description" content="过滤器">
   
     <link rel="alternative" href="/atom.xml" title="Aaron" type="application/atom+xml">
   
@@ -147,102 +147,163 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-Session介绍" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-过滤器及监听器介绍" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      Session介绍
+      过滤器及监听器介绍
     </h1>
   
 
         
-        <a href="/2019/07/16/Session介绍/" class="archive-article-date">
-  	<time datetime="2019-07-16T06:22:29.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-07-16</time>
+        <a href="/2019/07/20/过滤器及监听器介绍/" class="archive-article-date">
+  	<time datetime="2019-07-20T07:11:14.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-07-20</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <ul>
-<li>概念：服务器端会话技术，在一次会话的多次请求间共享数据，将数据保存在服务器端的对象中。<a id="more"></a>
+        <h3 id="过滤器"><a href="#过滤器" class="headerlink" title="过滤器"></a>过滤器</h3><a id="more"></a>
 
-</li>
-</ul>
-<p>代码展示：</p>
-<pre><code>   @WebServlet(&quot;/sessionDemo1&quot;)
-public class SessionDemo1 extends HttpServlet {
-protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-    //使用session存储数据
-
-    //1.获取Session
-    HttpSession session = request.getSession();
-    //2.存储数据
-    session.setAttribute(&quot;msg&quot;, &quot;hello session&quot;);
-}
-
-protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-    this.doPost(request, response);
-}
-
-}
-@WebServlet(&quot;/sessionDemo2&quot;)
-public class SessionDemo2 extends HttpServlet {
-protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-    //使用session存储数据
-
-    //1.获取Session
-    HttpSession session = request.getSession();
-    //2.获取数据
-    Object msg = session.getAttribute(&quot;msg&quot;);
-    System.out.println(msg);
-}
-
-protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-    this.doPost(request, response);
-}
-}</code></pre><ul>
-<li><p>原理：Session的实现依赖于cookie，服务器内部通过SessionId来判断存储的Session和读取的Session是否一致。</p>
-</li>
-<li><p>细节：</p>
 <ul>
-<li>浏览器关闭后，服务器不关闭，两次获取的Session不相同<ul>
-<li>如果需要相同，可以在服务器内部创建Cookie，键为JSESSIONID，将其持久化。<pre><code>Cookie c = new Cookie(&quot;JSESSIONID&quot;, session.getId());
-c.setMaxAge(60 * 60);
-response.addCookie(c);</code></pre></li>
-</ul>
-</li>
-<li>客户端不关闭，服务器关闭后，两次获取的Session不是同一个。<ul>
-<li>Session的钝化：<ul>
-<li>在服务器正常关闭之前，将Session对象系列化到硬盘上</li>
-</ul>
-</li>
-<li>Session的活化：<ul>
-<li>在服务器启动后，将Session文件转化为内存中的Session对象</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-</li>
-<li><p>Session何时被销毁</p>
+<li><p>作用：</p>
 <ul>
-<li>服务器关闭</li>
-<li>Session对象调用invalidate()</li>
-<li>Session默认失效时间 30分钟（可以修改）</li>
+<li>一般用于完成通用的操作：登录验证，统一编码，敏感字符过滤等</li>
 </ul>
 </li>
-<li><p>Session的特点：</p>
+<li><p>快速入门：</p>
 <ul>
-<li>Session用于存储一次会话的多次请求的数据，存在服务器端</li>
-<li>Session可以存储任意类型，任意大小的数据</li>
-<li>Session和Cookie的区别：<ul>
-<li>Session存储数据在服务器端，Cookie在客户端</li>
-<li>Session没有数据大小限制，Cookie有</li>
-<li>Session数据安全，Cookie相对于不安全</li>
+<li>步骤：<ul>
+<li>定义一个类，实现接口Filter</li>
+<li>复写方法</li>
+<li>配置拦截路径<ul>
+<li>web.xml</li>
+<li>注解 @WebFilter(“/“) 写入需要被拦截的url</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>过滤器细节：</p>
+<ul>
+<li><p>web.xml配置</p>
+<pre><code>&lt;filter&gt;
+    &lt;filter-name&gt;demo1&lt;/filter-name&gt;
+       &lt;filter-class&gt;cn.itcast.web.filter.FilterDemo1&lt;/filter-class&gt;
+&lt;/filter&gt;
+&lt;filter-mapping&gt;
+    &lt;filter-name&gt;demo1&lt;/filter-name&gt;
+    &lt;url-pattern&gt;/*&lt;/url-pattern&gt;
+&lt;/filter-mapping&gt;</code></pre></li>
+<li><p>过滤器执行流程</p>
+<ul>
+<li>执行放行前代码</li>
+<li>执行放行代码</li>
+<li>执行放行后代码</li>
+</ul>
+</li>
+<li><p>过滤器生命周期方法</p>
+<pre><code>@WebFilter(&quot;/*&quot;) //访问所有资源之前，都会执行该过滤器
+public class FilterDemo3 implements Filter{
+    //在服务器启动后，会创建Filter对象，然后调用init方法，只执行一次
+    @Override
+    public void init(FilterConfig filterConfig) throws ServletException {
+        System.out.println(&quot;init...&quot;);
+    }</code></pre></li>
+</ul>
+</li>
+</ul>
+<pre><code>            //每一次请求被拦截资源时，会执行
+            @Override
+            public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain filterChain) throws IOException, ServletException {
+                System.out.println(&quot;filterDemo3被执行了&quot;);
+
+                //放行
+                filterChain.doFilter(servletRequest, servletResponse);
+
+                System.out.println(&quot;filterDemo3回来了&quot;);
+            }
+
+            //服务器正常关闭后，会调用该方法，只执行一次，用于释放资源
+            @Override
+            public void destroy() {
+                System.out.println(&quot;destroy...&quot;);
+            }
+        }
+
+* 过滤器配置详解
+    * 拦截路径配置：
+        * 具体资源路径：/index.jsp 只有访问index.jsp资源时，才会执行过滤器
+        * 拦截目录：/user/* 访问/user下所有资源时，过滤器都会被执行
+        * 后缀名拦截：*.jsp 访问所有jsp资源时，过滤器都会被执行
+        * 拦截所有资源：/*
+    * 拦截方式配置：资源被访问的方式
+        * 注解配置：
+            * 设置dispatcherType属性：
+                * REQUEST: 默认值。浏览器直接请求资源
+                * FORWARD：转发访问资源
+                * INCLUDE: 包含访问资源
+                * ERROR: 错误跳转资源
+                * ASYNC: 异步访问资源
+        * web.xml配置
+            * 设置&lt;dispatcher&gt;&lt;/dispatcher&gt;标签即可
+* 过滤器链（配置多个过滤器） 
+    * 执行顺序：如果有两个过滤器：过滤器1和过滤器2
+        * 过滤器1
+        * 过滤器2
+        * 资源执行
+        * 过滤器2
+        * 过滤器1 
+    * 过滤器先后顺序问题：
+        * 注解配置：按照类名的字符串比较规则比较，值小的先执行
+            * 如AFilter和BFilter，AFilter先执行
+        * web.xml配置：谁定义在上面，谁先执行</code></pre><h3 id="监听器"><a href="#监听器" class="headerlink" title="监听器"></a>监听器</h3><ul>
+<li><p>概念：web三大组件之一</p>
+<ul>
+<li><p>事件监听机制</p>
+<ul>
+<li>事件：一件事情</li>
+<li>事件源：事件发生的地方</li>
+<li>监听器：一个对象</li>
+<li>注册监听：将事件、事件源、监听器绑定在一起。当事件源上发生某个事件后，执行监听代码。</li>
+</ul>
+</li>
+<li><p>ServletContextListener:监听ServletContext对象的创建和销毁</p>
+<ul>
+<li><p>方法：</p>
+<ul>
+<li>void contextDestroyed(ServletContextEvent sce) ：ServletContext: 对象被销毁之前会调用该方法</li>
+<li>void contextInitialized(ServletContextEvent sce) ：ServletContext: 对象创建后会调用该方法</li>
+</ul>
+</li>
+<li><p>步骤：</p>
+<ul>
+<li><p>定义一个类，实现ServletContextListener接口</p>
+</li>
+<li><p>复写方法</p>
+</li>
+<li><p>配置</p>
+<ul>
+<li><p>web.xml</p>
+<pre><code>&lt;listener&gt;
+ &lt;listener-class&gt;cn.itcast.web.listener.ContextLoaderListener&lt;/listener-class&gt;
+   &lt;/listener&gt;        </code></pre></li>
+<li><p>指定初始化参数<context-param></context-param></p>
+</li>
+<li><p>注解：</p>
+<ul>
+<li>@WebListener</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
@@ -338,7 +399,7 @@ response.addCookie(c);</code></pre></li>
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2019/07/16/Session介绍/" alt="微信分享二维码">
+      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2019/07/20/过滤器及监听器介绍/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -352,18 +413,18 @@ response.addCookie(c);</code></pre></li>
   
 <nav id="article-nav">
   
-    <a href="/2019/07/18/MCV开发模式/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/2019/07/21/ChainSpace合约执行过程/" id="article-nav-newer" class="article-nav-link-wrap">
       <i class="icon-circle-left"></i>
       <div class="article-nav-title">
         
-          MCV开发模式
+          ChainSpace合约执行过程
         
       </div>
     </a>
   
   
-    <a href="/2019/07/16/JSP入门/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">JSP入门</div>
+    <a href="/2019/07/18/JSTL介绍/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">JSTL介绍</div>
       <i class="icon-circle-right"></i>
     </a>
   
@@ -391,7 +452,7 @@ response.addCookie(c);</code></pre></li>
   
   <div class="duoshuo">
 	<!-- 多说评论框 start -->
-	<div class="ds-thread" data-thread-key="Session介绍" data-title="Session介绍" data-url="http://yoursite.com/2019/07/16/Session介绍/"></div>
+	<div class="ds-thread" data-thread-key="过滤器及监听器介绍" data-title="过滤器及监听器介绍" data-url="http://yoursite.com/2019/07/20/过滤器及监听器介绍/"></div>
 	<!-- 多说评论框 end -->
 	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
 	<script type="text/javascript">

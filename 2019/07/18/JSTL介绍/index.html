@@ -6,20 +6,20 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>Session介绍 | Aaron</title>
+  <title>JSTL介绍 | Aaron</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="概念：服务器端会话技术，在一次会话的多次请求间共享数据，将数据保存在服务器端的对象中。">
+  <meta name="description" content="JSTL  概念：JSP标准标签库  由Apache组织免费开源提供   作用：简化和替换jsp页面上的Java代码  使用：  导入JSTL相关包 引入标签库：taglib指令： &amp;lt;%@ taglib %&amp;gt; 使用标签   常用的JSTL标签：  if:  属性： 必须对其test属性进行赋值，接受Boolean表达式 表达式为true，显示标签内容 结合EL表达式一起使用">
 <meta name="keywords" content="JavaWeb">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Session介绍">
-<meta property="og:url" content="http://yoursite.com/2019/07/16/Session介绍/index.html">
+<meta property="og:title" content="JSTL介绍">
+<meta property="og:url" content="http://yoursite.com/2019/07/18/JSTL介绍/index.html">
 <meta property="og:site_name" content="Aaron">
-<meta property="og:description" content="概念：服务器端会话技术，在一次会话的多次请求间共享数据，将数据保存在服务器端的对象中。">
+<meta property="og:description" content="JSTL  概念：JSP标准标签库  由Apache组织免费开源提供   作用：简化和替换jsp页面上的Java代码  使用：  导入JSTL相关包 引入标签库：taglib指令： &amp;lt;%@ taglib %&amp;gt; 使用标签   常用的JSTL标签：  if:  属性： 必须对其test属性进行赋值，接受Boolean表达式 表达式为true，显示标签内容 结合EL表达式一起使用">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-07-16T09:07:45.535Z">
+<meta property="og:updated_time" content="2019-07-18T07:05:54.894Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Session介绍">
-<meta name="twitter:description" content="概念：服务器端会话技术，在一次会话的多次请求间共享数据，将数据保存在服务器端的对象中。">
+<meta name="twitter:title" content="JSTL介绍">
+<meta name="twitter:description" content="JSTL  概念：JSP标准标签库  由Apache组织免费开源提供   作用：简化和替换jsp页面上的Java代码  使用：  导入JSTL相关包 引入标签库：taglib指令： &amp;lt;%@ taglib %&amp;gt; 使用标签   常用的JSTL标签：  if:  属性： 必须对其test属性进行赋值，接受Boolean表达式 表达式为true，显示标签内容 结合EL表达式一起使用">
   
     <link rel="alternative" href="/atom.xml" title="Aaron" type="application/atom+xml">
   
@@ -147,20 +147,20 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-Session介绍" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-JSTL介绍" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      Session介绍
+      JSTL介绍
     </h1>
   
 
         
-        <a href="/2019/07/16/Session介绍/" class="archive-article-date">
-  	<time datetime="2019-07-16T06:22:29.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-07-16</time>
+        <a href="/2019/07/18/JSTL介绍/" class="archive-article-date">
+  	<time datetime="2019-07-18T05:09:10.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-07-18</time>
 </a>
         
       </header>
@@ -168,81 +168,58 @@
     <div class="article-entry" itemprop="articleBody">
       
         <ul>
-<li>概念：服务器端会话技术，在一次会话的多次请求间共享数据，将数据保存在服务器端的对象中。<a id="more"></a>
-
-</li>
-</ul>
-<p>代码展示：</p>
-<pre><code>   @WebServlet(&quot;/sessionDemo1&quot;)
-public class SessionDemo1 extends HttpServlet {
-protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-    //使用session存储数据
-
-    //1.获取Session
-    HttpSession session = request.getSession();
-    //2.存储数据
-    session.setAttribute(&quot;msg&quot;, &quot;hello session&quot;);
-}
-
-protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-    this.doPost(request, response);
-}
-
-}
-@WebServlet(&quot;/sessionDemo2&quot;)
-public class SessionDemo2 extends HttpServlet {
-protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-    //使用session存储数据
-
-    //1.获取Session
-    HttpSession session = request.getSession();
-    //2.获取数据
-    Object msg = session.getAttribute(&quot;msg&quot;);
-    System.out.println(msg);
-}
-
-protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-    this.doPost(request, response);
-}
-}</code></pre><ul>
-<li><p>原理：Session的实现依赖于cookie，服务器内部通过SessionId来判断存储的Session和读取的Session是否一致。</p>
-</li>
-<li><p>细节：</p>
+<li><p>JSTL</p>
 <ul>
-<li>浏览器关闭后，服务器不关闭，两次获取的Session不相同<ul>
-<li>如果需要相同，可以在服务器内部创建Cookie，键为JSESSIONID，将其持久化。<pre><code>Cookie c = new Cookie(&quot;JSESSIONID&quot;, session.getId());
-c.setMaxAge(60 * 60);
-response.addCookie(c);</code></pre></li>
-</ul>
-</li>
-<li>客户端不关闭，服务器关闭后，两次获取的Session不是同一个。<ul>
-<li>Session的钝化：<ul>
-<li>在服务器正常关闭之前，将Session对象系列化到硬盘上</li>
-</ul>
-</li>
-<li>Session的活化：<ul>
-<li>在服务器启动后，将Session文件转化为内存中的Session对象</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-</li>
-<li><p>Session何时被销毁</p>
+<li><p>概念：JSP标准标签库</p>
 <ul>
-<li>服务器关闭</li>
-<li>Session对象调用invalidate()</li>
-<li>Session默认失效时间 30分钟（可以修改）</li>
+<li>由Apache组织免费开源提供</li>
 </ul>
 </li>
-<li><p>Session的特点：</p>
+<li><p>作用：简化和替换jsp页面上的Java代码</p>
+</li>
+<li><p>使用：</p>
 <ul>
-<li>Session用于存储一次会话的多次请求的数据，存在服务器端</li>
-<li>Session可以存储任意类型，任意大小的数据</li>
-<li>Session和Cookie的区别：<ul>
-<li>Session存储数据在服务器端，Cookie在客户端</li>
-<li>Session没有数据大小限制，Cookie有</li>
-<li>Session数据安全，Cookie相对于不安全</li>
+<li>导入JSTL相关包</li>
+<li>引入标签库：taglib指令： &lt;%@ taglib %&gt;</li>
+<li>使用标签</li>
+</ul>
+</li>
+<li><p>常用的JSTL标签：</p>
+<ul>
+<li>if: <ul>
+<li>属性：<ul>
+<li>必须对其test属性进行赋值，接受Boolean表达式<ul>
+<li>表达式为true，显示标签内容</li>
+<li>结合EL表达式一起使用</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>注意：<ul>
+<li>c:if标签没有else分支。只能再定义一个c:if标签</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>choose: 相当于Java中的switch语句<ul>
+<li>使用choose标签声明：相当于switch</li>
+<li>使用when标签做判断：相当于case</li>
+<li>使用otherwise标签做其它情况生命：相当于default</li>
+</ul>
+</li>
+<li>foreach：相当java中的for<ul>
+<li>属性：<ul>
+<li>begin：开始值</li>
+<li>end：结束值</li>
+<li>var：临时变量</li>
+<li>step：步长</li>
+<li>varStatus:循环状态对象</li>
+<li>index:容器中元素的索引，从0开始</li>
+<li>count:循环次数，从1开始</li>
+</ul>
+</li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
@@ -338,7 +315,7 @@ response.addCookie(c);</code></pre></li>
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2019/07/16/Session介绍/" alt="微信分享二维码">
+      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2019/07/18/JSTL介绍/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -352,18 +329,18 @@ response.addCookie(c);</code></pre></li>
   
 <nav id="article-nav">
   
-    <a href="/2019/07/18/MCV开发模式/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/2019/07/20/过滤器及监听器介绍/" id="article-nav-newer" class="article-nav-link-wrap">
       <i class="icon-circle-left"></i>
       <div class="article-nav-title">
         
-          MCV开发模式
+          过滤器及监听器介绍
         
       </div>
     </a>
   
   
-    <a href="/2019/07/16/JSP入门/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">JSP入门</div>
+    <a href="/2019/07/18/EL表达式/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">EL表达式</div>
       <i class="icon-circle-right"></i>
     </a>
   
@@ -391,7 +368,7 @@ response.addCookie(c);</code></pre></li>
   
   <div class="duoshuo">
 	<!-- 多说评论框 start -->
-	<div class="ds-thread" data-thread-key="Session介绍" data-title="Session介绍" data-url="http://yoursite.com/2019/07/16/Session介绍/"></div>
+	<div class="ds-thread" data-thread-key="JSTL介绍" data-title="JSTL介绍" data-url="http://yoursite.com/2019/07/18/JSTL介绍/"></div>
 	<!-- 多说评论框 end -->
 	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
 	<script type="text/javascript">

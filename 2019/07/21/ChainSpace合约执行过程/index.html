@@ -6,20 +6,20 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>Session介绍 | Aaron</title>
+  <title>ChainSpace合约执行过程 | Aaron</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="概念：服务器端会话技术，在一次会话的多次请求间共享数据，将数据保存在服务器端的对象中。">
-<meta name="keywords" content="JavaWeb">
+  <meta name="description" content="ChainSpace合约执行过程">
+<meta name="keywords" content="区块链">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Session介绍">
-<meta property="og:url" content="http://yoursite.com/2019/07/16/Session介绍/index.html">
+<meta property="og:title" content="ChainSpace合约执行过程">
+<meta property="og:url" content="http://yoursite.com/2019/07/21/ChainSpace合约执行过程/index.html">
 <meta property="og:site_name" content="Aaron">
-<meta property="og:description" content="概念：服务器端会话技术，在一次会话的多次请求间共享数据，将数据保存在服务器端的对象中。">
+<meta property="og:description" content="ChainSpace合约执行过程">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-07-16T09:07:45.535Z">
+<meta property="og:updated_time" content="2019-07-21T13:46:45.924Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Session介绍">
-<meta name="twitter:description" content="概念：服务器端会话技术，在一次会话的多次请求间共享数据，将数据保存在服务器端的对象中。">
+<meta name="twitter:title" content="ChainSpace合约执行过程">
+<meta name="twitter:description" content="ChainSpace合约执行过程">
   
     <link rel="alternative" href="/atom.xml" title="Aaron" type="application/atom+xml">
   
@@ -147,104 +147,161 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-Session介绍" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-ChainSpace合约执行过程" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      Session介绍
+      ChainSpace合约执行过程
     </h1>
   
 
         
-        <a href="/2019/07/16/Session介绍/" class="archive-article-date">
-  	<time datetime="2019-07-16T06:22:29.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-07-16</time>
+        <a href="/2019/07/21/ChainSpace合约执行过程/" class="archive-article-date">
+  	<time datetime="2019-07-21T13:44:47.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-07-21</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <ul>
-<li>概念：服务器端会话技术，在一次会话的多次请求间共享数据，将数据保存在服务器端的对象中。<a id="more"></a>
+        <h3 id="ChainSpace合约执行过程"><a href="#ChainSpace合约执行过程" class="headerlink" title="ChainSpace合约执行过程"></a>ChainSpace合约执行过程</h3><a id="more"></a>
 
-</li>
-</ul>
-<p>代码展示：</p>
-<pre><code>   @WebServlet(&quot;/sessionDemo1&quot;)
-public class SessionDemo1 extends HttpServlet {
-protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-    //使用session存储数据
-
-    //1.获取Session
-    HttpSession session = request.getSession();
-    //2.存储数据
-    session.setAttribute(&quot;msg&quot;, &quot;hello session&quot;);
-}
-
-protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-    this.doPost(request, response);
-}
-
-}
-@WebServlet(&quot;/sessionDemo2&quot;)
-public class SessionDemo2 extends HttpServlet {
-protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-    //使用session存储数据
-
-    //1.获取Session
-    HttpSession session = request.getSession();
-    //2.获取数据
-    Object msg = session.getAttribute(&quot;msg&quot;);
-    System.out.println(msg);
-}
-
-protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-    this.doPost(request, response);
-}
-}</code></pre><ul>
-<li><p>原理：Session的实现依赖于cookie，服务器内部通过SessionId来判断存储的Session和读取的Session是否一致。</p>
-</li>
-<li><p>细节：</p>
 <ul>
-<li>浏览器关闭后，服务器不关闭，两次获取的Session不相同<ul>
-<li>如果需要相同，可以在服务器内部创建Cookie，键为JSESSIONID，将其持久化。<pre><code>Cookie c = new Cookie(&quot;JSESSIONID&quot;, session.getId());
-c.setMaxAge(60 * 60);
-response.addCookie(c);</code></pre></li>
-</ul>
-</li>
-<li>客户端不关闭，服务器关闭后，两次获取的Session不是同一个。<ul>
-<li>Session的钝化：<ul>
-<li>在服务器正常关闭之前，将Session对象系列化到硬盘上</li>
-</ul>
-</li>
-<li>Session的活化：<ul>
-<li>在服务器启动后，将Session文件转化为内存中的Session对象</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-</li>
-<li><p>Session何时被销毁</p>
+<li><p>ChainSpace中的合约大概分为三个部分：init(),method(),checker()</p>
 <ul>
-<li>服务器关闭</li>
-<li>Session对象调用invalidate()</li>
-<li>Session默认失效时间 30分钟（可以修改）</li>
+<li><p>init():初始化合约，要在函数名上加上装饰器<em>@contract.method(init)</em></p>
+<pre><code># 初始化合約
+@contract.method(&apos;init&apos;)
+def init():
+    # return
+    return {
+        &apos;outputs&apos;: (dumps({&apos;type&apos;: &apos;BankToken&apos;}),),
+    }</code></pre></li>
+<li><p>method():合约里的功能函数，比如转账功能，投票功能等。同样在其函数名上加上装饰器<em>@contract.method(函数名）</em></p>
+<pre><code># 执行转账交易
+@contract.method(&apos;auth_transfer&apos;)
+def auth_transfer(inputs, reference_inputs, parameters, priv):
+    # compute outputs
+    amount = loads(parameters[0])  # 转账金额
+    new_from_account = loads(inputs[0])  # 旧账户
+    new_to_account = loads(inputs[1])  # 新账户
+    new_from_account[&quot;balance&quot;] -= amount  # 更新旧账户余额
+    new_to_account[&quot;balance&quot;] += amount   # 更新新账户余额
+
+    # hash message to sign
+    hasher = sha256()
+    hasher.update(dumps(inputs).encode(&apos;utf8&apos;))
+    hasher.update(dumps(reference_inputs).encode(&apos;utf8&apos;))
+    hasher.update(dumps(parameters[0]).encode(&apos;utf8&apos;))
+    #  生成hash摘要
+
+    # sign message
+    G = setup()[0]
+    sig = do_ecdsa_sign(G, unpack(priv), hasher.digest())
+    #   生成签名
+    # return
+    return {
+        &apos;outputs&apos;: (dumps(new_from_account), dumps(new_to_account)),
+        &apos;extra_parameters&apos;: (pack(sig),)
+    }</code></pre></li>
+<li><p>checker():执行验证功能，验证合约的执行是否正确。函数名上加上装饰器<em>@contract.checker(函数名)</em>。该种函数只返回True或false</p>
+<pre><code>#   验证转账交易是否合法
+@contract.checker(&apos;auth_transfer&apos;)
+def auth_transfer_checker(inputs, reference_inputs, parameters, outputs, returns, dependencies):
+    try:
+        amount = loads(parameters[0])
+        input_from_account = loads(inputs[0])
+        input_to_account = loads(inputs[1])
+        output_from_account = loads(outputs[0])
+        output_to_account = loads(outputs[1])
+        sig = unpack(parameters[1])
+
+        # check format
+        if len(inputs) != 2 or len(reference_inputs) != 0 or len(outputs) != 2 or len(returns) != 0:
+            return False
+        if input_from_account[&apos;pub&apos;] != output_from_account[&apos;pub&apos;] or input_to_account[&apos;pub&apos;] != output_to_account[
+            &apos;pub&apos;]:
+            return False
+
+        # check tokens
+        if input_from_account[&apos;type&apos;] != &apos;BankAccount&apos; or input_to_account[&apos;type&apos;] != &apos;BankAccount&apos;:
+            return False
+        if output_from_account[&apos;type&apos;] != &apos;BankAccount&apos; or output_to_account[&apos;type&apos;] != &apos;BankAccount&apos;:
+            return False
+
+        # amount transfered should be non-negative
+        if amount &lt; 0:
+            return False
+
+        # amount transfered should not exceed balance
+        if input_from_account[&apos;balance&apos;] &lt; amount:
+            return False
+
+        # consistency between inputs and outputs
+        if input_from_account[&apos;balance&apos;] != output_from_account[&apos;balance&apos;] + amount:
+            return False
+        if input_to_account[&apos;balance&apos;] != output_to_account[&apos;balance&apos;] - amount:
+            return False
+
+        # hash message to verify signature
+        hasher = sha256()
+        hasher.update(dumps(inputs).encode(&apos;utf8&apos;))
+        hasher.update(dumps(reference_inputs).encode(&apos;utf8&apos;))
+        hasher.update(dumps(parameters[0]).encode(&apos;utf8&apos;))
+
+        # recompose signed digest
+        pub = unpack(input_from_account[&apos;pub&apos;])
+
+        # verify signature
+        (G, _, _, _) = setup()
+        return do_ecdsa_verify(G, pub, sig, hasher.digest())
+
+        return True
+
+    except (KeyError, Exception):
+        return False</code></pre></li>
 </ul>
 </li>
-<li><p>Session的特点：</p>
+<li><p>执行过程</p>
 <ul>
-<li>Session用于存储一次会话的多次请求的数据，存在服务器端</li>
-<li>Session可以存储任意类型，任意大小的数据</li>
-<li>Session和Cookie的区别：<ul>
-<li>Session存储数据在服务器端，Cookie在客户端</li>
-<li>Session没有数据大小限制，Cookie有</li>
-<li>Session数据安全，Cookie相对于不安全</li>
-</ul>
-</li>
+<li><p>调用合约的用户在本地执行完合约上的相关功能后，将执行结果以及输入通过post请求发送到server端（post请求体中包含method()的输入和输出。）</p>
+<pre><code>if __debug__ and not _checker_mode.on:
+        # Automatically run the checker to ensure procedure output passes check.
+        if method_name not in self.checkers and method_name != &quot;init&quot;:
+            print(&quot;POTENTIAL ERROR: &apos;%s&apos; method has no checker.&quot; % method_name)
+        elif method_name != &quot;init&quot;:
+            txt = transaction_inline_objects(return_value)
+
+            app = self.flask_app.test_client()
+            args = app.post(&apos;/&apos; + self.contract_name + &apos;/&apos; + method_name, 
+                     data=json.dumps(txt),
+                     content_type=&apos;application/json&apos;)
+
+            result = json.loads(args.data)[&quot;success&quot;]
+            if not result:
+                print(&quot;POTENTIAL ERROR: &apos;%s&apos; method output does not satify checker.&quot; % method_name)</code></pre></li>
+<li><p>server端收到请求后，调用合约里的checker对合约执行结果进行检查。（默认端口号为5000)</p>
+<pre><code>@self.flask_app.route(&apos;/&apos; + self.contract_name + &apos;/&apos; + method_name, methods=[&apos;POST&apos;], endpoint=method_name)
+def checker_request():
+    dependencies = (request.json[&apos;dependencies&apos;] if &apos;dependencies&apos; in request.json else ())
+    for dependency in dependencies:
+        dependency[&apos;inputs&apos;] = tuple(dependency[&apos;inputs&apos;])
+        dependency[&apos;referenceInputs&apos;] = tuple(dependency[&apos;referenceInputs&apos;])
+        dependency[&apos;outputs&apos;] = tuple(dependency[&apos;outputs&apos;])
+        dependency[&apos;parameters&apos;] = tuple(dependency[&apos;parameters&apos;])
+        dependency[&apos;returns&apos;] = tuple(dependency[&apos;returns&apos;])
+
+    return function_wrapper(
+        tuple(request.json[&apos;inputs&apos;]),
+        tuple(request.json[&apos;referenceInputs&apos;]),
+        tuple(request.json[&apos;parameters&apos;]),
+        tuple(request.json[&apos;outputs&apos;]),
+        tuple(request.json[&apos;returns&apos;]),
+        dependencies
+    )</code></pre></li>
 </ul>
 </li>
 </ul>
@@ -282,7 +339,7 @@ response.addCookie(c);</code></pre></li>
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">JavaWeb</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">区块链</a>
         		</li>
       		
 		</ul>
@@ -338,7 +395,7 @@ response.addCookie(c);</code></pre></li>
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2019/07/16/Session介绍/" alt="微信分享二维码">
+      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2019/07/21/ChainSpace合约执行过程/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -352,18 +409,9 @@ response.addCookie(c);</code></pre></li>
   
 <nav id="article-nav">
   
-    <a href="/2019/07/18/MCV开发模式/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          MCV开发模式
-        
-      </div>
-    </a>
   
-  
-    <a href="/2019/07/16/JSP入门/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">JSP入门</div>
+    <a href="/2019/07/20/过滤器及监听器介绍/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">过滤器及监听器介绍</div>
       <i class="icon-circle-right"></i>
     </a>
   
@@ -391,7 +439,7 @@ response.addCookie(c);</code></pre></li>
   
   <div class="duoshuo">
 	<!-- 多说评论框 start -->
-	<div class="ds-thread" data-thread-key="Session介绍" data-title="Session介绍" data-url="http://yoursite.com/2019/07/16/Session介绍/"></div>
+	<div class="ds-thread" data-thread-key="ChainSpace合约执行过程" data-title="ChainSpace合约执行过程" data-url="http://yoursite.com/2019/07/21/ChainSpace合约执行过程/"></div>
 	<!-- 多说评论框 end -->
 	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
 	<script type="text/javascript">
