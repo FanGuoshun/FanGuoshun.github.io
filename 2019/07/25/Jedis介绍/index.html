@@ -8,18 +8,18 @@
   <link rel="dns-prefetch" href="http://yoursite.com">
   <title>Jedis介绍 | Aaron</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="Jedis介绍 Jedis：Java操作redis数据库的工具  使用步骤：  下载jedis的jar包  使用 //1.获取连接 Jedis jedis = new Jedis(&amp;quot;localhost&amp;quot;, 6379); //2.操作 jedis.set(&amp;quot;username&amp;quot;, &amp;quot;zhangsan&amp;quot;); //3.关闭连接 jedis.clo">
+  <meta name="description" content="Jedis：Java操作redis数据库的工具  使用步骤：  下载jedis的jar包  使用 //1.获取连接 Jedis jedis = new Jedis(&amp;quot;localhost&amp;quot;, 6379); //2.操作 jedis.set(&amp;quot;username&amp;quot;, &amp;quot;zhangsan&amp;quot;); //3.关闭连接 jedis.close();">
 <meta name="keywords" content="JavaWeb">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Jedis介绍">
 <meta property="og:url" content="http://yoursite.com/2019/07/25/Jedis介绍/index.html">
 <meta property="og:site_name" content="Aaron">
-<meta property="og:description" content="Jedis介绍 Jedis：Java操作redis数据库的工具  使用步骤：  下载jedis的jar包  使用 //1.获取连接 Jedis jedis = new Jedis(&amp;quot;localhost&amp;quot;, 6379); //2.操作 jedis.set(&amp;quot;username&amp;quot;, &amp;quot;zhangsan&amp;quot;); //3.关闭连接 jedis.clo">
+<meta property="og:description" content="Jedis：Java操作redis数据库的工具  使用步骤：  下载jedis的jar包  使用 //1.获取连接 Jedis jedis = new Jedis(&amp;quot;localhost&amp;quot;, 6379); //2.操作 jedis.set(&amp;quot;username&amp;quot;, &amp;quot;zhangsan&amp;quot;); //3.关闭连接 jedis.close();">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-07-26T08:49:31.758Z">
+<meta property="og:updated_time" content="2019-07-26T10:45:25.018Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Jedis介绍">
-<meta name="twitter:description" content="Jedis介绍 Jedis：Java操作redis数据库的工具  使用步骤：  下载jedis的jar包  使用 //1.获取连接 Jedis jedis = new Jedis(&amp;quot;localhost&amp;quot;, 6379); //2.操作 jedis.set(&amp;quot;username&amp;quot;, &amp;quot;zhangsan&amp;quot;); //3.关闭连接 jedis.clo">
+<meta name="twitter:description" content="Jedis：Java操作redis数据库的工具  使用步骤：  下载jedis的jar包  使用 //1.获取连接 Jedis jedis = new Jedis(&amp;quot;localhost&amp;quot;, 6379); //2.操作 jedis.set(&amp;quot;username&amp;quot;, &amp;quot;zhangsan&amp;quot;); //3.关闭连接 jedis.close();">
   
     <link rel="alternative" href="/atom.xml" title="Aaron" type="application/atom+xml">
   
@@ -167,11 +167,11 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h3 id="Jedis介绍"><a href="#Jedis介绍" class="headerlink" title="Jedis介绍"></a>Jedis介绍</h3><ul>
+        <ol>
 <li><p>Jedis：Java操作redis数据库的工具</p>
 </li>
 <li><p>使用步骤：</p>
-<ul>
+<ol>
 <li><p>下载jedis的jar包</p>
 </li>
 <li><p>使用</p>
@@ -180,10 +180,10 @@ Jedis jedis = new Jedis(&quot;localhost&quot;, 6379);
 //2.操作
 jedis.set(&quot;username&quot;, &quot;zhangsan&quot;);
 //3.关闭连接
-jedis.close();</code></pre><a id="more"></a>
+jedis.close();</code></pre> <a id="more"></a>
 </li>
 <li><p>jedis操作各种redis中的数据结构</p>
-<ul>
+<ol>
 <li><p>字符串类型：string</p>
 <pre><code>//1.获取连接
 Jedis jedis = new Jedis(); //如果使用空参钩爪，默认值&quot;localhost&quot;,6379端口
@@ -268,19 +268,17 @@ jedis.zadd(&quot;mysortedset&quot;,55,&quot;孙悟空&quot;);
 Set&lt;String&gt; mysortedset = jedis.zrange(&quot;mysortedset&quot;, 0, -1);
 
 System.out.println(mysortedset);</code></pre></li>
-</ul>
+</ol>
 </li>
-</ul>
+</ol>
 </li>
-</ul>
+</ol>
 <pre><code>            //3. 关闭连接
             jedis.close();
 
-* jedis连接池
-    * jedis连接池： JedisPool
-        * 使用：
-            * 创建JedisPool连接池对象
-            * 调用方法 getResource()方法获取Jedis连接
+4. jedis连接池
+    1. jedis连接池： JedisPool
+        1. 使用：创建JedisPool连接池对象。调用方法：getResource()方法获取Jedis连接
 
                     //0.创建一个配置对象
                     JedisPoolConfig config = new JedisPoolConfig();
@@ -297,7 +295,45 @@ System.out.println(mysortedset);</code></pre></li>
 
 
                     //4. 关闭 归还到连接池中
-                    jedis.close();</code></pre>
+                    jedis.close();
+
+        2. 连接池工具类
+
+                public class JedisPoolUtils {
+
+                   private static JedisPool jedisPool;
+
+                static{
+                    //读取配置文件
+                    InputStream is = JedisPoolUtils.class.getClassLoader().getResourceAsStream(&quot;jedis.properties&quot;);
+                    //创建Properties对象
+                    Properties pro = new Properties();
+                    //关联文件
+                    try {
+                        pro.load(is);
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                    //获取数据，设置到JedisPoolConfig中
+                    JedisPoolConfig config = new JedisPoolConfig();
+                    config.setMaxTotal(Integer.parseInt(pro.getProperty(&quot;maxTotal&quot;)));
+                    config.setMaxIdle(Integer.parseInt(pro.getProperty(&quot;maxIdle&quot;)));
+
+                    //初始化JedisPool
+                    jedisPool = new JedisPool(config,pro.getProperty(&quot;host&quot;),Integer.parseInt(pro.getProperty(&quot;port&quot;)));
+
+
+
+                }
+
+
+                /**
+                 * 获取连接方法
+                 */
+                public static Jedis getJedis(){
+                    return jedisPool.getResource();
+                }
+                }</code></pre>
       
 
       
@@ -556,11 +592,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">区块链</a>
+                <a href="javascript:void(0)" class="js-tag color3">JavaWeb</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">JavaWeb</a>
+                <a href="javascript:void(0)" class="js-tag color4">区块链</a>
               </li>
              
               <li class="article-tag-list-item">
