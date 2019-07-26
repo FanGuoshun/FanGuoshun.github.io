@@ -16,7 +16,7 @@
 <meta property="og:site_name" content="Aaron">
 <meta property="og:description" content="最近发现连接 crates.io 仓库非常慢，很多次超时导致引用库没法编译。这里可以切到国内镜像，配置如下：  找到.cargo 文件夹，进入.cargo 当前目录，在当前目下创建 config 文件 ，见下图，打开 config 文件，编写以下内容： [source.crates-io] registry = &amp;quot;https://github.com/rust-lang/crates.">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-07-23T13:37:20.663Z">
+<meta property="og:updated_time" content="2019-07-26T08:38:32.511Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Rust crates.io换国内镜像源">
 <meta name="twitter:description" content="最近发现连接 crates.io 仓库非常慢，很多次超时导致引用库没法编译。这里可以切到国内镜像，配置如下：  找到.cargo 文件夹，进入.cargo 当前目录，在当前目下创建 config 文件 ，见下图，打开 config 文件，编写以下内容： [source.crates-io] registry = &amp;quot;https://github.com/rust-lang/crates.">
@@ -168,14 +168,18 @@
     <div class="article-entry" itemprop="articleBody">
       
         <ul>
-<li>最近发现连接 crates.io 仓库非常慢，很多次超时导致引用库没法编译。这里可以切到国内镜像，配置如下：</li>
-</ul>
-<p>找到.cargo 文件夹，进入.cargo 当前目录，在当前目下创建 config 文件 ，见下图，打开 config 文件，编写以下内容：</p>
+<li><p>最近发现连接 crates.io 仓库非常慢，很多次超时导致引用库没法编译。这里可以切到国内镜像，配置如下：</p>
+<ul>
+<li><p>找到.cargo 文件夹，进入.cargo 当前目录，在当前目下创建 config 文件 ，见下图，打开 config 文件，编写以下内容：</p>
 <pre><code>[source.crates-io]
 registry = &quot;https://github.com/rust-lang/crates.io-index&quot;
 replace-with = &apos;ustc&apos;
 [source.ustc]
-registry = &quot;git://mirrors.ustc.edu.cn/crates.io-index&quot;</code></pre>
+registry = &quot;git://mirrors.ustc.edu.cn/crates.io-index&quot;</code></pre></li>
+</ul>
+</li>
+</ul>
+
       
 
       
@@ -357,10 +361,10 @@ registry = &quot;git://mirrors.ustc.edu.cn/crates.io-index&quot;</code></pre>
       <footer id="footer">
   <div class="outer">
     <div id="footer-info">
-    	# PV方式，单个用户连续点击 n 篇，记录 n 次记录值
+    	
       <span id="busuanzi_container_site_pv">    本站总访问量<span id="busuanzi_value_site_pv"></span>次</span>
 
-      # UV方式，单个用户连续点击 n 篇，记录 1 次记录值
+      
       <span id="busuanzi_container_site_uv">  本站访客数<span id="busuanzi_value_site_uv"></span>人次</span>
     </div>
   </div>
@@ -454,7 +458,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">主题配置</a>
+                <a href="javascript:void(0)" class="js-tag color2">Python</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -462,7 +466,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">Python</a>
+                <a href="javascript:void(0)" class="js-tag color5">主题配置</a>
               </li>
             
             <div class="clearfix"></div>

@@ -477,14 +477,18 @@ jedis.close();</code></pre>
     <div class="article-entry" itemprop="articleBody">
       
         <ul>
-<li>最近发现连接 crates.io 仓库非常慢，很多次超时导致引用库没法编译。这里可以切到国内镜像，配置如下：</li>
-</ul>
-<p>找到.cargo 文件夹，进入.cargo 当前目录，在当前目下创建 config 文件 ，见下图，打开 config 文件，编写以下内容：</p>
+<li><p>最近发现连接 crates.io 仓库非常慢，很多次超时导致引用库没法编译。这里可以切到国内镜像，配置如下：</p>
+<ul>
+<li><p>找到.cargo 文件夹，进入.cargo 当前目录，在当前目下创建 config 文件 ，见下图，打开 config 文件，编写以下内容：</p>
 <pre><code>[source.crates-io]
 registry = &quot;https://github.com/rust-lang/crates.io-index&quot;
 replace-with = &apos;ustc&apos;
 [source.ustc]
-registry = &quot;git://mirrors.ustc.edu.cn/crates.io-index&quot;</code></pre>
+registry = &quot;git://mirrors.ustc.edu.cn/crates.io-index&quot;</code></pre></li>
+</ul>
+</li>
+</ul>
+
       
 
       
@@ -993,10 +997,10 @@ sys.path.append(&quot;/home/aaron/project/python2_env/env/lib/python2.7/site-pac
       <footer id="footer">
   <div class="outer">
     <div id="footer-info">
-    	# PV方式，单个用户连续点击 n 篇，记录 n 次记录值
+    	
       <span id="busuanzi_container_site_pv">    本站总访问量<span id="busuanzi_value_site_pv"></span>次</span>
 
-      # UV方式，单个用户连续点击 n 篇，记录 1 次记录值
+      
       <span id="busuanzi_container_site_uv">  本站访客数<span id="busuanzi_value_site_uv"></span>人次</span>
     </div>
   </div>
@@ -1090,7 +1094,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">主题配置</a>
+                <a href="javascript:void(0)" class="js-tag color2">Python</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1098,7 +1102,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">Python</a>
+                <a href="javascript:void(0)" class="js-tag color5">主题配置</a>
               </li>
             
             <div class="clearfix"></div>
