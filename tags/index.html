@@ -94,18 +94,14 @@
   };
 </script>
 
-  <meta name="description" content="Cookie原理简介：    1. 服务器创建Cookie对象。    2. 浏览器访问对应的Servlet，服务器将创建的Cookie对象通过响应头发送给浏览器。    3. 浏览器再次访问服务器时，会在请求头里包含刚才获得的Cookie，这时服务器可以解析从浏览器发送来的Cookie">
-<meta name="keywords" content="JavaWeb">
-<meta property="og:type" content="article">
-<meta property="og:title" content="Cookie入门介绍">
-<meta property="og:url" content="http://yoursite.com/2019/07/15/Cookie入门介绍/index.html">
+  <meta property="og:type" content="website">
+<meta property="og:title" content="tags">
+<meta property="og:url" content="http://yoursite.com/tags/index.html">
 <meta property="og:site_name" content="Aaron">
-<meta property="og:description" content="Cookie原理简介：    1. 服务器创建Cookie对象。    2. 浏览器访问对应的Servlet，服务器将创建的Cookie对象通过响应头发送给浏览器。    3. 浏览器再次访问服务器时，会在请求头里包含刚才获得的Cookie，这时服务器可以解析从浏览器发送来的Cookie">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-07-15T09:38:06.559Z">
+<meta property="og:updated_time" content="2019-07-27T10:41:25.739Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Cookie入门介绍">
-<meta name="twitter:description" content="Cookie原理简介：    1. 服务器创建Cookie对象。    2. 浏览器访问对应的Servlet，服务器将创建的Cookie对象通过响应头发送给浏览器。    3. 浏览器再次访问服务器时，会在请求头里包含刚才获得的Cookie，这时服务器可以解析从浏览器发送来的Cookie">
+<meta name="twitter:title" content="tags">
 
 
 
@@ -113,7 +109,7 @@
 
   
   
-  <link rel="canonical" href="http://yoursite.com/2019/07/15/Cookie入门介绍/">
+  <link rel="canonical" href="http://yoursite.com/tags/">
 
 
 
@@ -124,7 +120,7 @@
 </script>
 
   
-  <title>Cookie入门介绍 | Aaron</title>
+  <title>tags | Aaron</title>
   
 
 
@@ -230,7 +226,7 @@
         
         
           
-          <li class="menu-item menu-item-tags">
+          <li class="menu-item menu-item-tags menu-item-active">
 
     
     
@@ -283,210 +279,67 @@
           
             
 
+    
+    
+      
+      
+    
+      
+      
+    
+      
+      
+    
+    
+
+  
+
+
           
           <div id="content" class="content">
             
 
   <div id="posts" class="posts-expand">
-      
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/07/15/Cookie入门介绍/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Aaron">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Aaron">
-    </span>
-
     
+    
+    
+    <div class="post-block page">
       <header class="post-header">
 
-        
-        
-          <h1 class="post-title" itemprop="name headline">Cookie入门介绍
+<h1 class="post-title" itemprop="name headline">tags
 
-              
-            
-          </h1>
-        
+</h1>
 
-        <div class="post-meta">
+<div class="post-meta">
+  
+  
 
-          
-          
-          
 
-          
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
 
-              
-                
-              
+</div>
 
-              <time title="Created: 2019-07-15 17:33:01 / Modified: 17:38:06" itemprop="dateCreated datePublished" datetime="2019-07-15T17:33:01+08:00">2019-07-15</time>
-            </span>
-          
-
-          
-            
-
-            
-          
-
-          
-
-          
-          
-
-          
-
-          
-
-          <br>
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
+</header>
 
       
       
-
       
-        <p>Cookie原理简介：<br><br><br>    1. 服务器创建Cookie对象。<br><br>    2. 浏览器访问对应的Servlet，服务器将创建的Cookie对象通过响应头发送给浏览器。<br><br>    3. 浏览器再次访问服务器时，会在请求头里包含刚才获得的Cookie，这时服务器可以解析从浏览器发送来的Cookie</p>
-<a id="more"></a>
-
-<p>代码展示：</p>
-<pre><code>public class CookieDemo1 extends HttpServlet {
-protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-    //1.创建Cookie对象
-    Cookie c = new Cookie(&quot;msg&quot;, &quot;hello&quot;);
-    //2.发送Cookie
-    response.addCookie(c);
-    }
-
-protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-    this.doPost(request, response);
-    }
-}
-
-public class CookieDemo2 extends HttpServlet {
-protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-    //3.获取Cookie
-    Cookie[] cs = request.getCookies();
-    //获取数据，遍历Cookies
-    if(cs != null){
-        for (Cookie c : cs) {
-            String name = c.getName();
-            String value = c.getValue();
-            System.out.println(name + &quot;:&quot; + value);
-        }
-    }
-    }
-
-protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-    this.doPost(request, response);
-    }
-}</code></pre>
+      <div class="post-body">
+        
+        
+          
+        
+      </div>
+      
+      
       
     </div>
-
     
 
-    
-      
-    
+
 
     
     
     
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-        
-          
-        
-        <div class="post-tags">
-          
-            <a href="/tags/JavaWeb/" rel="tag"># JavaWeb</a>
-          
-        </div>
-      
-
-      
-      
-      
-
-      
-        <div class="post-nav">
-          <div class="post-nav-next post-nav-item">
-            
-              <a href="/2019/07/15/文件下载/" rel="next" title="文件下载">
-                <i class="fa fa-chevron-left"></i> 文件下载
-              </a>
-            
-          </div>
-
-          <span class="post-nav-divider"></span>
-
-          <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2019/07/16/Cookie细节/" rel="prev" title="Cookie细节">
-                Cookie细节 <i class="fa fa-chevron-right"></i>
-              </a>
-            
-          </div>
-        </div>
-      
-
-      
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
   </div>
 
 

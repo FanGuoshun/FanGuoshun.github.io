@@ -14,7 +14,7 @@
   
 
 
-<html class="theme-next muse use-motion" lang="zh-Hans">
+<html class="theme-next pisces use-motion" lang="zh-Hans">
 <head><meta name="generator" content="Hexo 3.9.0">
   <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -32,16 +32,16 @@
 
 
 
-  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=7.2.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/yawei.jpg?v=7.2.0">
 
 
-  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=7.2.0">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/yawei.jpg?v=7.2.0">
 
 
-  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=7.2.0">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/yawei.jpg?v=7.2.0">
 
 
-  <link rel="mask-icon" href="/images/logo.svg?v=7.2.0" color="#222">
+  <link rel="mask-icon" href="/images/yawei.jpg?v=7.2.0" color="#222">
 
 
 
@@ -68,7 +68,7 @@
   var NexT = window.NexT || {};
   var CONFIG = {
     root: '/',
-    scheme: 'Muse',
+    scheme: 'Pisces',
     version: '7.2.0',
     sidebar: {"position":"left","display":"post","offset":12,"onmobile":false},
     back2top: {"enable":true,"sidebar":false,"scrollpercent":false},
@@ -94,18 +94,18 @@
   };
 </script>
 
-  <meta name="description" content="JQuery高级">
+  <meta name="description" content="动画 三种方式显示和隐藏元素 默认显示和隐藏方式 show([speed,[easing],[fn]]) 参数： speed：动画的速度。三个预定义的值(“slow”,”normal”, “fast”)或表示动画时长的毫秒数值(如：1000) easing：用来指定切换效果，默认是”swing”，可用参数”linear” swing：动画执行时效果是 先慢，中间快，最后又慢 linear：动画">
 <meta name="keywords" content="JavaWeb">
 <meta property="og:type" content="article">
 <meta property="og:title" content="JQuery高级">
 <meta property="og:url" content="http://yoursite.com/2019/07/26/JQuery高级/index.html">
 <meta property="og:site_name" content="Aaron">
-<meta property="og:description" content="JQuery高级">
+<meta property="og:description" content="动画 三种方式显示和隐藏元素 默认显示和隐藏方式 show([speed,[easing],[fn]]) 参数： speed：动画的速度。三个预定义的值(“slow”,”normal”, “fast”)或表示动画时长的毫秒数值(如：1000) easing：用来指定切换效果，默认是”swing”，可用参数”linear” swing：动画执行时效果是 先慢，中间快，最后又慢 linear：动画">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-07-26T08:10:21.615Z">
+<meta property="og:updated_time" content="2019-07-27T09:52:11.675Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="JQuery高级">
-<meta name="twitter:description" content="JQuery高级">
+<meta name="twitter:description" content="动画 三种方式显示和隐藏元素 默认显示和隐藏方式 show([speed,[easing],[fn]]) 参数： speed：动画的速度。三个预定义的值(“slow”,”normal”, “fast”)或表示动画时长的毫秒数值(如：1000) easing：用来指定切换效果，默认是”swing”，可用参数”linear” swing：动画执行时效果是 先慢，中间快，最后又慢 linear：动画">
 
 
 
@@ -230,6 +230,22 @@
         
         
           
+          <li class="menu-item menu-item-tags">
+
+    
+    
+      
+    
+
+    
+
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>Tags</a>
+
+  </li>
+        
+        
+        
+          
           <li class="menu-item menu-item-archives">
 
     
@@ -249,9 +265,6 @@
   
 
   
-    
-
-  
 
   
 </nav>
@@ -267,6 +280,9 @@
     <main id="main" class="main">
       <div class="main-inner">
         <div class="content-wrap">
+          
+            
+
           
           <div id="content" class="content">
             
@@ -328,13 +344,23 @@
                 
               
 
-              <time title="Created: 2019-07-26 13:56:49 / Modified: 16:10:21" itemprop="dateCreated datePublished" datetime="2019-07-26T13:56:49+08:00">2019-07-26</time>
+              <time title="Created: 2019-07-26 13:56:49" itemprop="dateCreated datePublished" datetime="2019-07-26T13:56:49+08:00">2019-07-26</time>
             </span>
           
 
           
             
 
+            
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Edited on</span>
+                
+                <time title="Modified: 2019-07-27 17:52:11" itemprop="dateModified" datetime="2019-07-27T17:52:11+08:00">2019-07-27</time>
+              </span>
             
           
 
@@ -367,7 +393,7 @@
       
 
       
-        <h3 id="JQuery高级"><a href="#JQuery高级" class="headerlink" title="JQuery高级"></a>JQuery高级</h3><a id="more"></a>
+        <a id="more"></a>
 <ul>
 <li>动画<ul>
 <li>三种方式显示和隐藏元素<ul>
@@ -576,17 +602,8 @@
       
 
       
-        <ul class="sidebar-nav motion-element">
-          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
-            Table of Contents
-          </li>
-          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
-            Overview
-          </li>
-        </ul>
-      
 
-      <div class="site-overview-wrap sidebar-panel">
+      <div class="site-overview-wrap sidebar-panel sidebar-panel-active">
         <div class="site-overview">
 
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -602,7 +619,7 @@
         
           <a href="/archives/">
         
-          <span class="site-state-item-count">22</span>
+          <span class="site-state-item-count">24</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -671,23 +688,6 @@
       </div>
 
       
-      <!--noindex-->
-        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
-          <div class="post-toc">
-
-            
-            
-            
-            
-
-            
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#JQuery高级"><span class="nav-number">1.</span> <span class="nav-text">JQuery高级</span></a></li></ol></div>
-            
-
-          </div>
-        </div>
-      <!--/noindex-->
-      
 
       
 
@@ -722,7 +722,7 @@
 
 
 
-  <div class="theme-info">Theme – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a> v7.2.0</div>
+  <div class="theme-info">Theme – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a> v7.2.0</div>
 
 
 
@@ -811,7 +811,9 @@
   
 
 
-  <script src="/js/schemes/muse.js?v=7.2.0"></script>
+  <script src="/js/affix.js?v=7.2.0"></script>
+
+  <script src="/js/schemes/pisces.js?v=7.2.0"></script>
 
 
 
