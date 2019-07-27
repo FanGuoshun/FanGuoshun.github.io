@@ -1774,7 +1774,7 @@ sys.path.append(&quot;/home/aaron/project/python2_env/env/lib/python2.7/site-pac
                 
                   <span class="post-meta-item-text">Edited on</span>
                 
-                <time title="Modified: 2019-07-27 18:52:32" itemprop="dateModified" datetime="2019-07-27T18:52:32+08:00">2019-07-27</time>
+                <time title="Modified: 2019-07-27 18:59:12" itemprop="dateModified" datetime="2019-07-27T18:59:12+08:00">2019-07-27</time>
               </span>
             
           
@@ -1809,145 +1809,16 @@ sys.path.append(&quot;/home/aaron/project/python2_env/env/lib/python2.7/site-pac
 
       
         
+          <h4 id="ChainSpace合约执行过程："><a href="#ChainSpace合约执行过程：" class="headerlink" title="ChainSpace合约执行过程："></a>ChainSpace合约执行过程：</h4>
+          <!--noindex-->
           
-            <ul>
-<li><p>ChainSpace中的合约大概分为三个部分：init(),method(),checker()</p>
-<pre><code>&lt;!--more--&gt;</code></pre><ul>
-<li><p>init():初始化合约，要在函数名上加上装饰器<em>@contract.method(init)</em></p>
-<pre><code># 初始化合約
-@contract.method(&apos;init&apos;)
-def init():
-    # return
-    return {
-        &apos;outputs&apos;: (dumps({&apos;type&apos;: &apos;BankToken&apos;}),),
-    }</code></pre></li>
-<li><p>method():合约里的功能函数，比如转账功能，投票功能等。同样在其函数名上加上装饰器<em>@contract.method(函数名）</em></p>
-<pre><code># 执行转账交易
-@contract.method(&apos;auth_transfer&apos;)
-def auth_transfer(inputs, reference_inputs, parameters, priv):
-    # compute outputs
-    amount = loads(parameters[0])  # 转账金额
-    new_from_account = loads(inputs[0])  # 旧账户
-    new_to_account = loads(inputs[1])  # 新账户
-    new_from_account[&quot;balance&quot;] -= amount  # 更新旧账户余额
-    new_to_account[&quot;balance&quot;] += amount   # 更新新账户余额
-
-    # hash message to sign
-    hasher = sha256()
-    hasher.update(dumps(inputs).encode(&apos;utf8&apos;))
-    hasher.update(dumps(reference_inputs).encode(&apos;utf8&apos;))
-    hasher.update(dumps(parameters[0]).encode(&apos;utf8&apos;))
-    #  生成hash摘要
-
-    # sign message
-    G = setup()[0]
-    sig = do_ecdsa_sign(G, unpack(priv), hasher.digest())
-    #   生成签名
-    # return
-    return {
-        &apos;outputs&apos;: (dumps(new_from_account), dumps(new_to_account)),
-        &apos;extra_parameters&apos;: (pack(sig),)
-    }</code></pre></li>
-<li><p>checker():执行验证功能，验证合约的执行是否正确。函数名上加上装饰器<em>@contract.checker(函数名)</em>。该种函数只返回True或false</p>
-<pre><code>#   验证转账交易是否合法
-@contract.checker(&apos;auth_transfer&apos;)
-def auth_transfer_checker(inputs, reference_inputs, parameters, outputs, returns, dependencies):
-    try:
-        amount = loads(parameters[0])
-        input_from_account = loads(inputs[0])
-        input_to_account = loads(inputs[1])
-        output_from_account = loads(outputs[0])
-        output_to_account = loads(outputs[1])
-        sig = unpack(parameters[1])
-
-        # check format
-        if len(inputs) != 2 or len(reference_inputs) != 0 or len(outputs) != 2 or len(returns) != 0:
-            return False
-        if input_from_account[&apos;pub&apos;] != output_from_account[&apos;pub&apos;] or input_to_account[&apos;pub&apos;] != output_to_account[
-            &apos;pub&apos;]:
-            return False
-
-        # check tokens
-        if input_from_account[&apos;type&apos;] != &apos;BankAccount&apos; or input_to_account[&apos;type&apos;] != &apos;BankAccount&apos;:
-            return False
-        if output_from_account[&apos;type&apos;] != &apos;BankAccount&apos; or output_to_account[&apos;type&apos;] != &apos;BankAccount&apos;:
-            return False
-
-        # amount transfered should be non-negative
-        if amount &lt; 0:
-            return False
-
-        # amount transfered should not exceed balance
-        if input_from_account[&apos;balance&apos;] &lt; amount:
-            return False
-
-        # consistency between inputs and outputs
-        if input_from_account[&apos;balance&apos;] != output_from_account[&apos;balance&apos;] + amount:
-            return False
-        if input_to_account[&apos;balance&apos;] != output_to_account[&apos;balance&apos;] - amount:
-            return False
-
-        # hash message to verify signature
-        hasher = sha256()
-        hasher.update(dumps(inputs).encode(&apos;utf8&apos;))
-        hasher.update(dumps(reference_inputs).encode(&apos;utf8&apos;))
-        hasher.update(dumps(parameters[0]).encode(&apos;utf8&apos;))
-
-        # recompose signed digest
-        pub = unpack(input_from_account[&apos;pub&apos;])
-
-        # verify signature
-        (G, _, _, _) = setup()
-        return do_ecdsa_verify(G, pub, sig, hasher.digest())
-
-        return True
-
-    except (KeyError, Exception):
-        return False</code></pre></li>
-</ul>
-</li>
-<li><p>执行过程</p>
-<ul>
-<li><p>调用合约的用户在本地执行完合约上的相关功能后，将执行结果以及输入通过post请求发送到server端（post请求体中包含method()的输入和输出。）</p>
-<pre><code>if __debug__ and not _checker_mode.on:
-        # Automatically run the checker to ensure procedure output passes check.
-        if method_name not in self.checkers and method_name != &quot;init&quot;:
-            print(&quot;POTENTIAL ERROR: &apos;%s&apos; method has no checker.&quot; % method_name)
-        elif method_name != &quot;init&quot;:
-            txt = transaction_inline_objects(return_value)
-
-            app = self.flask_app.test_client()
-            args = app.post(&apos;/&apos; + self.contract_name + &apos;/&apos; + method_name, 
-                     data=json.dumps(txt),
-                     content_type=&apos;application/json&apos;)
-
-            result = json.loads(args.data)[&quot;success&quot;]
-            if not result:
-                print(&quot;POTENTIAL ERROR: &apos;%s&apos; method output does not satify checker.&quot; % method_name)</code></pre></li>
-<li><p>server端收到请求后，调用合约里的checker对合约执行结果进行检查。（默认端口号为5000)</p>
-<pre><code>@self.flask_app.route(&apos;/&apos; + self.contract_name + &apos;/&apos; + method_name, methods=[&apos;POST&apos;], endpoint=method_name)
-def checker_request():
-    dependencies = (request.json[&apos;dependencies&apos;] if &apos;dependencies&apos; in request.json else ())
-    for dependency in dependencies:
-        dependency[&apos;inputs&apos;] = tuple(dependency[&apos;inputs&apos;])
-        dependency[&apos;referenceInputs&apos;] = tuple(dependency[&apos;referenceInputs&apos;])
-        dependency[&apos;outputs&apos;] = tuple(dependency[&apos;outputs&apos;])
-        dependency[&apos;parameters&apos;] = tuple(dependency[&apos;parameters&apos;])
-        dependency[&apos;returns&apos;] = tuple(dependency[&apos;returns&apos;])
-
-    return function_wrapper(
-        tuple(request.json[&apos;inputs&apos;]),
-        tuple(request.json[&apos;referenceInputs&apos;]),
-        tuple(request.json[&apos;parameters&apos;]),
-        tuple(request.json[&apos;outputs&apos;]),
-        tuple(request.json[&apos;returns&apos;]),
-        dependencies
-    )</code></pre></li>
-</ul>
-</li>
-</ul>
-
+            <div class="post-button text-center">
+              <a class="btn" href="/2019/07/21/ChainSpace合约执行过程/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
           
+          <!--/noindex-->
         
       
     </div>
