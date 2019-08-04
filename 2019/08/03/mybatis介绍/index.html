@@ -94,15 +94,20 @@
   };
 </script>
 
-  <meta name="keywords" content="music">
+  <meta name="description" content="什么是框架  软件开发过程中的一套解决方案 好处： 封装了很多细节，提高开发效率">
+<meta name="keywords" content="Mybatis">
 <meta property="og:type" content="article">
-<meta property="og:title" content="GIN">
-<meta property="og:url" content="http://yoursite.com/2019/07/26/GIN/index.html">
+<meta property="og:title" content="mybatis介绍">
+<meta property="og:url" content="http://yoursite.com/2019/08/03/mybatis介绍/index.html">
 <meta property="og:site_name" content="Aaron">
+<meta property="og:description" content="什么是框架  软件开发过程中的一套解决方案 好处： 封装了很多细节，提高开发效率">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-07-26T08:27:39.343Z">
+<meta property="og:image" content="https://i.loli.net/2019/08/03/FuT5OZiCUnalQMb.png">
+<meta property="og:updated_time" content="2019-08-03T10:04:19.032Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="GIN">
+<meta name="twitter:title" content="mybatis介绍">
+<meta name="twitter:description" content="什么是框架  软件开发过程中的一套解决方案 好处： 封装了很多细节，提高开发效率">
+<meta name="twitter:image" content="https://i.loli.net/2019/08/03/FuT5OZiCUnalQMb.png">
 
 
 
@@ -110,7 +115,7 @@
 
   
   
-  <link rel="canonical" href="http://yoursite.com/2019/07/26/GIN/">
+  <link rel="canonical" href="http://yoursite.com/2019/08/03/mybatis介绍/">
 
 
 
@@ -121,7 +126,7 @@
 </script>
 
   
-  <title>GIN | Aaron</title>
+  <title>mybatis介绍 | Aaron</title>
   
 
 
@@ -298,7 +303,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/07/26/GIN/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/08/03/mybatis介绍/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Aaron">
@@ -315,7 +320,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">GIN
+          <h1 class="post-title" itemprop="name headline">mybatis介绍
 
               
             
@@ -341,7 +346,7 @@
                 
               
 
-              <time title="Created: 2019-07-26 16:26:18 / Modified: 16:27:39" itemprop="dateCreated datePublished" datetime="2019-07-26T16:26:18+08:00">2019-07-26</time>
+              <time title="Created: 2019-08-03 11:08:40 / Modified: 18:04:19" itemprop="dateCreated datePublished" datetime="2019-08-03T11:08:40+08:00">2019-08-03</time>
             </span>
           
 
@@ -380,7 +385,144 @@
       
 
       
-        <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width="330" height="86" src="//music.163.com/outchain/player?type=2&id=27588024&auto=1&height=66"></iframe>
+        <ul>
+<li><p>什么是框架</p>
+<ul>
+<li>软件开发过程中的一套解决方案</li>
+<li>好处：<ul>
+<li>封装了很多细节，提高开发效率<a id="more"></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>三层架构</p>
+<ul>
+<li>表现层：展示数据</li>
+<li>业务层：处理业务需求</li>
+<li>持久层：和数据库交互</li>
+</ul>
+</li>
+<li><p>持久层技术结局方案</p>
+<ul>
+<li>JDBC技术</li>
+<li>Spring中的JDBCTemplate</li>
+<li>Apache中的DBUtils</li>
+<li>以上都不能算作框架</li>
+</ul>
+</li>
+<li><p>mybatis的概述</p>
+<ul>
+<li>持久层框架，Java编写</li>
+<li>封装了jdbc操作的很多细节，只需关注sql语句本身</li>
+<li>使用ORM思想，实现了结果集的封装</li>
+<li>ORM：<ul>
+<li>Object Relational Mapping 对象关系映射</li>
+<li>把数据库表跟实体类及其属性对应起来，操作实体类就可以实现操作数据库表</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>mybatis的入门</p>
+<ul>
+<li><p>环境搭建</p>
+<ul>
+<li><p>1：创建maven工程并导入坐标</p>
+</li>
+<li><p>2：创建实体类和dao的接口</p>
+</li>
+<li><p>3：创建Mybatis的主配置文件 SqlMapConfig.xml</p>
+<pre><code>&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
+&lt;!DOCTYPE configuration
+        PUBLIC &quot;-//mybatis.org//DTD Config 3.0//EN&quot;
+        &quot;http://mybatis.org/dtd/mybatis-3-config.dtd&quot;&gt;
+
+&lt;!-- mybatis的主配置文件 --&gt;
+&lt;configuration&gt;
+    &lt;!-- 配置环境 --&gt;
+    &lt;environments default=&quot;mysql&quot;&gt;
+        &lt;!-- 配置mysql环境 --&gt;
+        &lt;environment id=&quot;mysql&quot;&gt;
+            &lt;!-- 配置事务类型--&gt;
+            &lt;transactionManager type=&quot;JDBC&quot;&gt;&lt;/transactionManager&gt;
+            &lt;!-- 配置数据库（连接池） --&gt;
+            &lt;dataSource type=&quot;POOLED&quot;&gt;
+                &lt;!-- 配置连接数据库的4个基本信息 --&gt;
+                &lt;property name=&quot;driver&quot; value=&quot;com.mysql.jdbc.Driver&quot;/&gt;
+                &lt;property name=&quot;url&quot; value=&quot;jdbc:mysql://localhost:3306/eesy_mybatis&quot;/&gt;
+                &lt;property name=&quot;username&quot; value=&quot;root&quot;/&gt;
+                &lt;property name=&quot;password&quot; value=&quot;123&quot;/&gt;
+
+            &lt;/dataSource&gt;
+        &lt;/environment&gt;
+    &lt;/environments&gt;
+    &lt;!-- 指定映射配置文件--&gt;
+    &lt;mappers&gt;
+        &lt;mapper resource=&quot;com/itheima/dao/IUserDao.xml&quot;&gt;&lt;/mapper&gt;
+    &lt;/mappers&gt;
+&lt;/configuration&gt;</code></pre></li>
+<li><p>4：创建映射配置文件 IUserDao.xml</p>
+<pre><code>&lt;mapper namespace=&quot;com.itheima.dao.IUserDao&quot;&gt;
+    &lt;!-- 配置查询所有 --&gt;
+    &lt;select id=&quot;findAll&quot; resultType=&quot;com.itheima.domain.User&quot;&gt;
+        select * from user
+    &lt;/select&gt;
+&lt;/mapper&gt;</code></pre></li>
+<li><p>注意事项：</p>
+<ul>
+<li>有人习惯把IUserDao取名为IUserMapper</li>
+<li>在idea中：在创建名为com.sjtu.dao的包时，它是三级结构,而在创建目录时，它是一级结构</li>
+<li>mybatis的映射配置文件位置必须和dao接口的包结构相同</li>
+<li>映射配置文件的mapper标签中namespace属性取值必须是dao接口的全限定类名</li>
+<li>映射配置文件的操作配置（select），id属性的取值必须是dao接口的方法名</li>
+<li>实现以上几点后，在开发中无须再写dao的实现类</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>简单入门案例代码展示：</p>
+<pre><code>//1.读取配置文件
+InputStream in = Resources.getResourceAsStream(&quot;SqlMapConfig.xml&quot;);
+//2.创建SqlSessionFactory工厂
+SqlSessionFactoryBuilder builder = new SqlSessionFactoryBuilder();
+SqlSessionFactory factory = builder.build(in);
+//3.使用工厂生产SqlSession对象
+SqlSession session = factory.openSession();
+//4.使用SqlSession创建Dao接口的代理对象
+IUserDao userDao = session.getMapper(IUserDao.class);
+//5.使用代理对象执行方法
+List&lt;User&gt; users = userDao.findAll();
+for (User user : users) {
+    System.out.println(user);
+}
+//6.释放资源
+session.close();
+in.close();</code></pre><ul>
+<li><p>mybatis中用到的几种设计模式：</p>
+<ul>
+<li>build工厂使用了构建者模式：把对象的创建细节隐藏，使用者直接调用方法就可拿到对象</li>
+<li>生产SqlSession使用了工厂模式：解耦</li>
+<li>创建Dao接口实现类使用了代理模式：不修改源码的情况下对已有方法进行增强。</li>
+</ul>
+</li>
+<li><p>mybatis基于注解的入门案例</p>
+<ul>
+<li><p>把IUserDao.xml移除，在dao接口的方法上使用@Select注解，并且指定sql语句</p>
+<pre><code>@Select(&quot;select * from user&quot;)
+List&lt;User&gt; findAll();</code></pre></li>
+<li><p>同时需要在SqlMapConfig.xml中的mapper配置中，使用class属性指定dao接口的全限定类名</p>
+<pre><code>&lt;mappers&gt;
+    &lt;mapper class=&quot;com.itheima.dao.IUserDao&quot;&gt;&lt;/mapper&gt;
+&lt;/mappers&gt;</code></pre></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>自定义mybatis编码分析：</p>
+<p>  <img src="https://i.loli.net/2019/08/03/FuT5OZiCUnalQMb.png" alt="自定义Mybatis分析.png"></p>
+</li>
+</ul>
 
       
     </div>
@@ -411,7 +553,7 @@
         
         <div class="post-tags">
           
-            <a href="/tags/music/" rel="tag"># music</a>
+            <a href="/tags/Mybatis/" rel="tag"># Mybatis</a>
           
         </div>
       
@@ -424,8 +566,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2019/07/26/JQuery高级/" rel="next" title="JQuery高级">
-                <i class="fa fa-chevron-left"></i> JQuery高级
+              <a href="/2019/07/27/JSON介绍/" rel="next" title="JSON介绍">
+                <i class="fa fa-chevron-left"></i> JSON介绍
               </a>
             
           </div>
@@ -433,10 +575,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2019/07/27/Ajax介绍/" rel="prev" title="Ajax介绍">
-                Ajax介绍 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
