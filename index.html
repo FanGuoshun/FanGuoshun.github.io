@@ -297,7 +297,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/08/03/mybatis介绍/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/08/04/Mybatis介绍_02/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Aaron">
@@ -317,7 +317,7 @@
           <h1 class="post-title" itemprop="name headline">
                 
                 
-                <a href="/2019/08/03/mybatis介绍/" class="post-title-link" itemprop="url">mybatis介绍</a>
+                <a href="/2019/08/04/Mybatis介绍_02/" class="post-title-link" itemprop="url">Mybatis介绍_02</a>
               
             
           </h1>
@@ -342,13 +342,253 @@
                 
               
 
-              <time title="Created: 2019-08-03 11:08:40 / Modified: 18:04:19" itemprop="dateCreated datePublished" datetime="2019-08-03T11:08:40+08:00">2019-08-03</time>
+              <time title="Created: 2019-08-04 10:17:05" itemprop="dateCreated datePublished" datetime="2019-08-04T10:17:05+08:00">2019-08-04</time>
             </span>
           
 
           
             
 
+            
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Edited on</span>
+                
+                <time title="Modified: 2019-08-05 14:35:10" itemprop="dateModified" datetime="2019-08-05T14:35:10+08:00">2019-08-05</time>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+
+          
+
+          <br>
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <ul>
+<li><p>自定义mybatis开发流程图</p>
+<p>  <img src="https://i.loli.net/2019/08/04/IZCW5rT6Ok1pwbK.png" alt="自定义mybatis开发流程图.png"></p>
+</li>
+<li><p>OGNL表达式（Object Graphic Navigation Language):</p>
+<ul>
+<li>通过对象的取值方法获取数据，省略get<ul>
+<li>如：类中写法：user.getUsername() OGNL:user.username</li>
+</ul>
+</li>
+<li>mybatis中可以直接写username，不用写user。因为parameterType中已经提供了属性所属的类。</li>
+</ul>
+</li>
+<li><p>如果表中列名和实体类属性不同，可以按如下配置（配置之后需要将resultType换成resultMap，而且=后面写上相应的id）：</p>
+<pre><code>&lt;!-- 配置 查询结果的列名和实体类的属性名的对应关系 --&gt;
+&lt;resultMap id=&quot;userMap&quot; type=&quot;com.itheima.domain.User&quot;&gt;
+    &lt;!-- 主键字段的对应 --&gt;
+    &lt;id property=&quot;userId&quot; column=&quot;id&quot;&gt;&lt;/id&gt;
+
+    &lt;!-- 非主键字段的对应 --&gt;
+    &lt;result property=&quot;userName&quot; column=&quot;username&quot;&gt;&lt;/result&gt;
+    &lt;result property=&quot;userAddress&quot; column=&quot;address&quot;&gt;&lt;/result&gt;
+    &lt;result property=&quot;userSex&quot; column=&quot;sex&quot;&gt;&lt;/result&gt;
+    &lt;result property=&quot;userBirthday&quot; column=&quot;birthday&quot;&gt;&lt;/result&gt;
+&lt;/resultMap&gt;</code></pre></li>
+<li><p>mybatis中Dao实现类的执行过程分析：</p>
+<p>  <img src="https://i.loli.net/2019/08/05/78KPXWzcvLeojA1.png" alt="非常重要的一张图-分析编写dao实现类Mybatis的执行过程_1_.png"></p>
+</li>
+<li><p>mybatis中使用Dao代理的执行过程分析:</p>
+<p>  <img src="https://i.loli.net/2019/08/05/SAwgoNXUtPd1DMW.png" alt="非常重要的一张图-分析代理dao的执行过程.png"></p>
+</li>
+<li><p>properties标签的使用及细节</p>
+<pre><code>&lt;!-- 配置properties
+可以在标签内部配置链接数据库的信息，也可以通过属性引用外部配置文件信息
+resource属性：
+    用于指定配置文件的位置，按照类路径的写法来写，且必须存在于类路径下
+url属性:
+    要求按照url的属性来写地址
+    URL：Uniform Resource Locator 统一资源定位符
+    写法：
+        http://localhost:8080/mybatisserver/demo1
+        协议      主机    端口号   URI
+    URI：Uniform Resource Identifier 统一资源标识符 在应用中可以唯一定位一个资源 --&gt;
+&lt;properties url=&quot;file:///D:\JavaProject\day02_eesy_01mybatisCRUD\src\main\resources\jdbcConfig.properties&quot;&gt;
+    &lt;!--&lt;property name=&quot;driver&quot; value=&quot;com.mysql.jdbc.Driver&quot;&gt;&lt;/property&gt;
+    &lt;property name=&quot;url&quot; value=&quot;jdbc:mysql://localhost:3306/eesy_mybatis&quot;&gt;&lt;/property&gt;
+    &lt;property name=&quot;username&quot; value=&quot;root&quot;&gt;&lt;/property&gt;
+    &lt;property name=&quot;password&quot; value=&quot;14788996zxcA&quot;&gt;&lt;/property&gt;--&gt;
+
+&lt;/properties&gt;
+&lt;environments default=&quot;mysql&quot;&gt;
+    &lt;environment id=&quot;mysql&quot;&gt;
+        &lt;transactionManager type=&quot;JDBC&quot;&gt;&lt;/transactionManager&gt;
+        &lt;dataSource type=&quot;POOLED&quot;&gt;
+            &lt;property name=&quot;driver&quot; value=&quot;${jdbc.driver}&quot;&gt;&lt;/property&gt;
+            &lt;property name=&quot;url&quot; value=&quot;${jdbc.url}&quot;&gt;&lt;/property&gt;
+            &lt;property name=&quot;username&quot; value=&quot;${jdbc.username}&quot;&gt;&lt;/property&gt;
+            &lt;property name=&quot;password&quot; value=&quot;${jdbc.password}&quot;&gt;&lt;/property&gt;
+        &lt;/dataSource&gt;
+    &lt;/environment&gt;
+&lt;/environments&gt;</code></pre></li>
+<li><p>typeAliases标签和package标签</p>
+<pre><code>&lt;!-- 使用typeAliases配置别名，他只能配置domain中类的别名 --&gt;
+&lt;typeAliases&gt;
+    &lt;!-- typeAlias用于配置别名，type属性指定的是实体类全限定类名 alias属性指定别名
+    当指定别名后就不再区分大小写
+    &lt;typeAlias type=&quot;com.itheima.domain.User&quot; alias=&quot;user&quot;&gt;&lt;/typeAlias&gt;--&gt;
+
+    &lt;!-- 用于指定要配置别名的包，当指定之后，该包下的实体类都会注册别名，并且类名就是别名，不再区分大小写 --&gt;
+    &lt;package name=&quot;com.itheima.domain&quot;&gt;&lt;/package&gt;
+
+&lt;/typeAliases&gt;
+
+&lt;mappers&gt;
+    &lt;!--&lt;mapper resource=&quot;com/itheima/dao/IUserDao.xml&quot;&gt;&lt;/mapper&gt;--&gt;
+    &lt;!-- package标签是用于指定dao接口所在的包，当指定了之后就不需要再写mapper以及resource或者class了 --&gt;
+    &lt;package name=&quot;com.itheima.dao&quot;&gt;&lt;/package&gt;
+&lt;/mappers&gt;</code></pre></li>
+</ul>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+    
+        
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/08/03/Mybatis介绍_01/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Aaron">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Aaron">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2019/08/03/Mybatis介绍_01/" class="post-title-link" itemprop="url">Mybatis介绍_01</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+
+          
+          
+          
+
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2019-08-03 11:08:40" itemprop="dateCreated datePublished" datetime="2019-08-03T11:08:40+08:00">2019-08-03</time>
+            </span>
+          
+
+          
+            
+
+            
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Edited on</span>
+                
+                <time title="Modified: 2019-08-04 10:18:53" itemprop="dateModified" datetime="2019-08-04T10:18:53+08:00">2019-08-04</time>
+              </span>
             
           
 
@@ -391,7 +631,7 @@
           <!--noindex-->
           
             <div class="post-button text-center">
-              <a class="btn" href="/2019/08/03/mybatis介绍/#more" rel="contents">
+              <a class="btn" href="/2019/08/03/Mybatis介绍_01/#more" rel="contents">
                 Read more &raquo;
               </a>
             </div>
@@ -1706,154 +1946,6 @@ registry = &quot;git://mirrors.ustc.edu.cn/crates.io-index&quot;</code></pre></l
   </article>
 
     
-        
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/07/22/两行代码解决命令行启动python脚本找不到包问题/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Aaron">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Aaron">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2019/07/22/两行代码解决命令行启动python脚本找不到包问题/" class="post-title-link" itemprop="url">两行代码解决命令行启动python脚本找不到包问题</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-
-          
-          
-          
-
-          
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-
-              
-                
-              
-
-              <time title="Created: 2019-07-22 09:57:55 / Modified: 12:09:59" itemprop="dateCreated datePublished" datetime="2019-07-22T09:57:55+08:00">2019-07-22</time>
-            </span>
-          
-
-          
-            
-
-            
-          
-
-          
-
-          
-          
-
-          
-
-          
-
-          <br>
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <ul>
-<li><p>找到出现Import Error的脚本，写上两行代码（写在第一行）：</p>
-<pre><code>import sys
-sys.path.append(&quot;/home/aaron/project/python2_env/env/lib/python2.7/site-packages&quot;)</code></pre></li>
-<li><p>即将自己电脑上的python虚拟环境下的存放各种包的文件夹加入sys.path。因为Linux命令行启动python脚本只会从当前目录寻找依赖的包，所以要手动添加，防止报错。</p>
-</li>
-</ul>
-
-          
-        
-      
-    </div>
-
-    
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-    
   </section>
 
   
@@ -1901,7 +1993,7 @@ sys.path.append(&quot;/home/aaron/project/python2_env/env/lib/python2.7/site-pac
         
           <a href="/archives/">
         
-          <span class="site-state-item-count">25</span>
+          <span class="site-state-item-count">26</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>

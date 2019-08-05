@@ -94,18 +94,22 @@
   };
 </script>
 
-  <meta name="description" content="EL表达式:  概念：Expression Language  作用：替换和简化JSP中Java代码书写 语法：${表达式} 注意： jsp默认支持el表达式。如果要忽略el表达式： 设置jsp中page指令中：isELIgnored=”true” 忽略当前页面所有EL表达式 ${表达式}: 忽略这个el表达式">
-<meta name="keywords" content="JavaWeb">
+  <meta name="description" content="自定义mybatis开发流程图     OGNL表达式（Object Graphic Navigation Language):  通过对象的取值方法获取数据，省略get 如：类中写法：user.getUsername() OGNL:user.username   mybatis中可以直接写username，不用写user。因为parameterType中已经提供了属性所属的类。   如果表中列">
+<meta name="keywords" content="Mybatis">
 <meta property="og:type" content="article">
-<meta property="og:title" content="EL表达式">
-<meta property="og:url" content="http://yoursite.com/2019/07/18/EL表达式/index.html">
+<meta property="og:title" content="Mybatis介绍_02">
+<meta property="og:url" content="http://yoursite.com/2019/08/04/Mybatis介绍_02/index.html">
 <meta property="og:site_name" content="Aaron">
-<meta property="og:description" content="EL表达式:  概念：Expression Language  作用：替换和简化JSP中Java代码书写 语法：${表达式} 注意： jsp默认支持el表达式。如果要忽略el表达式： 设置jsp中page指令中：isELIgnored=”true” 忽略当前页面所有EL表达式 ${表达式}: 忽略这个el表达式">
+<meta property="og:description" content="自定义mybatis开发流程图     OGNL表达式（Object Graphic Navigation Language):  通过对象的取值方法获取数据，省略get 如：类中写法：user.getUsername() OGNL:user.username   mybatis中可以直接写username，不用写user。因为parameterType中已经提供了属性所属的类。   如果表中列">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-07-18T03:47:56.932Z">
+<meta property="og:image" content="https://i.loli.net/2019/08/04/IZCW5rT6Ok1pwbK.png">
+<meta property="og:image" content="https://i.loli.net/2019/08/05/78KPXWzcvLeojA1.png">
+<meta property="og:image" content="https://i.loli.net/2019/08/05/SAwgoNXUtPd1DMW.png">
+<meta property="og:updated_time" content="2019-08-05T06:35:10.125Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="EL表达式">
-<meta name="twitter:description" content="EL表达式:  概念：Expression Language  作用：替换和简化JSP中Java代码书写 语法：${表达式} 注意： jsp默认支持el表达式。如果要忽略el表达式： 设置jsp中page指令中：isELIgnored=”true” 忽略当前页面所有EL表达式 ${表达式}: 忽略这个el表达式">
+<meta name="twitter:title" content="Mybatis介绍_02">
+<meta name="twitter:description" content="自定义mybatis开发流程图     OGNL表达式（Object Graphic Navigation Language):  通过对象的取值方法获取数据，省略get 如：类中写法：user.getUsername() OGNL:user.username   mybatis中可以直接写username，不用写user。因为parameterType中已经提供了属性所属的类。   如果表中列">
+<meta name="twitter:image" content="https://i.loli.net/2019/08/04/IZCW5rT6Ok1pwbK.png">
 
 
 
@@ -113,7 +117,7 @@
 
   
   
-  <link rel="canonical" href="http://yoursite.com/2019/07/18/EL表达式/">
+  <link rel="canonical" href="http://yoursite.com/2019/08/04/Mybatis介绍_02/">
 
 
 
@@ -124,7 +128,7 @@
 </script>
 
   
-  <title>EL表达式 | Aaron</title>
+  <title>Mybatis介绍_02 | Aaron</title>
   
 
 
@@ -301,7 +305,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/07/18/EL表达式/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/08/04/Mybatis介绍_02/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Aaron">
@@ -318,7 +322,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">EL表达式
+          <h1 class="post-title" itemprop="name headline">Mybatis介绍_02
 
               
             
@@ -344,13 +348,23 @@
                 
               
 
-              <time title="Created: 2019-07-18 10:38:05 / Modified: 11:47:56" itemprop="dateCreated datePublished" datetime="2019-07-18T10:38:05+08:00">2019-07-18</time>
+              <time title="Created: 2019-08-04 10:17:05" itemprop="dateCreated datePublished" datetime="2019-08-04T10:17:05+08:00">2019-08-04</time>
             </span>
           
 
           
             
 
+            
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Edited on</span>
+                
+                <time title="Modified: 2019-08-05 14:35:10" itemprop="dateModified" datetime="2019-08-05T14:35:10+08:00">2019-08-05</time>
+              </span>
             
           
 
@@ -384,88 +398,83 @@
 
       
         <ul>
-<li><p>EL表达式:</p>
+<li><p>自定义mybatis开发流程图</p>
+<p>  <img src="https://i.loli.net/2019/08/04/IZCW5rT6Ok1pwbK.png" alt="自定义mybatis开发流程图.png"></p>
+</li>
+<li><p>OGNL表达式（Object Graphic Navigation Language):</p>
 <ul>
-<li>概念：Expression Language </li>
-<li>作用：替换和简化JSP中Java代码书写</li>
-<li>语法：${表达式}</li>
-<li>注意：<ul>
-<li>jsp默认支持el表达式。如果要忽略el表达式：<ul>
-<li>设置jsp中page指令中：isELIgnored=”true” 忽略当前页面所有EL表达式</li>
-<li>${表达式}: 忽略这个el表达式<a id="more"></a>
-</li>
+<li>通过对象的取值方法获取数据，省略get<ul>
+<li>如：类中写法：user.getUsername() OGNL:user.username</li>
 </ul>
 </li>
+<li>mybatis中可以直接写username，不用写user。因为parameterType中已经提供了属性所属的类。</li>
 </ul>
 </li>
-</ul>
+<li><p>如果表中列名和实体类属性不同，可以按如下配置（配置之后需要将resultType换成resultMap，而且=后面写上相应的id）：</p>
+<pre><code>&lt;!-- 配置 查询结果的列名和实体类的属性名的对应关系 --&gt;
+&lt;resultMap id=&quot;userMap&quot; type=&quot;com.itheima.domain.User&quot;&gt;
+    &lt;!-- 主键字段的对应 --&gt;
+    &lt;id property=&quot;userId&quot; column=&quot;id&quot;&gt;&lt;/id&gt;
+
+    &lt;!-- 非主键字段的对应 --&gt;
+    &lt;result property=&quot;userName&quot; column=&quot;username&quot;&gt;&lt;/result&gt;
+    &lt;result property=&quot;userAddress&quot; column=&quot;address&quot;&gt;&lt;/result&gt;
+    &lt;result property=&quot;userSex&quot; column=&quot;sex&quot;&gt;&lt;/result&gt;
+    &lt;result property=&quot;userBirthday&quot; column=&quot;birthday&quot;&gt;&lt;/result&gt;
+&lt;/resultMap&gt;</code></pre></li>
+<li><p>mybatis中Dao实现类的执行过程分析：</p>
+<p>  <img src="https://i.loli.net/2019/08/05/78KPXWzcvLeojA1.png" alt="非常重要的一张图-分析编写dao实现类Mybatis的执行过程_1_.png"></p>
 </li>
-<li><p>使用：</p>
-<ul>
-<li>运算：<ul>
-<li>运算符：<ul>
-<li>算数运算符</li>
-<li>比较运算符</li>
-<li>逻辑运算符</li>
-<li>空运算符 empty<ul>
-<li>判断字符串、集合、数组对象是否为NULL并且长度是否为0</li>
-<li>${empty list}</li>
-</ul>
+<li><p>mybatis中使用Dao代理的执行过程分析:</p>
+<p>  <img src="https://i.loli.net/2019/08/05/SAwgoNXUtPd1DMW.png" alt="非常重要的一张图-分析代理dao的执行过程.png"></p>
 </li>
-</ul>
-</li>
-</ul>
-</li>
-<li>获取值：<ul>
-<li>只能从域对象中获取值</li>
-<li>语法：<ul>
-<li>${域名称,键名}:从指定域中获取键值<ul>
-<li>域名称：<ul>
-<li>pageScope     –&gt; pageContext</li>
-<li>requestScope    –&gt; request</li>
-<li>sessionScope    –&gt; session</li>
-<li>applicationScope    –&gt; application</li>
-</ul>
-</li>
-<li>举例：在request域中存储了name=张三</li>
-<li>获取：${requestScope.name}</li>
-</ul>
-</li>
-<li>${键名}:标识依次从最小的域中查找是否有该键对应的值，直到找到为止。<ul>
-<li>获取对象List集合、Map集合的值</li>
-<li>对象：${域名称.键名.属性名}<ul>
-<li>实际上是调用对象的getter方法</li>
-</ul>
-</li>
-<li>List集合：${域名称.键名[索引]}<ul>
-<li>若发生数组越界，服务器不会报错，页面显示空字符串</li>
-</ul>
-</li>
-<li>Map集合：<ul>
-<li>${域名称.键名.key名称}</li>
-<li>${域名称.键名[“key名称”]}</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-</li>
-<li><p>隐式对象：</p>
-<ul>
-<li>el表达式中有11个隐式对象</li>
-<li>pageContext:<ul>
-<li>获取jsp中其它八个内置对象<ul>
-<li>${pageContext.request.contextPath}:动态获取虚拟目录</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-</li>
+<li><p>properties标签的使用及细节</p>
+<pre><code>&lt;!-- 配置properties
+可以在标签内部配置链接数据库的信息，也可以通过属性引用外部配置文件信息
+resource属性：
+    用于指定配置文件的位置，按照类路径的写法来写，且必须存在于类路径下
+url属性:
+    要求按照url的属性来写地址
+    URL：Uniform Resource Locator 统一资源定位符
+    写法：
+        http://localhost:8080/mybatisserver/demo1
+        协议      主机    端口号   URI
+    URI：Uniform Resource Identifier 统一资源标识符 在应用中可以唯一定位一个资源 --&gt;
+&lt;properties url=&quot;file:///D:\JavaProject\day02_eesy_01mybatisCRUD\src\main\resources\jdbcConfig.properties&quot;&gt;
+    &lt;!--&lt;property name=&quot;driver&quot; value=&quot;com.mysql.jdbc.Driver&quot;&gt;&lt;/property&gt;
+    &lt;property name=&quot;url&quot; value=&quot;jdbc:mysql://localhost:3306/eesy_mybatis&quot;&gt;&lt;/property&gt;
+    &lt;property name=&quot;username&quot; value=&quot;root&quot;&gt;&lt;/property&gt;
+    &lt;property name=&quot;password&quot; value=&quot;14788996zxcA&quot;&gt;&lt;/property&gt;--&gt;
+
+&lt;/properties&gt;
+&lt;environments default=&quot;mysql&quot;&gt;
+    &lt;environment id=&quot;mysql&quot;&gt;
+        &lt;transactionManager type=&quot;JDBC&quot;&gt;&lt;/transactionManager&gt;
+        &lt;dataSource type=&quot;POOLED&quot;&gt;
+            &lt;property name=&quot;driver&quot; value=&quot;${jdbc.driver}&quot;&gt;&lt;/property&gt;
+            &lt;property name=&quot;url&quot; value=&quot;${jdbc.url}&quot;&gt;&lt;/property&gt;
+            &lt;property name=&quot;username&quot; value=&quot;${jdbc.username}&quot;&gt;&lt;/property&gt;
+            &lt;property name=&quot;password&quot; value=&quot;${jdbc.password}&quot;&gt;&lt;/property&gt;
+        &lt;/dataSource&gt;
+    &lt;/environment&gt;
+&lt;/environments&gt;</code></pre></li>
+<li><p>typeAliases标签和package标签</p>
+<pre><code>&lt;!-- 使用typeAliases配置别名，他只能配置domain中类的别名 --&gt;
+&lt;typeAliases&gt;
+    &lt;!-- typeAlias用于配置别名，type属性指定的是实体类全限定类名 alias属性指定别名
+    当指定别名后就不再区分大小写
+    &lt;typeAlias type=&quot;com.itheima.domain.User&quot; alias=&quot;user&quot;&gt;&lt;/typeAlias&gt;--&gt;
+
+    &lt;!-- 用于指定要配置别名的包，当指定之后，该包下的实体类都会注册别名，并且类名就是别名，不再区分大小写 --&gt;
+    &lt;package name=&quot;com.itheima.domain&quot;&gt;&lt;/package&gt;
+
+&lt;/typeAliases&gt;
+
+&lt;mappers&gt;
+    &lt;!--&lt;mapper resource=&quot;com/itheima/dao/IUserDao.xml&quot;&gt;&lt;/mapper&gt;--&gt;
+    &lt;!-- package标签是用于指定dao接口所在的包，当指定了之后就不需要再写mapper以及resource或者class了 --&gt;
+    &lt;package name=&quot;com.itheima.dao&quot;&gt;&lt;/package&gt;
+&lt;/mappers&gt;</code></pre></li>
 </ul>
 
       
@@ -497,7 +506,7 @@
         
         <div class="post-tags">
           
-            <a href="/tags/JavaWeb/" rel="tag"># JavaWeb</a>
+            <a href="/tags/Mybatis/" rel="tag"># Mybatis</a>
           
         </div>
       
@@ -510,8 +519,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2019/07/18/MCV开发模式/" rel="next" title="MCV开发模式">
-                <i class="fa fa-chevron-left"></i> MCV开发模式
+              <a href="/2019/08/03/Mybatis介绍_01/" rel="next" title="Mybatis介绍_01">
+                <i class="fa fa-chevron-left"></i> Mybatis介绍_01
               </a>
             
           </div>
@@ -519,10 +528,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2019/07/18/JSTL介绍/" rel="prev" title="JSTL介绍">
-                JSTL介绍 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>

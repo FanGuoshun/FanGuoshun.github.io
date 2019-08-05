@@ -94,18 +94,20 @@
   };
 </script>
 
-  <meta name="description" content="EL表达式:  概念：Expression Language  作用：替换和简化JSP中Java代码书写 语法：${表达式} 注意： jsp默认支持el表达式。如果要忽略el表达式： 设置jsp中page指令中：isELIgnored=”true” 忽略当前页面所有EL表达式 ${表达式}: 忽略这个el表达式">
-<meta name="keywords" content="JavaWeb">
+  <meta name="description" content="什么是框架  软件开发过程中的一套解决方案 好处： 封装了很多细节，提高开发效率">
+<meta name="keywords" content="Mybatis">
 <meta property="og:type" content="article">
-<meta property="og:title" content="EL表达式">
-<meta property="og:url" content="http://yoursite.com/2019/07/18/EL表达式/index.html">
+<meta property="og:title" content="Mybatis介绍_01">
+<meta property="og:url" content="http://yoursite.com/2019/08/03/Mybatis介绍_01/index.html">
 <meta property="og:site_name" content="Aaron">
-<meta property="og:description" content="EL表达式:  概念：Expression Language  作用：替换和简化JSP中Java代码书写 语法：${表达式} 注意： jsp默认支持el表达式。如果要忽略el表达式： 设置jsp中page指令中：isELIgnored=”true” 忽略当前页面所有EL表达式 ${表达式}: 忽略这个el表达式">
+<meta property="og:description" content="什么是框架  软件开发过程中的一套解决方案 好处： 封装了很多细节，提高开发效率">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-07-18T03:47:56.932Z">
+<meta property="og:image" content="https://i.loli.net/2019/08/03/FuT5OZiCUnalQMb.png">
+<meta property="og:updated_time" content="2019-08-04T02:18:53.350Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="EL表达式">
-<meta name="twitter:description" content="EL表达式:  概念：Expression Language  作用：替换和简化JSP中Java代码书写 语法：${表达式} 注意： jsp默认支持el表达式。如果要忽略el表达式： 设置jsp中page指令中：isELIgnored=”true” 忽略当前页面所有EL表达式 ${表达式}: 忽略这个el表达式">
+<meta name="twitter:title" content="Mybatis介绍_01">
+<meta name="twitter:description" content="什么是框架  软件开发过程中的一套解决方案 好处： 封装了很多细节，提高开发效率">
+<meta name="twitter:image" content="https://i.loli.net/2019/08/03/FuT5OZiCUnalQMb.png">
 
 
 
@@ -113,7 +115,7 @@
 
   
   
-  <link rel="canonical" href="http://yoursite.com/2019/07/18/EL表达式/">
+  <link rel="canonical" href="http://yoursite.com/2019/08/03/Mybatis介绍_01/">
 
 
 
@@ -124,7 +126,7 @@
 </script>
 
   
-  <title>EL表达式 | Aaron</title>
+  <title>Mybatis介绍_01 | Aaron</title>
   
 
 
@@ -301,7 +303,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/07/18/EL表达式/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/08/03/Mybatis介绍_01/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Aaron">
@@ -318,7 +320,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">EL表达式
+          <h1 class="post-title" itemprop="name headline">Mybatis介绍_01
 
               
             
@@ -344,13 +346,23 @@
                 
               
 
-              <time title="Created: 2019-07-18 10:38:05 / Modified: 11:47:56" itemprop="dateCreated datePublished" datetime="2019-07-18T10:38:05+08:00">2019-07-18</time>
+              <time title="Created: 2019-08-03 11:08:40" itemprop="dateCreated datePublished" datetime="2019-08-03T11:08:40+08:00">2019-08-03</time>
             </span>
           
 
           
             
 
+            
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Edited on</span>
+                
+                <time title="Modified: 2019-08-04 10:18:53" itemprop="dateModified" datetime="2019-08-04T10:18:53+08:00">2019-08-04</time>
+              </span>
             
           
 
@@ -384,87 +396,141 @@
 
       
         <ul>
-<li><p>EL表达式:</p>
+<li><p>什么是框架</p>
 <ul>
-<li>概念：Expression Language </li>
-<li>作用：替换和简化JSP中Java代码书写</li>
-<li>语法：${表达式}</li>
-<li>注意：<ul>
-<li>jsp默认支持el表达式。如果要忽略el表达式：<ul>
-<li>设置jsp中page指令中：isELIgnored=”true” 忽略当前页面所有EL表达式</li>
-<li>${表达式}: 忽略这个el表达式<a id="more"></a>
-</li>
+<li>软件开发过程中的一套解决方案</li>
+<li>好处：<ul>
+<li>封装了很多细节，提高开发效率<a id="more"></a></li>
 </ul>
 </li>
 </ul>
 </li>
-</ul>
-</li>
-<li><p>使用：</p>
+<li><p>三层架构</p>
 <ul>
-<li>运算：<ul>
-<li>运算符：<ul>
-<li>算数运算符</li>
-<li>比较运算符</li>
-<li>逻辑运算符</li>
-<li>空运算符 empty<ul>
-<li>判断字符串、集合、数组对象是否为NULL并且长度是否为0</li>
-<li>${empty list}</li>
+<li>表现层：展示数据</li>
+<li>业务层：处理业务需求</li>
+<li>持久层：和数据库交互</li>
 </ul>
 </li>
-</ul>
-</li>
-</ul>
-</li>
-<li>获取值：<ul>
-<li>只能从域对象中获取值</li>
-<li>语法：<ul>
-<li>${域名称,键名}:从指定域中获取键值<ul>
-<li>域名称：<ul>
-<li>pageScope     –&gt; pageContext</li>
-<li>requestScope    –&gt; request</li>
-<li>sessionScope    –&gt; session</li>
-<li>applicationScope    –&gt; application</li>
-</ul>
-</li>
-<li>举例：在request域中存储了name=张三</li>
-<li>获取：${requestScope.name}</li>
-</ul>
-</li>
-<li>${键名}:标识依次从最小的域中查找是否有该键对应的值，直到找到为止。<ul>
-<li>获取对象List集合、Map集合的值</li>
-<li>对象：${域名称.键名.属性名}<ul>
-<li>实际上是调用对象的getter方法</li>
-</ul>
-</li>
-<li>List集合：${域名称.键名[索引]}<ul>
-<li>若发生数组越界，服务器不会报错，页面显示空字符串</li>
-</ul>
-</li>
-<li>Map集合：<ul>
-<li>${域名称.键名.key名称}</li>
-<li>${域名称.键名[“key名称”]}</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-</li>
-<li><p>隐式对象：</p>
+<li><p>持久层技术结局方案</p>
 <ul>
-<li>el表达式中有11个隐式对象</li>
-<li>pageContext:<ul>
-<li>获取jsp中其它八个内置对象<ul>
-<li>${pageContext.request.contextPath}:动态获取虚拟目录</li>
+<li>JDBC技术</li>
+<li>Spring中的JDBCTemplate</li>
+<li>Apache中的DBUtils</li>
+<li>以上都不能算作框架</li>
+</ul>
+</li>
+<li><p>mybatis的概述</p>
+<ul>
+<li>持久层框架，Java编写</li>
+<li>封装了jdbc操作的很多细节，只需关注sql语句本身</li>
+<li>使用ORM思想，实现了结果集的封装</li>
+<li>ORM：<ul>
+<li>Object Relational Mapping 对象关系映射</li>
+<li>把数据库表跟实体类及其属性对应起来，操作实体类就可以实现操作数据库表</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>mybatis的入门</p>
+<ul>
+<li><p>环境搭建</p>
+<ul>
+<li><p>1：创建maven工程并导入坐标</p>
+</li>
+<li><p>2：创建实体类和dao的接口</p>
+</li>
+<li><p>3：创建Mybatis的主配置文件 SqlMapConfig.xml</p>
+<pre><code>&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
+&lt;!DOCTYPE configuration
+        PUBLIC &quot;-//mybatis.org//DTD Config 3.0//EN&quot;
+        &quot;http://mybatis.org/dtd/mybatis-3-config.dtd&quot;&gt;
+
+&lt;!-- mybatis的主配置文件 --&gt;
+&lt;configuration&gt;
+    &lt;!-- 配置环境 --&gt;
+    &lt;environments default=&quot;mysql&quot;&gt;
+        &lt;!-- 配置mysql环境 --&gt;
+        &lt;environment id=&quot;mysql&quot;&gt;
+            &lt;!-- 配置事务类型--&gt;
+            &lt;transactionManager type=&quot;JDBC&quot;&gt;&lt;/transactionManager&gt;
+            &lt;!-- 配置数据库（连接池） --&gt;
+            &lt;dataSource type=&quot;POOLED&quot;&gt;
+                &lt;!-- 配置连接数据库的4个基本信息 --&gt;
+                &lt;property name=&quot;driver&quot; value=&quot;com.mysql.jdbc.Driver&quot;/&gt;
+                &lt;property name=&quot;url&quot; value=&quot;jdbc:mysql://localhost:3306/eesy_mybatis&quot;/&gt;
+                &lt;property name=&quot;username&quot; value=&quot;root&quot;/&gt;
+                &lt;property name=&quot;password&quot; value=&quot;123&quot;/&gt;
+
+            &lt;/dataSource&gt;
+        &lt;/environment&gt;
+    &lt;/environments&gt;
+    &lt;!-- 指定映射配置文件--&gt;
+    &lt;mappers&gt;
+        &lt;mapper resource=&quot;com/itheima/dao/IUserDao.xml&quot;&gt;&lt;/mapper&gt;
+    &lt;/mappers&gt;
+&lt;/configuration&gt;</code></pre></li>
+<li><p>4：创建映射配置文件 IUserDao.xml</p>
+<pre><code>&lt;mapper namespace=&quot;com.itheima.dao.IUserDao&quot;&gt;
+    &lt;!-- 配置查询所有 --&gt;
+    &lt;select id=&quot;findAll&quot; resultType=&quot;com.itheima.domain.User&quot;&gt;
+        select * from user
+    &lt;/select&gt;
+&lt;/mapper&gt;</code></pre></li>
+<li><p>注意事项：</p>
+<ul>
+<li>有人习惯把IUserDao取名为IUserMapper</li>
+<li>在idea中：在创建名为com.sjtu.dao的包时，它是三级结构,而在创建目录时，它是一级结构</li>
+<li>mybatis的映射配置文件位置必须和dao接口的包结构相同</li>
+<li>映射配置文件的mapper标签中namespace属性取值必须是dao接口的全限定类名</li>
+<li>映射配置文件的操作配置（select），id属性的取值必须是dao接口的方法名</li>
+<li>实现以上几点后，在开发中无须再写dao的实现类</li>
 </ul>
 </li>
 </ul>
 </li>
 </ul>
+</li>
+<li><p>简单入门案例代码展示：</p>
+<pre><code>//1.读取配置文件
+InputStream in = Resources.getResourceAsStream(&quot;SqlMapConfig.xml&quot;);
+//2.创建SqlSessionFactory工厂
+SqlSessionFactoryBuilder builder = new SqlSessionFactoryBuilder();
+SqlSessionFactory factory = builder.build(in);
+//3.使用工厂生产SqlSession对象
+SqlSession session = factory.openSession();
+//4.使用SqlSession创建Dao接口的代理对象
+IUserDao userDao = session.getMapper(IUserDao.class);
+//5.使用代理对象执行方法
+List&lt;User&gt; users = userDao.findAll();
+for (User user : users) {
+    System.out.println(user);
+}
+//6.释放资源
+session.close();
+in.close();</code></pre><ul>
+<li><p>mybatis中用到的几种设计模式：</p>
+<ul>
+<li>build工厂使用了构建者模式：把对象的创建细节隐藏，使用者直接调用方法就可拿到对象</li>
+<li>生产SqlSession使用了工厂模式：解耦</li>
+<li>创建Dao接口实现类使用了代理模式：不修改源码的情况下对已有方法进行增强。</li>
+</ul>
+</li>
+<li><p>mybatis基于注解的入门案例</p>
+<ul>
+<li><p>把IUserDao.xml移除，在dao接口的方法上使用@Select注解，并且指定sql语句</p>
+<pre><code>@Select(&quot;select * from user&quot;)
+List&lt;User&gt; findAll();</code></pre></li>
+<li><p>同时需要在SqlMapConfig.xml中的mapper配置中，使用class属性指定dao接口的全限定类名</p>
+<pre><code>&lt;mappers&gt;
+    &lt;mapper class=&quot;com.itheima.dao.IUserDao&quot;&gt;&lt;/mapper&gt;
+&lt;/mappers&gt;</code></pre></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>自定义mybatis编码分析：</p>
+<p>  <img src="https://i.loli.net/2019/08/03/FuT5OZiCUnalQMb.png" alt="自定义Mybatis分析.png"></p>
 </li>
 </ul>
 
@@ -497,7 +563,7 @@
         
         <div class="post-tags">
           
-            <a href="/tags/JavaWeb/" rel="tag"># JavaWeb</a>
+            <a href="/tags/Mybatis/" rel="tag"># Mybatis</a>
           
         </div>
       
@@ -510,8 +576,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2019/07/18/MCV开发模式/" rel="next" title="MCV开发模式">
-                <i class="fa fa-chevron-left"></i> MCV开发模式
+              <a href="/2019/07/27/JSON介绍/" rel="next" title="JSON介绍">
+                <i class="fa fa-chevron-left"></i> JSON介绍
               </a>
             
           </div>
@@ -520,8 +586,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2019/07/18/JSTL介绍/" rel="prev" title="JSTL介绍">
-                JSTL介绍 <i class="fa fa-chevron-right"></i>
+              <a href="/2019/08/04/Mybatis介绍_02/" rel="prev" title="Mybatis介绍_02">
+                Mybatis介绍_02 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
