@@ -94,20 +94,18 @@
   };
 </script>
 
-  <meta name="description" content="什么是框架  软件开发过程中的一套解决方案 好处： 封装了很多细节，提高开发效率">
+  <meta name="description" content="数据库连接池：  减少获取连接所消耗的时间">
 <meta name="keywords" content="Mybatis">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Mybatis介绍_01">
-<meta property="og:url" content="http://yoursite.com/2019/08/03/Mybatis介绍_01/index.html">
+<meta property="og:title" content="Mybatis介绍_03">
+<meta property="og:url" content="http://yoursite.com/2019/08/05/Mybatis介绍-03/index.html">
 <meta property="og:site_name" content="Aaron">
-<meta property="og:description" content="什么是框架  软件开发过程中的一套解决方案 好处： 封装了很多细节，提高开发效率">
+<meta property="og:description" content="数据库连接池：  减少获取连接所消耗的时间">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="https://i.loli.net/2019/08/03/FuT5OZiCUnalQMb.png">
-<meta property="og:updated_time" content="2019-08-04T02:18:53.350Z">
+<meta property="og:updated_time" content="2019-08-06T14:10:21.664Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Mybatis介绍_01">
-<meta name="twitter:description" content="什么是框架  软件开发过程中的一套解决方案 好处： 封装了很多细节，提高开发效率">
-<meta name="twitter:image" content="https://i.loli.net/2019/08/03/FuT5OZiCUnalQMb.png">
+<meta name="twitter:title" content="Mybatis介绍_03">
+<meta name="twitter:description" content="数据库连接池：  减少获取连接所消耗的时间">
 
 
 
@@ -115,7 +113,7 @@
 
   
   
-  <link rel="canonical" href="http://yoursite.com/2019/08/03/Mybatis介绍_01/">
+  <link rel="canonical" href="http://yoursite.com/2019/08/05/Mybatis介绍-03/">
 
 
 
@@ -126,7 +124,7 @@
 </script>
 
   
-  <title>Mybatis介绍_01 | Aaron</title>
+  <title>Mybatis介绍_03 | Aaron</title>
   
 
 
@@ -303,7 +301,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/08/03/Mybatis介绍_01/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/08/05/Mybatis介绍-03/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Aaron">
@@ -320,7 +318,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">Mybatis介绍_01
+          <h1 class="post-title" itemprop="name headline">Mybatis介绍_03
 
               
             
@@ -346,7 +344,7 @@
                 
               
 
-              <time title="Created: 2019-08-03 11:08:40" itemprop="dateCreated datePublished" datetime="2019-08-03T11:08:40+08:00">2019-08-03</time>
+              <time title="Created: 2019-08-05 14:45:47" itemprop="dateCreated datePublished" datetime="2019-08-05T14:45:47+08:00">2019-08-05</time>
             </span>
           
 
@@ -361,7 +359,7 @@
                 
                   <span class="post-meta-item-text">Edited on</span>
                 
-                <time title="Modified: 2019-08-04 10:18:53" itemprop="dateModified" datetime="2019-08-04T10:18:53+08:00">2019-08-04</time>
+                <time title="Modified: 2019-08-06 22:10:21" itemprop="dateModified" datetime="2019-08-06T22:10:21+08:00">2019-08-06</time>
               </span>
             
           
@@ -396,141 +394,215 @@
 
       
         <ul>
-<li><p>什么是框架</p>
+<li><p>数据库连接池：</p>
 <ul>
-<li>软件开发过程中的一套解决方案</li>
-<li>好处：<ul>
-<li>封装了很多细节，提高开发效率<a id="more"></a></li>
+<li>减少获取连接所消耗的时间<a id="more"></a></li>
+</ul>
+</li>
+<li><p>mybatis中的连接池提供了3种配置方式</p>
+<ul>
+<li>配置位置<ul>
+<li>主配置文件SqlMapConfig.xml中的dataSource标签，type属性就是标识采用何种连接池方式。</li>
+</ul>
+</li>
+<li>type属性的取值：<ul>
+<li>POOLED：采用传统的javax.sql.DataSource规范种的连接池，mybatis种有其规范的实现。（从池中获取一个连接来用）</li>
+<li>UNPOOLED：采用传统的获取连接的方式，虽然也实现了javax.sql.DataSource接口，但是并没有使用池的思想。（每次创建一个新的连接）</li>
+<li>JNDI：采用服务器提供的JNDI技术实现，来获取DataSource对象，不同服务器拿到的DataSource是不一样的。如果不是web或者maven的war工程是不能使用的。tomcat服务器采用的连接池是dbcp连接池。</li>
 </ul>
 </li>
 </ul>
 </li>
-<li><p>三层架构</p>
+<li><p>mybatis种使用pooled配置连接的原理分析：</p>
 <ul>
-<li>表现层：展示数据</li>
-<li>业务层：处理业务需求</li>
-<li>持久层：和数据库交互</li>
-</ul>
-</li>
-<li><p>持久层技术结局方案</p>
-<ul>
-<li>JDBC技术</li>
-<li>Spring中的JDBCTemplate</li>
-<li>Apache中的DBUtils</li>
-<li>以上都不能算作框架</li>
-</ul>
-</li>
-<li><p>mybatis的概述</p>
-<ul>
-<li>持久层框架，Java编写</li>
-<li>封装了jdbc操作的很多细节，只需关注sql语句本身</li>
-<li>使用ORM思想，实现了结果集的封装</li>
-<li>ORM：<ul>
-<li>Object Relational Mapping 对象关系映射</li>
-<li>把数据库表跟实体类及其属性对应起来，操作实体类就可以实现操作数据库表</li>
+<li>如果空闲池中还有连接的话，直接取出一个来使用。</li>
+<li>如果空闲池中没有连接，再看看活动连接池中的情况：<ul>
+<li>如果活动连接池中的连接数小于最大连接数，就创建一个新连接返回给用户使用。</li>
+<li>如果连接数大于最大连接数，就将连接池中Oldest的连接返回给用户使用。</li>
 </ul>
 </li>
 </ul>
 </li>
-<li><p>mybatis的入门</p>
+<li><p>mybatis中的事务：</p>
 <ul>
-<li><p>环境搭建</p>
-<ul>
-<li><p>1：创建maven工程并导入坐标</p>
+<li>通过sqlsession对象的commit方法和rollback方法实现事务的提交和回滚。<ul>
+<li>事务自动提交设置：openSession（true）调用openSession方法时传入true</li>
+</ul>
 </li>
-<li><p>2：创建实体类和dao的接口</p>
+</ul>
 </li>
-<li><p>3：创建Mybatis的主配置文件 SqlMapConfig.xml</p>
-<pre><code>&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
-&lt;!DOCTYPE configuration
-        PUBLIC &quot;-//mybatis.org//DTD Config 3.0//EN&quot;
-        &quot;http://mybatis.org/dtd/mybatis-3-config.dtd&quot;&gt;
-
-&lt;!-- mybatis的主配置文件 --&gt;
-&lt;configuration&gt;
-    &lt;!-- 配置环境 --&gt;
-    &lt;environments default=&quot;mysql&quot;&gt;
-        &lt;!-- 配置mysql环境 --&gt;
-        &lt;environment id=&quot;mysql&quot;&gt;
-            &lt;!-- 配置事务类型--&gt;
-            &lt;transactionManager type=&quot;JDBC&quot;&gt;&lt;/transactionManager&gt;
-            &lt;!-- 配置数据库（连接池） --&gt;
-            &lt;dataSource type=&quot;POOLED&quot;&gt;
-                &lt;!-- 配置连接数据库的4个基本信息 --&gt;
-                &lt;property name=&quot;driver&quot; value=&quot;com.mysql.jdbc.Driver&quot;/&gt;
-                &lt;property name=&quot;url&quot; value=&quot;jdbc:mysql://localhost:3306/eesy_mybatis&quot;/&gt;
-                &lt;property name=&quot;username&quot; value=&quot;root&quot;/&gt;
-                &lt;property name=&quot;password&quot; value=&quot;123&quot;/&gt;
-
-            &lt;/dataSource&gt;
-        &lt;/environment&gt;
-    &lt;/environments&gt;
-    &lt;!-- 指定映射配置文件--&gt;
-    &lt;mappers&gt;
-        &lt;mapper resource=&quot;com/itheima/dao/IUserDao.xml&quot;&gt;&lt;/mapper&gt;
-    &lt;/mappers&gt;
-&lt;/configuration&gt;</code></pre></li>
-<li><p>4：创建映射配置文件 IUserDao.xml</p>
-<pre><code>&lt;mapper namespace=&quot;com.itheima.dao.IUserDao&quot;&gt;
-    &lt;!-- 配置查询所有 --&gt;
-    &lt;select id=&quot;findAll&quot; resultType=&quot;com.itheima.domain.User&quot;&gt;
+<li><p>mybatis中的动态sql：</p>
+<pre><code>&lt;!-- 根据条件查询 --&gt;
+&lt;select id=&quot;findUserByCondition&quot; parameterType=&quot;com.itheima.domain.User&quot; resultMap=&quot;userMap&quot;&gt;
         select * from user
+        &lt;where&gt;
+            &lt;if test=&quot;userName != null&quot;&gt;
+                and username = #{userName}
+            &lt;/if&gt;
+            &lt;if test=&quot;userSex != null&quot;&gt;
+                and sex = #{userSex}
+            &lt;/if&gt;
+        &lt;/where&gt;
+&lt;/select&gt;
+
+&lt;!-- 根据ids查询用户集合 --&gt;
+&lt;select id=&quot;findUserInIds&quot; resultMap=&quot;userMap&quot; parameterType=&quot;QueryVo&quot;&gt;
+    select * from USER
+    &lt;where&gt;
+        &lt;if test=&quot;ids != null and ids.size() &gt; 0&quot;&gt;
+            &lt;foreach collection=&quot;ids&quot; open=&quot;and id in (&quot; close=&quot;)&quot; item=&quot;id&quot; separator=&quot;,&quot;&gt;
+                #{id}
+            &lt;/foreach&gt;
+        &lt;/if&gt;
+    &lt;/where&gt;
+&lt;/select&gt;</code></pre></li>
+<li><p>sql标签的简单使用</p>
+<pre><code>&lt;!-- 抽取重复的sql语句 --&gt;
+&lt;sql id=&quot;defaultUser&quot;&gt;
+    select * from user;
+&lt;/sql&gt;
+
+&lt;!-- 查询所有 --&gt;
+&lt;select id=&quot;findAll&quot; resultMap=&quot;userMap&quot;&gt;
+    &lt;include refid=&quot;defaultUser&quot;&gt;&lt;/include&gt;
+&lt;/select&gt;</code></pre></li>
+<li><p>mybatis中的多表查询</p>
+<ul>
+<li>表之间的关系：<ul>
+<li>一对多</li>
+<li>多对一</li>
+<li>一对一</li>
+<li>多对多</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>mybatis中实现一对多（多对一）查询</p>
+<ul>
+<li><p>mybatis把多对一看成是一对一</p>
+<ul>
+<li>示例：用户和账户<ul>
+<li>一个用户可以有多个账户</li>
+<li>一个账户只能属于一个用户（多个账户也可以属于同一个用户）</li>
+</ul>
+</li>
+<li>步骤：<ul>
+<li>建立用户表和账户表：<ul>
+<li>让两表之间具备一对多的关系：需要使用外键在账户表中添加</li>
+</ul>
+</li>
+<li>建立用户实体类和账户实体类：<ul>
+<li>让两个类之间体现出一种一对多的关系</li>
+<li>从表实体类应该包含一个主表实体类的对象引用</li>
+</ul>
+</li>
+<li>建立用户和账户的配置文件</li>
+<li>实现配置：<ul>
+<li>查询用户时，可以同时得到用户下所包含的账户信息</li>
+<li>查询账户时，可以同时得到账户的所属用户信息</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>配置文件代码展示：</p>
+<ul>
+<li><p>IAccountDao.xml</p>
+<pre><code>&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
+&lt;!DOCTYPE mapper
+    PUBLIC &quot;-//mybatis.org//DTD Mapper 3.0//EN&quot;
+    &quot;http://mybatis.org/dtd/mybatis-3-mapper.dtd&quot;&gt;
+&lt;mapper namespace=&quot;com.itheima.dao.IAccountDao&quot;&gt;
+    &lt;!-- 定义封装account和user的resultMap--&gt;
+    &lt;resultMap id=&quot;accountUserMap&quot; type=&quot;account&quot;&gt;
+        &lt;id property=&quot;id&quot; column=&quot;aid&quot;&gt;&lt;/id&gt;
+        &lt;result property=&quot;uid&quot; column=&quot;uid&quot;&gt;&lt;/result&gt;
+        &lt;result property=&quot;money&quot; column=&quot;money&quot;&gt;&lt;/result&gt;
+
+        &lt;!-- 一对一的关系映射，配置封装user的内容 --&gt;
+        &lt;association property=&quot;user&quot; column=&quot;uid&quot; javaType=&quot;user&quot;&gt;
+            &lt;id property=&quot;id&quot; column=&quot;id&quot;&gt;&lt;/id&gt;
+            &lt;result property=&quot;username&quot; column=&quot;username&quot;&gt;&lt;/result&gt;
+            &lt;result property=&quot;address&quot; column=&quot;address&quot;&gt;&lt;/result&gt;
+            &lt;result property=&quot;sex&quot; column=&quot;sex&quot;&gt;&lt;/result&gt;
+            &lt;result property=&quot;birthday&quot; column=&quot;birthday&quot;&gt;&lt;/result&gt;
+        &lt;/association&gt;
+    &lt;/resultMap&gt;
+
+    &lt;!-- 查询所有 --&gt;
+    &lt;select id=&quot;findAll&quot; resultMap=&quot;accountUserMap&quot;&gt;
+        SELECT u.*,a.id AS aid, a.uid, a.money FROM account a,USER u WHERE u.id = a.uid
+    &lt;/select&gt;
+    &lt;!-- 查询所有同时包含用户名和地址信息 --&gt;
+    &lt;select id=&quot;findAllAccount&quot; resultType=&quot;AccountUser&quot;&gt;
+        SELECT a.*,u.username,u.address FROM account a,USER u WHERE u.id = a.uid
     &lt;/select&gt;
 &lt;/mapper&gt;</code></pre></li>
-<li><p>注意事项：</p>
+<li><p>IUserDao.xml</p>
+<pre><code>&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
+&lt;!DOCTYPE mapper
+        PUBLIC &quot;-//mybatis.org//DTD Mapper 3.0//EN&quot;
+        &quot;http://mybatis.org/dtd/mybatis-3-mapper.dtd&quot;&gt;
+&lt;mapper namespace=&quot;com.itheima.dao.IUserDao&quot;&gt;
+    &lt;!-- 定义User的resultMap --&gt;
+    &lt;resultMap id=&quot;userAccountMap&quot; type=&quot;user&quot;&gt;
+        &lt;id property=&quot;id&quot; column=&quot;id&quot;&gt;&lt;/id&gt;
+        &lt;result property=&quot;username&quot; column=&quot;username&quot;&gt;&lt;/result&gt;
+        &lt;result property=&quot;address&quot; column=&quot;address&quot;&gt;&lt;/result&gt;
+        &lt;result property=&quot;sex&quot; column=&quot;sex&quot;&gt;&lt;/result&gt;
+        &lt;result property=&quot;birthday&quot; column=&quot;birthday&quot;&gt;&lt;/result&gt;
+        &lt;!-- 配置user对象中accounts集合的映射 --&gt;
+        &lt;collection property=&quot;accounts&quot; ofType=&quot;account&quot;&gt;
+            &lt;id property=&quot;id&quot; column=&quot;aid&quot;&gt;&lt;/id&gt;
+            &lt;result property=&quot;uid&quot; column=&quot;uid&quot;&gt;&lt;/result&gt;
+            &lt;result property=&quot;money&quot; column=&quot;money&quot;&gt;&lt;/result&gt;
+        &lt;/collection&gt;
+    &lt;/resultMap&gt;
+
+    &lt;!-- 查询所有 --&gt;
+    &lt;select id=&quot;findAll&quot; resultMap=&quot;userAccountMap&quot;&gt;
+        SELECT * FROM USER u LEFT OUTER JOIN account a ON u.id = a.uid
+    &lt;/select&gt;
+
+    &lt;!-- 根据id查询用户 --&gt;
+    &lt;select id=&quot;findById&quot; parameterType=&quot;INT&quot; resultType=&quot;user&quot;&gt;
+        select * from user where id = #{uid}
+    &lt;/select&gt;
+
+&lt;/mapper&gt;</code></pre></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>mybatis中实现多对多查询</p>
 <ul>
-<li>有人习惯把IUserDao取名为IUserMapper</li>
-<li>在idea中：在创建名为com.sjtu.dao的包时，它是三级结构,而在创建目录时，它是一级结构</li>
-<li>mybatis的映射配置文件位置必须和dao接口的包结构相同</li>
-<li>映射配置文件的mapper标签中namespace属性取值必须是dao接口的全限定类名</li>
-<li>映射配置文件的操作配置（select），id属性的取值必须是dao接口的方法名</li>
-<li>实现以上几点后，在开发中无须再写dao的实现类</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-</li>
-<li><p>简单入门案例代码展示：</p>
-<pre><code>//1.读取配置文件
-InputStream in = Resources.getResourceAsStream(&quot;SqlMapConfig.xml&quot;);
-//2.创建SqlSessionFactory工厂
-SqlSessionFactoryBuilder builder = new SqlSessionFactoryBuilder();
-SqlSessionFactory factory = builder.build(in);
-//3.使用工厂生产SqlSession对象
-SqlSession session = factory.openSession();
-//4.使用SqlSession创建Dao接口的代理对象
-IUserDao userDao = session.getMapper(IUserDao.class);
-//5.使用代理对象执行方法
-List&lt;User&gt; users = userDao.findAll();
-for (User user : users) {
-    System.out.println(user);
-}
-//6.释放资源
-session.close();
-in.close();</code></pre><ul>
-<li><p>mybatis中用到的几种设计模式：</p>
+<li><p>示例：用户和角色</p>
 <ul>
-<li>build工厂使用了构建者模式：把对象的创建细节隐藏，使用者直接调用方法就可拿到对象</li>
-<li>生产SqlSession使用了工厂模式：解耦</li>
-<li>创建Dao接口实现类使用了代理模式：不修改源码的情况下对已有方法进行增强。</li>
+<li>一个用户可以有多个角色，一个角色可以赋予多个用户</li>
 </ul>
 </li>
-<li><p>mybatis基于注解的入门案例</p>
+<li><p>步骤：</p>
 <ul>
-<li><p>把IUserDao.xml移除，在dao接口的方法上使用@Select注解，并且指定sql语句</p>
-<pre><code>@Select(&quot;select * from user&quot;)
-List&lt;User&gt; findAll();</code></pre></li>
-<li><p>同时需要在SqlMapConfig.xml中的mapper配置中，使用class属性指定dao接口的全限定类名</p>
-<pre><code>&lt;mappers&gt;
-    &lt;mapper class=&quot;com.itheima.dao.IUserDao&quot;&gt;&lt;/mapper&gt;
-&lt;/mappers&gt;</code></pre></li>
+<li>建立用户表和角色表：<ul>
+<li>让两表间具备多对多关系。需要使用中间表，中间表中包含两表的主键，并且在中间表中是外键。</li>
+</ul>
+</li>
+<li>建立用户实体类和角色实体类：<pre><code>* 让两个类之间体现出一种多对多的关系
+* 各自包含对方一个集合引用</code></pre></li>
+<li>建立用户和角色的配置文件</li>
+<li>实现配置：<ul>
+<li>查询用户时，可以同时得到用户下所包含的角色信息</li>
+<li>角色账户时，可以同时得到角色的所属用户信息</li>
 </ul>
 </li>
 </ul>
 </li>
-<li><p>自定义mybatis编码分析：</p>
-<p>  <img src="https://i.loli.net/2019/08/03/FuT5OZiCUnalQMb.png" alt="自定义Mybatis分析.png"></p>
+<li><p>sql语句展示：</p>
+<pre><code>SELECT u.*,r.id AS rid,r.role_name,r.role_desc FROM USER u
+ LEFT OUTER JOIN user_role ur ON u.id = ur.uid
+ LEFT OUTER JOIN role r ON r.id = ur.rid</code></pre></li>
+</ul>
 </li>
 </ul>
 
@@ -576,8 +648,8 @@ List&lt;User&gt; findAll();</code></pre></li>
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2019/07/27/JSON介绍/" rel="next" title="JSON介绍">
-                <i class="fa fa-chevron-left"></i> JSON介绍
+              <a href="/2019/08/04/Mybatis介绍_02/" rel="next" title="Mybatis介绍_02">
+                <i class="fa fa-chevron-left"></i> Mybatis介绍_02
               </a>
             
           </div>
@@ -585,10 +657,6 @@ List&lt;User&gt; findAll();</code></pre></li>
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2019/08/04/Mybatis介绍_02/" rel="prev" title="Mybatis介绍_02">
-                Mybatis介绍_02 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
