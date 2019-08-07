@@ -297,6 +297,303 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/08/06/Mybatis介绍-04/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Aaron">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Aaron">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2019/08/06/Mybatis介绍-04/" class="post-title-link" itemprop="url">Mybatis介绍_04</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+
+          
+          
+          
+
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2019-08-06 22:15:59" itemprop="dateCreated datePublished" datetime="2019-08-06T22:15:59+08:00">2019-08-06</time>
+            </span>
+          
+
+          
+            
+
+            
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Edited on</span>
+                
+                <time title="Modified: 2019-08-07 15:46:52" itemprop="dateModified" datetime="2019-08-07T15:46:52+08:00">2019-08-07</time>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+
+          
+
+          <br>
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <ul>
+<li><p>Mybatis中的延迟加载</p>
+<ul>
+<li><p>什么是延迟加载：</p>
+<ul>
+<li>在真正使用数据的时候才发起查询，不用的时候不查询，按需加载（懒加载）</li>
+</ul>
+</li>
+<li><p>什么是立即加载：</p>
+<ul>
+<li>不管用不用，只要一调用方法，马上发起查询</li>
+</ul>
+</li>
+<li><p>在对应的四种表关系中：</p>
+<ul>
+<li>一对多，多对多：采用延迟加载</li>
+<li>多对一，一对一：采用立即加载 </li>
+</ul>
+</li>
+<li><p>配置延迟加载：</p>
+<pre><code>&lt;!-- 配置参数--&gt;
+&lt;settings&gt;
+    &lt;setting name=&quot;lazyLoadingEnabled&quot; value=&quot;true&quot;/&gt;
+    &lt;setting name=&quot;aggressiveLazyLoading&quot; value=&quot;false&quot;/&gt;
+&lt;/settings&gt;</code></pre></li>
+</ul>
+</li>
+<li><p>Mybatis中的缓存</p>
+<ul>
+<li><p>什么是缓存</p>
+<ul>
+<li>存在于内存的临时数据</li>
+</ul>
+</li>
+<li><p>为何使用缓存：</p>
+<ul>
+<li>减少和数据库的交互次数，提高执行效率</li>
+</ul>
+</li>
+<li><p>何时使用缓存：</p>
+<ul>
+<li>适用于缓存：<ul>
+<li>经常查询并且不经常改变的</li>
+<li>数据的正确与否对最终结果影响不大</li>
+</ul>
+</li>
+<li>不适用于缓存：<ul>
+<li>经常改变的数据</li>
+<li>数据的正确与否对最终结构影响很大</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>mybatis中的一级缓存和二级缓存</p>
+<ul>
+<li><p>一级缓存：</p>
+<ul>
+<li>指的是mybatis中SqlSession对象的缓存</li>
+<li>当我们执行查询之后，结果会同时存入到SqlSession为我们童工的一块区域中。其结构是一个Map，当我们再次查询同样的数据时，mybatis会先去SqlSession中查询是否有相同数据，有就直接拿出来用。</li>
+<li>当SqlSession对象消失时，MyBatis的一级缓存也就消失了</li>
+<li>当调用SqlSession的修改，添加，删除，commit(), close()等方法时，就会清空一级缓存。</li>
+</ul>
+</li>
+<li><p>二级缓存：</p>
+<ul>
+<li><p>指的是mybatis中SqlSessionFactory对象的缓存。由同一个SqlSessionFactory对象创建的SqlSession共享其缓存。</p>
+</li>
+<li><p>使用步骤：</p>
+<ol>
+<li><p>设置mybatis框架支持二级缓存（在SqlMapConfig.xml中配置）</p>
+<pre><code>&lt;settings&gt;
+    &lt;setting name=&quot;cacheEnabled&quot; value=&quot;true&quot;/&gt;
+&lt;/settings&gt;</code></pre></li>
+<li><p>让当前的映射文件支持二级缓存（在IUserDao.xml中配置）</p>
+<pre><code>&lt;!-- 设置user支持二级缓存 --&gt;
+&lt;cache/&gt;</code></pre></li>
+<li><p>让当前的操作支持二级缓存（在select标签中配置）</p>
+<pre><code>&lt;select id=&quot;findById&quot; parameterType=&quot;INT&quot; resultType=&quot;user&quot; useCache=&quot;true&quot;&gt;
+    select * from user where id = #{uid}
+&lt;/select&gt;</code></pre></li>
+</ol>
+</li>
+<li><p><strong>二级缓存存放的是数据，而不是对象。当查询相同数据时，会把数据封装给另外一个对象。</strong></p>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>mybatis中的注解开发</p>
+<ul>
+<li><p>mybatis中针对CRUD一共有四个注解</p>
+<ul>
+<li>@Select @Insert @Update @Delete</li>
+</ul>
+</li>
+<li><p>如果使用注解，就无需在编写映射的xml文件，否则会报错。（无论是否使用该xml）</p>
+</li>
+<li><p>解决实体类属性和数据库表中列名不一致问题：</p>
+<ul>
+<li><p>在方法头上加上@Results注解，代码展示如下：</p>
+<pre><code>@Select(&quot;select * from user&quot;)
+@Results(id = &quot;userMap&quot;,value = {
+        @Result(id=true,column = &quot;id&quot;, property = &quot;userId&quot;),
+        @Result(column = &quot;username&quot;, property = &quot;userName&quot;),
+        @Result(column = &quot;address&quot;, property = &quot;userAddress&quot;),
+        @Result(column = &quot;sex&quot;, property = &quot;userSex&quot;),
+        @Result(column = &quot;birthday&quot;, property = &quot;userBirthday&quot;)
+})
+List&lt;User&gt; findAll();
+
+@Select(&quot;select * from user where id=#{id}&quot;)
+@ResultMap(&quot;userMap&quot;)
+User findById(Integer userId);</code></pre></li>
+</ul>
+</li>
+<li><p>使用Mybatis注解完成一对多开发：</p>
+<pre><code>@Select(&quot;select * from account&quot;)
+@Results(id = &quot;accountMap&quot;, value = {
+        @Result(id = true, column = &quot;id&quot;, property = &quot;id&quot;),
+        @Result(column = &quot;uid&quot;, property = &quot;uid&quot;),
+        @Result(column = &quot;money&quot;, property = &quot;money&quot;),
+        @Result(property = &quot;user&quot;, column = &quot;uid&quot;,
+                one = @One(select=&quot;com.itheima.dao.IUserDao.findById&quot;,
+        fetchType = FetchType.LAZY))
+})
+List&lt;Account&gt; findAll();</code></pre></li>
+<li><p>使用Mybatis注解完成多对多开发：</p>
+<pre><code>@Select(&quot;select * from user&quot;)
+@Results(id = &quot;userMap&quot;,value = {
+        @Result(id=true,column = &quot;id&quot;, property = &quot;userId&quot;),
+        @Result(column = &quot;username&quot;, property = &quot;userName&quot;),
+        @Result(column = &quot;address&quot;, property = &quot;userAddress&quot;),
+        @Result(column = &quot;sex&quot;, property = &quot;userSex&quot;),
+        @Result(column = &quot;birthday&quot;, property = &quot;userBirthday&quot;),
+        @Result(property = &quot;accounts&quot;, column = &quot;id&quot;,
+                many = @Many(select = &quot;com.itheima.dao.IAccountDao.findAccountByUid&quot;,
+                fetchType = FetchType.LAZY))
+})</code></pre></li>
+<li><p>mybatis基于注解方式实现配置二级缓存</p>
+<pre><code>@CacheNamespace(blocking=true)
+public interface IUserDao {} </code></pre></li>
+</ul>
+</li>
+</ul>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+    
+        
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/08/05/Mybatis介绍-03/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1708,167 +2005,6 @@ jedis.close();</code></pre>
   </article>
 
     
-        
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/07/23/Rust-crates-io换国内镜像源/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Aaron">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Aaron">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2019/07/23/Rust-crates-io换国内镜像源/" class="post-title-link" itemprop="url">Rust crates.io换国内镜像源</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-
-          
-          
-          
-
-          
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-
-              
-                
-              
-
-              <time title="Created: 2019-07-23 21:34:27" itemprop="dateCreated datePublished" datetime="2019-07-23T21:34:27+08:00">2019-07-23</time>
-            </span>
-          
-
-          
-            
-
-            
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">Edited on</span>
-                
-                <time title="Modified: 2019-07-26 18:45:26" itemprop="dateModified" datetime="2019-07-26T18:45:26+08:00">2019-07-26</time>
-              </span>
-            
-          
-
-          
-
-          
-          
-
-          
-
-          
-
-          <br>
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <ol>
-<li><p>最近发现连接 crates.io 仓库非常慢，很多次超时导致引用库没法编译。这里可以切到国内镜像，配置如下：</p>
-</li>
-<li><p>找到.cargo 文件夹，进入.cargo 当前目录，在当前目下创建 config 文件 ，见下图，打开 config 文件，编写以下内容：</p>
-<pre><code>[source.crates-io]
-registry = &quot;https://github.com/rust-lang/crates.io-index&quot;
-replace-with = &apos;ustc&apos;
-[source.ustc]
-registry = &quot;git://mirrors.ustc.edu.cn/crates.io-index&quot;</code></pre></li>
-</ol>
-
-          
-        
-      
-    </div>
-
-    
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-    
   </section>
 
   
@@ -1916,7 +2052,7 @@ registry = &quot;git://mirrors.ustc.edu.cn/crates.io-index&quot;</code></pre></l
         
           <a href="/archives/">
         
-          <span class="site-state-item-count">27</span>
+          <span class="site-state-item-count">28</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
