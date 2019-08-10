@@ -94,18 +94,18 @@
   };
 </script>
 
-  <meta name="description" content="找到出现Import Error的脚本，写上两行代码（写在第一行）： import sys sys.path.append(&amp;quot;/home/aaron/project/python2_env/env/lib/python2.7/site-packages&amp;quot;) 即将自己电脑上的python虚拟环境下的存放各种包的文件夹加入sys.path。因为Linux命令行启动python脚本">
-<meta name="keywords" content="Python">
+  <meta name="description" content="在使用Spring的注解开发之前需要对配置文件做出如下改变：">
+<meta name="keywords" content="Spring">
 <meta property="og:type" content="article">
-<meta property="og:title" content="两行代码解决命令行启动python脚本找不到包问题">
-<meta property="og:url" content="http://yoursite.com/2019/07/22/两行代码解决命令行启动python脚本找不到包问题/index.html">
+<meta property="og:title" content="Spring介绍_02">
+<meta property="og:url" content="http://yoursite.com/2019/08/09/Spring介绍-02/index.html">
 <meta property="og:site_name" content="Aaron">
-<meta property="og:description" content="找到出现Import Error的脚本，写上两行代码（写在第一行）： import sys sys.path.append(&amp;quot;/home/aaron/project/python2_env/env/lib/python2.7/site-packages&amp;quot;) 即将自己电脑上的python虚拟环境下的存放各种包的文件夹加入sys.path。因为Linux命令行启动python脚本">
+<meta property="og:description" content="在使用Spring的注解开发之前需要对配置文件做出如下改变：">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-07-22T04:09:59.720Z">
+<meta property="og:updated_time" content="2019-08-10T07:43:27.639Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="两行代码解决命令行启动python脚本找不到包问题">
-<meta name="twitter:description" content="找到出现Import Error的脚本，写上两行代码（写在第一行）： import sys sys.path.append(&amp;quot;/home/aaron/project/python2_env/env/lib/python2.7/site-packages&amp;quot;) 即将自己电脑上的python虚拟环境下的存放各种包的文件夹加入sys.path。因为Linux命令行启动python脚本">
+<meta name="twitter:title" content="Spring介绍_02">
+<meta name="twitter:description" content="在使用Spring的注解开发之前需要对配置文件做出如下改变：">
 
 
 
@@ -113,7 +113,7 @@
 
   
   
-  <link rel="canonical" href="http://yoursite.com/2019/07/22/两行代码解决命令行启动python脚本找不到包问题/">
+  <link rel="canonical" href="http://yoursite.com/2019/08/09/Spring介绍-02/">
 
 
 
@@ -124,7 +124,7 @@
 </script>
 
   
-  <title>两行代码解决命令行启动python脚本找不到包问题 | Aaron</title>
+  <title>Spring介绍_02 | Aaron</title>
   
 
 
@@ -301,7 +301,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/07/22/两行代码解决命令行启动python脚本找不到包问题/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/08/09/Spring介绍-02/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Aaron">
@@ -318,7 +318,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">两行代码解决命令行启动python脚本找不到包问题
+          <h1 class="post-title" itemprop="name headline">Spring介绍_02
 
               
             
@@ -344,13 +344,23 @@
                 
               
 
-              <time title="Created: 2019-07-22 09:57:55 / Modified: 12:09:59" itemprop="dateCreated datePublished" datetime="2019-07-22T09:57:55+08:00">2019-07-22</time>
+              <time title="Created: 2019-08-09 10:40:22" itemprop="dateCreated datePublished" datetime="2019-08-09T10:40:22+08:00">2019-08-09</time>
             </span>
           
 
           
             
 
+            
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Edited on</span>
+                
+                <time title="Modified: 2019-08-10 15:43:27" itemprop="dateModified" datetime="2019-08-10T15:43:27+08:00">2019-08-10</time>
+              </span>
             
           
 
@@ -384,10 +394,169 @@
 
       
         <ul>
-<li><p>找到出现Import Error的脚本，写上两行代码（写在第一行）：</p>
-<pre><code>import sys
-sys.path.append(&quot;/home/aaron/project/python2_env/env/lib/python2.7/site-packages&quot;)</code></pre></li>
-<li><p>即将自己电脑上的python虚拟环境下的存放各种包的文件夹加入sys.path。因为Linux命令行启动python脚本只会从当前目录寻找依赖的包，所以要手动添加，防止报错。</p>
+<li><p>在使用Spring的注解开发之前需要对配置文件做出如下改变：<a id="more"></a></p>
+<pre><code>&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
+&lt;beans xmlns=&quot;http://www.springframework.org/schema/beans&quot;
+       xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot;
+       xmlns:context=&quot;http://www.springframework.org/schema/context&quot;
+       xsi:schemaLocation=&quot;http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/context
+        http://www.springframework.org/schema/context/spring-context.xsd&quot;&gt;
+
+    &lt;!-- 告知Spring在创建容器时要扫描的包，在一个名称为context的名称空间和约束中 --&gt;
+    &lt;context:component-scan base-package=&quot;com.itheima&quot;&gt;&lt;/context:component-scan&gt;
+
+&lt;/beans&gt;</code></pre></li>
+<li><p>Spring中的注解开发：</p>
+<ul>
+<li>创建对象：与XML配置文件中编写一个<bean>标签功能相同<ul>
+<li>@Component：把当前类对象存入spring容器中<ul>
+<li>属性：<ul>
+<li>value：用于指定bean的id。默认值是当前类名，首字母改成小写。</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>@Controller：一般用在表现层</li>
+<li>@Service：一般用在业务层</li>
+<li>@Repository：一般用在持久层</li>
+<li>以上三个注解它们的作用和属性与Component是一模一样。</li>
+</ul>
+</bean></li>
+<li>注入数据：与XML配置文件中的<bean>标签中的<property>作用相同<ul>
+<li>@Autowired：自动按照类型注入。只要容器中有唯一的一个bean对象类型和要注入的变量类型匹配，就可以成功注入。<ul>
+<li>出现位置：可以是成员变量上，也可以是成员方法上。</li>
+<li>细节：在使用注解注入时，set方法就不是必须的了。</li>
+<li>如果IOC中有多个类型匹配时，会根据变量名和bean的id是否相同来注入。</li>
+</ul>
+</li>
+<li>@Qualifier：在按照类型注入的基础上再按照名称注入。给类成员注入时不能单独使用。但是再给方法参数注入时可以<ul>
+<li>属性：<ul>
+<li>value：用于指定注入bean的id</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>@Resource：直接按照bean的id注入，可以独立使用<ul>
+<li>属性：<ul>
+<li>name：用于指定bean的id</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>以上三个注入都只能注入其它bean类型的数据，而基本类型和String类型无法使用上述注解实现。另外集合类型的注入只能通过XML来实现。</li>
+<li>@Value：用于注入基本类型和String类型的数据<ul>
+<li>属性：<ul>
+<li>value: 用于指定数据的值，他可以使用SpEL(${表达式})</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</property></bean></li>
+<li>改变作用范围：与XML配置文件中的<bean>标签中使用scope属性实现的功能是一样的<ul>
+<li>@Scope：用于指定bean的作用范围<ul>
+<li>属性：<ul>
+<li>value：指定范围的取值。常用取值：singleton prototype</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</bean></li>
+<li>生命周期相关：与XML配置文件中的<bean>标签中使用init-method和destroy-method作用一样<ul>
+<li>@PreDestroy：用于指定销毁方法</li>
+<li>@PostConstruct：用于指定初始化方法</li>
+</ul>
+</bean></li>
+</ul>
+</li>
+<li><p>完全不使用XML配置文件的情况下使用注解开发</p>
+<ul>
+<li><p>项目中添加一个spring.SpringConfiguration，并加上Configuration注解</p>
+</li>
+<li><p>@Configuration注解：</p>
+<ul>
+<li>指定当前类是一个配置类</li>
+<li>细节：当配置类作为AnnotationConfigApplicationContext对象创建的参数时，该注解可以不写。</li>
+</ul>
+</li>
+<li><p>@ComponentScan：</p>
+<ul>
+<li><p>用于通过注解指定Spring在创建容器时要扫描的包</p>
+</li>
+<li><p>属性：</p>
+<ul>
+<li>value：它和basaPackages的作用是一样的，都是用于指定创建容器时要扫描的包</li>
+</ul>
+</li>
+<li><p>@ComponentScan(basePackages = “com.itheima”)此注解就等同与配置文件的以下代码：</p>
+<pre><code>&lt;context:component-scan base-package=&quot;com.itheima&quot;&gt;&lt;/context:component-scan&gt;</code></pre></li>
+</ul>
+</li>
+<li><p>@Bean:</p>
+<ul>
+<li>把当前方法的返回值作为bean对象存入Spring的IOC容器中</li>
+<li>属性：<ul>
+<li>name：用于指定bean的id。默认值是当前方法的名称</li>
+</ul>
+</li>
+<li>细节：<ul>
+<li>当我们使用注解配置方法时，如果方法有参数，Spring框架会去容器中查找有没有可用的bean对象。查找的方式与Autowired相同</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>@Scope:</p>
+<ul>
+<li>改变bean对象的作用范围</li>
+</ul>
+</li>
+<li><p>@Import：</p>
+<ul>
+<li>用于导入其他的配置类</li>
+<li>属性：<ul>
+<li>value：用于指定其他配置类的字节码。当我们使用Import的注解之后，有Import注解的类就是父配置类，而导入的都是子配置类。</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>@PropertySource：</p>
+<ul>
+<li>用于指定properties文件的位置</li>
+<li>属性：<ul>
+<li>value：指定文件的名称和路径<ul>
+<li>关键字：classpath：表示类路径下</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>关于Spring框架整合Junit的问题：</p>
+<ul>
+<li>Junit不会管我们是否采用Spring框架，也不会为我们读取配置文件/配置类，从而创建Spring核心容器。所以在Junit中使用Autowired注解是无法实现数据注入的</li>
+<li>如何实现Spring整合Junit：<ol>
+<li>导入Spring郑junit的坐标</li>
+<li>使用Junit提供的一个注解把原有的main方法替换成Spring提供的<ul>
+<li>@RunWith(SpringJUnit4ClassRunner.class)</li>
+</ul>
+</li>
+<li>告知Spring的运行器，Spring和IOC创建是基于XML还是注解的，并且说明位置<ul>
+<li>@ContextConfiguration<ul>
+<li>location：指定xml文件的位置，加上classpath关键字，表示在类路径下</li>
+<li>classes：指定注解类所在的位置</li>
+</ul>
+</li>
+</ul>
+</li>
+</ol>
+</li>
+<li><strong>当我们使用spring 5.x版本的时候，要求junit的jar必须是4.12及以上</strong></li>
+</ul>
 </li>
 </ul>
 
@@ -420,7 +589,7 @@ sys.path.append(&quot;/home/aaron/project/python2_env/env/lib/python2.7/site-pac
         
         <div class="post-tags">
           
-            <a href="/tags/Python/" rel="tag"># Python</a>
+            <a href="/tags/Spring/" rel="tag"># Spring</a>
           
         </div>
       
@@ -433,8 +602,8 @@ sys.path.append(&quot;/home/aaron/project/python2_env/env/lib/python2.7/site-pac
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2019/07/21/ChainSpace合约执行过程/" rel="next" title="ChainSpace合约执行过程">
-                <i class="fa fa-chevron-left"></i> ChainSpace合约执行过程
+              <a href="/2019/08/08/Spring介绍-01/" rel="next" title="Spring介绍_01">
+                <i class="fa fa-chevron-left"></i> Spring介绍_01
               </a>
             
           </div>
@@ -442,10 +611,6 @@ sys.path.append(&quot;/home/aaron/project/python2_env/env/lib/python2.7/site-pac
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2019/07/22/Redis介绍/" rel="prev" title="Redis介绍">
-                Redis介绍 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
