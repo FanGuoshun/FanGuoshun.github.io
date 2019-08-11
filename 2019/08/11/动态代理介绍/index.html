@@ -94,18 +94,18 @@
   };
 </script>
 
-  <meta name="description" content="ServletContext功能：1.获取MIME类型：  MIME类型：在互联网通信过程中定义的一种文件数据类型  格式：大类型/小类型 text/html image/jpeg  获取：String getMimeType(String file) 2.域对象，共享数据 3.获取文件的真实（服务器）路径">
-<meta name="keywords" content="JavaWeb">
+  <meta name="description" content="动态代理：  特点：字节码随用随创建，随用随加载 作用：不修改源码的基础上对方法增强">
+<meta name="keywords" content="设计模式">
 <meta property="og:type" content="article">
-<meta property="og:title" content="ServletContext的功能介绍">
-<meta property="og:url" content="http://yoursite.com/2019/07/15/ServletContext的功能介绍/index.html">
+<meta property="og:title" content="动态代理介绍">
+<meta property="og:url" content="http://yoursite.com/2019/08/11/动态代理介绍/index.html">
 <meta property="og:site_name" content="Aaron">
-<meta property="og:description" content="ServletContext功能：1.获取MIME类型：  MIME类型：在互联网通信过程中定义的一种文件数据类型  格式：大类型/小类型 text/html image/jpeg  获取：String getMimeType(String file) 2.域对象，共享数据 3.获取文件的真实（服务器）路径">
+<meta property="og:description" content="动态代理：  特点：字节码随用随创建，随用随加载 作用：不修改源码的基础上对方法增强">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-07-15T05:36:25.875Z">
+<meta property="og:updated_time" content="2019-08-11T09:13:00.549Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="ServletContext的功能介绍">
-<meta name="twitter:description" content="ServletContext功能：1.获取MIME类型：  MIME类型：在互联网通信过程中定义的一种文件数据类型  格式：大类型/小类型 text/html image/jpeg  获取：String getMimeType(String file) 2.域对象，共享数据 3.获取文件的真实（服务器）路径">
+<meta name="twitter:title" content="动态代理介绍">
+<meta name="twitter:description" content="动态代理：  特点：字节码随用随创建，随用随加载 作用：不修改源码的基础上对方法增强">
 
 
 
@@ -113,7 +113,7 @@
 
   
   
-  <link rel="canonical" href="http://yoursite.com/2019/07/15/ServletContext的功能介绍/">
+  <link rel="canonical" href="http://yoursite.com/2019/08/11/动态代理介绍/">
 
 
 
@@ -124,7 +124,7 @@
 </script>
 
   
-  <title>ServletContext的功能介绍 | Aaron</title>
+  <title>动态代理介绍 | Aaron</title>
   
 
 
@@ -302,7 +302,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/07/15/ServletContext的功能介绍/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/08/11/动态代理介绍/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Aaron">
@@ -319,7 +319,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">ServletContext的功能介绍
+          <h1 class="post-title" itemprop="name headline">动态代理介绍
 
               
             
@@ -345,7 +345,7 @@
                 
               
 
-              <time title="Created: 2019-07-15 13:27:20 / Modified: 13:36:25" itemprop="dateCreated datePublished" datetime="2019-07-15T13:27:20+08:00">2019-07-15</time>
+              <time title="Created: 2019-08-11 15:14:03 / Modified: 17:13:00" itemprop="dateCreated datePublished" datetime="2019-08-11T15:14:03+08:00">2019-08-11</time>
             </span>
           
 
@@ -384,97 +384,170 @@
       
 
       
-        <h3 id="ServletContext功能："><a href="#ServletContext功能：" class="headerlink" title="ServletContext功能："></a>ServletContext功能：</h3><p>1.获取MIME类型：<br>  MIME类型：在互联网通信过程中定义的一种文件数据类型<br>  格式：大类型/小类型 text/html image/jpeg<br>  获取：String getMimeType(String file)</p>
-<p>2.域对象，共享数据</p>
-<p>3.获取文件的真实（服务器）路径</p>
-<a id="more"></a>
+        <ul>
+<li><p>动态代理：</p>
+<ul>
+<li>特点：字节码随用随创建，随用随加载</li>
+<li>作用：不修改源码的基础上对方法增强 <a id="more"></a></li>
+<li>分类：<ul>
+<li>基于接口的动态代理：<ul>
+<li>涉及的类：Proxy</li>
+<li>提供者：JDK官方</li>
+<li>如何创建代理对象：<ul>
+<li>使用Proxy类中的newProxyInstance方法</li>
+</ul>
+</li>
+<li>创建代理对象的要求：<ul>
+<li><strong>被代理类最少实现一个接口，否则不能使用</strong></li>
+</ul>
+</li>
+<li>newProxyInstance方法的参数：<ul>
+<li>ClassLoader：类加载器<ul>
+<li>用于加载代理对象字节码的。和被代理对象使用相同的类加载器。固定写法。</li>
+</ul>
+</li>
+<li>Class[]：字节码数组<ul>
+<li>用于让代理对象和被代理对象有相同的方法。固定写法</li>
+</ul>
+</li>
+<li>InvocationHandler：增强代码<ul>
+<li>实现增强功能。一般都是一个该接口的实现类。此实现类都是谁用谁写。</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>基于子类的动态代理<ul>
+<li>涉及的类：Enhancer</li>
+<li>提供者：第三方cglib库</li>
+<li>如何创建代理对象：<ul>
+<li>使用Enhancer类中的create方法</li>
+</ul>
+</li>
+<li>创建代理对象的要求：<ul>
+<li><strong>被代理类不能是最终类</strong></li>
+</ul>
+</li>
+<li>create方法的参数：<ul>
+<li>Class：字节码<ul>
+<li>它是用于指定被代理对象的字节码</li>
+</ul>
+</li>
+<li>Callback：用于提供增强的代码<ul>
+<li>实现增强功能。一般都是一个该接口的实现类。此实现类都是谁用谁写。</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>案例：</p>
+<ul>
+<li><p>一个电脑厂商需要有代理商来帮助自己销售电脑。每卖出一天电脑，代理收取电脑价格的20%作为自己的利润，其余归电脑厂商。</p>
+</li>
+<li><p>第一种方法：我们使用基于接口的动态代理，要求被代理对象必须实现一个接口。</p>
+<ul>
+<li><p>我们首先设计一个电脑厂商接口，其中有卖出电脑和提供售后两种服务。代码展示如下:</p>
+<pre><code>public interface IProducer {
 
-<p>代码展示：</p>
-<pre><code>public class ContextDemo2 extends HttpServlet {
-protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-    /*ServletContext功能：
-    *  1 获取MIME类型：
-    *      MIME类型：在互联网通信过程中定义的一种文件数据类型
-    *       格式：大类型/小类型 text/html image/jpeg
-    *      获取：String getMimeType(String file)
-    * */
+    void saleProduct(float money);
 
-    //获取对象
-    ServletContext context = this.getServletContext();
-
-    //定义文件名称
-    String filename = &quot;a.jpg&quot;;
-
-    //获取MIME类型
-    String mimeType = context.getMimeType(filename);
-    System.out.println(mimeType);
-}
-
-protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-    this.doPost(request, response);
+    void afterService(float money);
+}</code></pre></li>
+<li><p>设计该接口的实现类，代码如下：</p>
+<pre><code>public class Producer implements IProducer{
+    public void saleProduct(float money){
+        System.out.println(&quot;销售产品，并拿到钱：&quot; + money);
     }
-}</code></pre><p>下述代码展示中demo3存储对象，demo4读取对象。</p>
-<pre><code>public class ContextDemo3 extends HttpServlet {
-protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-    /*ServletContext功能：
-    *  2 域对象，共享数据
-    * */
 
-    //获取对象
-    ServletContext context = this.getServletContext();
-
-    //设置数据
-    context.setAttribute(&quot;msg&quot;, &quot;haha&quot;);
-}
-
-protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-    this.doPost(request, response);
+    public void afterService(float money){
+        System.out.println(&quot;提供售后服务，并拿到钱：&quot; + money);
     }
-}
-
-public class ContextDemo4 extends HttpServlet {
-protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-    /*ServletContext功能：
-    *  2 域对象，共享数据
-    * */
-
-    //获取对象
-    ServletContext context = this.getServletContext();
-
-    //获取数据
-    Object msg = context.getAttribute(&quot;msg&quot;);
-    System.out.println(msg);
-}
-
-protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-    this.doPost(request, response);
+}</code></pre></li>
+<li><p>利用动态代理的思想对厂商的销售方法进行增强</p>
+<pre><code>//模拟消费者
+public class Client {
+    public static void main(String[] args) {
+        final Producer producer = new Producer();
+        IProducer proxyProducer = (IProducer)Proxy.newProxyInstance(producer.getClass().getClassLoader(), producer.getClass().getInterfaces(),
+                new InvocationHandler() {
+                    /*
+                    * 作用：执行被代理对象的任何接口方法都被该方法增强
+                    * 参数含义：
+                    *   proxy：代理对象的引用
+                    *   method：当前执行的方法
+                    *   args：当前执行方法所需的参数
+                    * 和被代理对象方法有相同的返回值
+                    * */
+                    public Object invoke(Object proxy, Method method, Object[] args) throws Throwable {
+                        //提供增强的代码
+                        Object returnValue = null;
+                        //获取执行方法的参数
+                        Float money = (Float)args[0];
+                        //判断当前方法是不是销售
+                        if(&quot;saleProduct&quot;.equals(method.getName())){
+                            returnValue = method.invoke(producer, money * 0.8f);
+                        }
+                        return returnValue;
+                    }
+                });
+        proxyProducer.saleProduct(10000f);
     }
-}</code></pre><p>获取文件的真实路径：</p>
-<pre><code>public class ContextDemo5 extends HttpServlet {
-protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-    /*ServletContext功能：
-    *  3 获取文件的真实（服务器）路径
-    * */
+}</code></pre></li>
+</ul>
+</li>
+<li><p>第二种方法：使用基于子类的动态代理 </p>
+<ul>
+<li><p>无需提供厂商的接口</p>
+<pre><code>public class Producer {
+    public void saleProduct(float money){
+        System.out.println(&quot;销售产品，并拿到钱：&quot; + money);
+    }
 
-    //获取对象
-    ServletContext context = this.getServletContext();
+    public void afterService(float money){
+        System.out.println(&quot;提供售后服务，并拿到钱：&quot; + money);
+    }
+}</code></pre></li>
+<li><p>使用代理：</p>
+<pre><code>//模拟消费者
+public class Client {
 
-    //获取文件的服务器路径
-    String b = context.getRealPath(&quot;/b.txt&quot;);//web目录下资源访问
-    System.out.println(b);
-    //File fIle = new File(realPath);
+    public static void main(String[] args) {
+        final Producer producer = new Producer();</code></pre></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<pre><code>        Producer cglibProducer = (Producer) Enhancer.create(producer.getClass(), new MethodInterceptor() {
+            /*
+             * 执行被代理对象的任何方法都被改方法增强
+             *   proxy
+             *   method
+             *   args
+             *   以上三个参数和基于接口的动态代理中invoke方法中参数含义相同
+             *   methodProxy: 当前执行方法的代理对象
+             * */
+            public Object intercept(Object proxy, Method method, Object[] args, MethodProxy methodProxy) throws Throwable {
+                //提供增强的代码
+                Object returnValue = null;
+                //获取执行方法的参数
+                Float money = (Float) args[0];
+                //判断当前方法是不是销售
+                if (&quot;saleProduct&quot;.equals(method.getName())) {
+                    returnValue = method.invoke(producer, money * 0.8f);
+                }
+                return returnValue;
+            }
+        });
 
-    String c = context.getRealPath(&quot;/WEB-INF/c.txt&quot;);//WEB-INF目录下资源访问
-    System.out.println(c);
+        cglibProducer.saleProduct(10000f);
 
-    String a = context.getRealPath(&quot;/WEB-INF/classes/a.txt&quot;);//src目录下资源访问
-    System.out.println(a);
-
-
-}
-
-protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-    this.doPost(request, response);
     }
 }</code></pre>
       
@@ -506,7 +579,7 @@ protected void doGet(HttpServletRequest request, HttpServletResponse response) t
         
         <div class="post-tags">
           
-            <a href="/tags/JavaWeb/" rel="tag"># JavaWeb</a>
+            <a href="/tags/设计模式/" rel="tag"># 设计模式</a>
           
         </div>
       
@@ -519,8 +592,8 @@ protected void doGet(HttpServletRequest request, HttpServletResponse response) t
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2019/07/15/输出验证码到浏览器/" rel="next" title="输出验证码到浏览器">
-                <i class="fa fa-chevron-left"></i> 输出验证码到浏览器
+              <a href="/2019/08/10/Spring介绍-03/" rel="next" title="Spring介绍_03">
+                <i class="fa fa-chevron-left"></i> Spring介绍_03
               </a>
             
           </div>
@@ -528,10 +601,6 @@ protected void doGet(HttpServletRequest request, HttpServletResponse response) t
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2019/07/15/文件下载/" rel="prev" title="文件下载">
-                文件下载 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -573,17 +642,8 @@ protected void doGet(HttpServletRequest request, HttpServletResponse response) t
       
 
       
-        <ul class="sidebar-nav motion-element">
-          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
-            Table of Contents
-          </li>
-          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
-            Overview
-          </li>
-        </ul>
-      
 
-      <div class="site-overview-wrap sidebar-panel">
+      <div class="site-overview-wrap sidebar-panel sidebar-panel-active">
         <div class="site-overview">
 
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -677,23 +737,6 @@ protected void doGet(HttpServletRequest request, HttpServletResponse response) t
         </div>
       </div>
 
-      
-      <!--noindex-->
-        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
-          <div class="post-toc">
-
-            
-            
-            
-            
-
-            
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#ServletContext功能："><span class="nav-number">1.</span> <span class="nav-text">ServletContext功能：</span></a></li></ol></div>
-            
-
-          </div>
-        </div>
-      <!--/noindex-->
       
 
       
