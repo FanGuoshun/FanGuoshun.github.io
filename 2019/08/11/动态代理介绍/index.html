@@ -102,7 +102,7 @@
 <meta property="og:site_name" content="Aaron">
 <meta property="og:description" content="动态代理：  特点：字节码随用随创建，随用随加载 作用：不修改源码的基础上对方法增强">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-08-11T09:13:00.549Z">
+<meta property="og:updated_time" content="2019-08-11T14:35:40.098Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="动态代理介绍">
 <meta name="twitter:description" content="动态代理：  特点：字节码随用随创建，随用随加载 作用：不修改源码的基础上对方法增强">
@@ -345,7 +345,7 @@
                 
               
 
-              <time title="Created: 2019-08-11 15:14:03 / Modified: 17:13:00" itemprop="dateCreated datePublished" datetime="2019-08-11T15:14:03+08:00">2019-08-11</time>
+              <time title="Created: 2019-08-11 15:14:03 / Modified: 22:35:40" itemprop="dateCreated datePublished" datetime="2019-08-11T15:14:03+08:00">2019-08-11</time>
             </span>
           
 
@@ -518,13 +518,8 @@ public class Client {
 public class Client {
 
     public static void main(String[] args) {
-        final Producer producer = new Producer();</code></pre></li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-<pre><code>        Producer cglibProducer = (Producer) Enhancer.create(producer.getClass(), new MethodInterceptor() {
+        final Producer producer = new Producer();
+        Producer cglibProducer = (Producer) Enhancer.create(producer.getClass(), new MethodInterceptor() {
             /*
              * 执行被代理对象的任何方法都被改方法增强
              *   proxy
@@ -545,11 +540,15 @@ public class Client {
                 return returnValue;
             }
         });
-
         cglibProducer.saleProduct(10000f);
-
     }
-}</code></pre>
+}</code></pre></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
       
     </div>
 
