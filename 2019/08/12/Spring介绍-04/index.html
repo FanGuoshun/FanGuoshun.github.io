@@ -101,18 +101,15 @@
   };
 </script>
 
-  <meta name="description" content="Jedis：Java操作redis数据库的工具  使用步骤：  下载jedis的jar包  使用 //1.获取连接 Jedis jedis = new Jedis(&amp;quot;localhost&amp;quot;, 6379); //2.操作 jedis.set(&amp;quot;username&amp;quot;, &amp;quot;zhangsan&amp;quot;); //3.关闭连接 jedis.close();">
-<meta name="keywords" content="JavaWeb">
+  <meta name="keywords" content="Spring">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Jedis介绍">
-<meta property="og:url" content="http://yoursite.com/2019/07/25/Jedis介绍/index.html">
+<meta property="og:title" content="Spring中JdbcTemplate使用以及事务控制">
+<meta property="og:url" content="http://yoursite.com/2019/08/12/Spring介绍-04/index.html">
 <meta property="og:site_name" content="Aaron">
-<meta property="og:description" content="Jedis：Java操作redis数据库的工具  使用步骤：  下载jedis的jar包  使用 //1.获取连接 Jedis jedis = new Jedis(&amp;quot;localhost&amp;quot;, 6379); //2.操作 jedis.set(&amp;quot;username&amp;quot;, &amp;quot;zhangsan&amp;quot;); //3.关闭连接 jedis.close();">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-07-27T09:51:32.601Z">
+<meta property="og:updated_time" content="2019-08-12T14:11:50.930Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Jedis介绍">
-<meta name="twitter:description" content="Jedis：Java操作redis数据库的工具  使用步骤：  下载jedis的jar包  使用 //1.获取连接 Jedis jedis = new Jedis(&amp;quot;localhost&amp;quot;, 6379); //2.操作 jedis.set(&amp;quot;username&amp;quot;, &amp;quot;zhangsan&amp;quot;); //3.关闭连接 jedis.close();">
+<meta name="twitter:title" content="Spring中JdbcTemplate使用以及事务控制">
 
 
 
@@ -120,7 +117,7 @@
 
   
   
-  <link rel="canonical" href="http://yoursite.com/2019/07/25/Jedis介绍/">
+  <link rel="canonical" href="http://yoursite.com/2019/08/12/Spring介绍-04/">
 
 
 
@@ -131,7 +128,7 @@
 </script>
 
   
-  <title>Jedis介绍 | Aaron</title>
+  <title>Spring中JdbcTemplate使用以及事务控制 | Aaron</title>
   
 
 
@@ -309,7 +306,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/07/25/Jedis介绍/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/08/12/Spring介绍-04/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Aaron">
@@ -326,7 +323,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">Jedis介绍
+          <h1 class="post-title" itemprop="name headline">Spring中JdbcTemplate使用以及事务控制
 
               
             
@@ -352,23 +349,13 @@
                 
               
 
-              <time title="Created: 2019-07-25 09:05:19" itemprop="dateCreated datePublished" datetime="2019-07-25T09:05:19+08:00">2019-07-25</time>
+              <time title="Created: 2019-08-12 15:16:55 / Modified: 22:11:50" itemprop="dateCreated datePublished" datetime="2019-08-12T15:16:55+08:00">2019-08-12</time>
             </span>
           
 
           
             
 
-            
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">Edited on</span>
-                
-                <time title="Modified: 2019-07-27 17:51:32" itemprop="dateModified" datetime="2019-07-27T17:51:32+08:00">2019-07-27</time>
-              </span>
             
           
 
@@ -401,172 +388,7 @@
       
 
       
-        <ol>
-<li><p>Jedis：Java操作redis数据库的工具</p>
-</li>
-<li><p>使用步骤：</p>
-<ol>
-<li><p>下载jedis的jar包</p>
-</li>
-<li><p>使用</p>
-<pre><code>//1.获取连接
-Jedis jedis = new Jedis(&quot;localhost&quot;, 6379);
-//2.操作
-jedis.set(&quot;username&quot;, &quot;zhangsan&quot;);
-//3.关闭连接
-jedis.close();</code></pre> <a id="more"></a>
-</li>
-<li><p>jedis操作各种redis中的数据结构</p>
-<ol>
-<li><p>字符串类型：string</p>
-<pre><code>//1.获取连接
-Jedis jedis = new Jedis(); //如果使用空参钩爪，默认值&quot;localhost&quot;,6379端口
-//2.操作
-jedis.set(&quot;username&quot;, &quot;zhangsan&quot;);
-//3.获取
-String username = jedis.get(&quot;username&quot;);
-System.out.println(username);
-//可以使用setex()方法存储指定过期时间的key-value
-//将activecode: hehe键值对存入redis，并且20秒后自动删除该键值对
-jedis.setex(&quot;activecode&quot;, 20, &quot;hehe&quot;);
-//关闭连接
-jedis.close();</code></pre></li>
-<li><p>哈希类型 hash ： map格式</p>
-<pre><code>//1.获取连接
-Jedis jedis = new Jedis(); //如果使用空参钩爪，默认值&quot;localhost&quot;,6379端口
-//2.操作
-jedis.hset(&quot;user&quot;, &quot;name&quot;, &quot;lisi&quot;);
-jedis.hset(&quot;user&quot;, &quot;age&quot;, &quot;23&quot;);
-jedis.hset(&quot;user&quot;, &quot;gender&quot;, &quot;male&quot;);
-
-//获取hash
-String name = jedis.hget(&quot;user&quot;, &quot;name&quot;);
-System.out.println(name);
-
-//获取hash的所有值
-Map&lt;String, String&gt; user = jedis.hgetAll(&quot;user&quot;);
-Set&lt;String&gt; keySet = user.keySet();
-for (String s : keySet) {
-
-    System.out.println(user.get(s));
-}
-jedis.close();</code></pre></li>
-<li><p>列表类型 list ： linkedlist格式。支持重复元素    </p>
-<pre><code>//1. 获取连接
-Jedis jedis = new Jedis();//如果使用空参构造，默认值 &quot;localhost&quot;,6379端口
-//2. 操作
-// list 存储
-jedis.lpush(&quot;mylist&quot;,&quot;a&quot;,&quot;b&quot;,&quot;c&quot;);//从左边存
-jedis.rpush(&quot;mylist&quot;,&quot;a&quot;,&quot;b&quot;,&quot;c&quot;);//从右边存
-
-// list 范围获取
-List&lt;String&gt; mylist = jedis.lrange(&quot;mylist&quot;, 0, -1);
-System.out.println(mylist);
-
-// list 弹出
-String element1 = jedis.lpop(&quot;mylist&quot;);//c
-System.out.println(element1);
-
-String element2 = jedis.rpop(&quot;mylist&quot;);//c
-System.out.println(element2);
-
-// list 范围获取
-List&lt;String&gt; mylist2 = jedis.lrange(&quot;mylist&quot;, 0, -1);
-System.out.println(mylist2);
-
-//3. 关闭连接
-jedis.close();</code></pre></li>
-<li><p>集合类型 set  ： 不允许重复元素</p>
-<pre><code>//1. 获取连接
-Jedis jedis = new Jedis();//如果使用空参构造，默认值 &quot;localhost&quot;,6379端口
-//2. 操作
-// set 存储
-jedis.sadd(&quot;myset&quot;,&quot;java&quot;,&quot;php&quot;,&quot;c++&quot;);
-
-// set 获取
-Set&lt;String&gt; myset = jedis.smembers(&quot;myset&quot;);
-System.out.println(myset);
-
-//3. 关闭连接
-jedis.close();</code></pre></li>
-<li><p>有序集合类型 sortedset：不允许重复元素，且元素有顺序</p>
-<pre><code>//1. 获取连接
-Jedis jedis = new Jedis();//如果使用空参构造，默认值 &quot;localhost&quot;,6379端口
-//2. 操作
-// sortedset 存储
-jedis.zadd(&quot;mysortedset&quot;,3,&quot;亚瑟&quot;);
-jedis.zadd(&quot;mysortedset&quot;,30,&quot;后裔&quot;);
-jedis.zadd(&quot;mysortedset&quot;,55,&quot;孙悟空&quot;);
-
-// sortedset 获取
-Set&lt;String&gt; mysortedset = jedis.zrange(&quot;mysortedset&quot;, 0, -1);
-
-System.out.println(mysortedset);</code></pre></li>
-</ol>
-</li>
-</ol>
-</li>
-</ol>
-<pre><code>            //3. 关闭连接
-            jedis.close();
-
-4. jedis连接池
-    1. jedis连接池： JedisPool
-        1. 使用：创建JedisPool连接池对象。调用方法：getResource()方法获取Jedis连接
-
-                    //0.创建一个配置对象
-                    JedisPoolConfig config = new JedisPoolConfig();
-                    config.setMaxTotal(50);
-                    config.setMaxIdle(10);
-
-                    //1.创建Jedis连接池对象
-                    JedisPool jedisPool = new JedisPool(config,&quot;localhost&quot;,6379);
-
-                    //2.获取连接
-                    Jedis jedis = jedisPool.getResource();
-                    //3. 使用
-                    jedis.set(&quot;hehe&quot;,&quot;heihei&quot;);
-
-
-                    //4. 关闭 归还到连接池中
-                    jedis.close();
-        2. 连接池工具类
-
-                public class JedisPoolUtils {
-
-                   private static JedisPool jedisPool;
-
-                static{
-                    //读取配置文件
-                    InputStream is = JedisPoolUtils.class.getClassLoader().getResourceAsStream(&quot;jedis.properties&quot;);
-                    //创建Properties对象
-                    Properties pro = new Properties();
-                    //关联文件
-                    try {
-                        pro.load(is);
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    }
-                    //获取数据，设置到JedisPoolConfig中
-                    JedisPoolConfig config = new JedisPoolConfig();
-                    config.setMaxTotal(Integer.parseInt(pro.getProperty(&quot;maxTotal&quot;)));
-                    config.setMaxIdle(Integer.parseInt(pro.getProperty(&quot;maxIdle&quot;)));
-
-                    //初始化JedisPool
-                    jedisPool = new JedisPool(config,pro.getProperty(&quot;host&quot;),Integer.parseInt(pro.getProperty(&quot;port&quot;)));
-
-
-
-                }
-
-
-                /**
-                 * 获取连接方法
-                 */
-                public static Jedis getJedis(){
-                    return jedisPool.getResource();
-                }
-                }</code></pre>
+        
       
     </div>
 
@@ -600,7 +422,7 @@ System.out.println(mysortedset);</code></pre></li>
         
         <div class="post-tags">
           
-            <a href="/tags/JavaWeb/" rel="tag"># JavaWeb</a>
+            <a href="/tags/Spring/" rel="tag"># Spring</a>
           
         </div>
       
@@ -613,8 +435,8 @@ System.out.println(mysortedset);</code></pre></li>
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2019/07/23/Rust-crates-io换国内镜像源/" rel="next" title="Rust crates.io换国内镜像源">
-                <i class="fa fa-chevron-left"></i> Rust crates.io换国内镜像源
+              <a href="/2019/08/11/动态代理介绍/" rel="next" title="动态代理介绍">
+                <i class="fa fa-chevron-left"></i> 动态代理介绍
               </a>
             
           </div>
@@ -622,10 +444,6 @@ System.out.println(mysortedset);</code></pre></li>
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2019/07/25/JQuery介绍/" rel="prev" title="JQuery介绍">
-                JQuery介绍 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -1006,7 +824,7 @@ window.addEventListener("message", function(e) {
 
 <script>
   window.livereOptions = {
-    refer: '2019/07/25/Jedis介绍/'
+    refer: '2019/08/12/Spring介绍-04/'
   };
   (function(d, s) {
     var j, e = d.getElementsByTagName(s)[0];

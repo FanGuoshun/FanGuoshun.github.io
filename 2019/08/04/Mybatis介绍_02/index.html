@@ -60,6 +60,13 @@
 
 
 
+  
+  
+    
+    
+  <script src="/lib/pace/pace.min.js?v=1.0.2"></script>
+  <link rel="stylesheet" href="/lib/pace/pace-theme-minimal.min.css?v=1.0.2">
+
 
 
 
@@ -97,7 +104,7 @@
   <meta name="description" content="自定义mybatis开发流程图">
 <meta name="keywords" content="Mybatis">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Mybatis介绍_02">
+<meta property="og:title" content="Mybatis中配置文件编写以及自定义Mybatis开发流程">
 <meta property="og:url" content="http://yoursite.com/2019/08/04/Mybatis介绍_02/index.html">
 <meta property="og:site_name" content="Aaron">
 <meta property="og:description" content="自定义mybatis开发流程图">
@@ -105,9 +112,9 @@
 <meta property="og:image" content="https://i.loli.net/2019/08/04/IZCW5rT6Ok1pwbK.png">
 <meta property="og:image" content="https://i.loli.net/2019/08/05/78KPXWzcvLeojA1.png">
 <meta property="og:image" content="https://i.loli.net/2019/08/05/SAwgoNXUtPd1DMW.png">
-<meta property="og:updated_time" content="2019-08-05T06:42:26.605Z">
+<meta property="og:updated_time" content="2019-08-12T05:58:27.497Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Mybatis介绍_02">
+<meta name="twitter:title" content="Mybatis中配置文件编写以及自定义Mybatis开发流程">
 <meta name="twitter:description" content="自定义mybatis开发流程图">
 <meta name="twitter:image" content="https://i.loli.net/2019/08/04/IZCW5rT6Ok1pwbK.png">
 
@@ -128,7 +135,7 @@
 </script>
 
   
-  <title>Mybatis介绍_02 | Aaron</title>
+  <title>Mybatis中配置文件编写以及自定义Mybatis开发流程 | Aaron</title>
   
 
 
@@ -323,7 +330,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">Mybatis介绍_02
+          <h1 class="post-title" itemprop="name headline">Mybatis中配置文件编写以及自定义Mybatis开发流程
 
               
             
@@ -364,7 +371,7 @@
                 
                   <span class="post-meta-item-text">Edited on</span>
                 
-                <time title="Modified: 2019-08-05 14:42:26" itemprop="dateModified" datetime="2019-08-05T14:42:26+08:00">2019-08-05</time>
+                <time title="Modified: 2019-08-12 13:58:27" itemprop="dateModified" datetime="2019-08-12T13:58:27+08:00">2019-08-12</time>
               </span>
             
           
@@ -484,6 +491,10 @@ url属性:
     </div>
 
     
+      
+
+
+    
 
     
       
@@ -522,8 +533,8 @@ url属性:
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2019/08/03/Mybatis介绍_01/" rel="next" title="Mybatis介绍_01">
-                <i class="fa fa-chevron-left"></i> Mybatis介绍_01
+              <a href="/2019/08/03/Mybatis介绍_01/" rel="next" title="Mybatis入门以及简单案例演示">
+                <i class="fa fa-chevron-left"></i> Mybatis入门以及简单案例演示
               </a>
             
           </div>
@@ -532,8 +543,8 @@ url属性:
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2019/08/05/Mybatis介绍-03/" rel="prev" title="Mybatis介绍_03">
-                Mybatis介绍_03 <i class="fa fa-chevron-right"></i>
+              <a href="/2019/08/05/Mybatis介绍-03/" rel="prev" title="Mybatis中连接池配置以及多表查询">
+                Mybatis中连接池配置以及多表查询 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -554,6 +565,13 @@ url属性:
 
           </div>
           
+  
+    
+    
+  <div class="comments" id="comments">
+    <div id="lv-container" data-id="city" data-uid="MTAyMC80NjAyMC8yMjUzMQ=="></div>
+  </div>
+  
   
 
 
@@ -593,7 +611,7 @@ url属性:
         
           <a href="/archives/">
         
-          <span class="site-state-item-count">32</span>
+          <span class="site-state-item-count">33</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -660,6 +678,21 @@ url属性:
 
 
 
+  <div class="links-of-author motion-element">
+    
+      <span class="links-of-author-item">
+      
+      
+        
+      
+      
+        
+      
+        <a href="https://www.zhihu.com/people/ba-kuai-fu-ji-67/activities" title="知乎 &rarr; https://www.zhihu.com/people/ba-kuai-fu-ji-67/activities" rel="noopener" target="_blank"><i class="fa fa-fw fa-heartbeat"></i>知乎</a>
+      </span>
+    
+  </div>
+
 
 
 
@@ -686,7 +719,10 @@ url属性:
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
-        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+        <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+<div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
   <span class="with-love" id="animate">
     <i class="fa fa-user"></i>
   </span>
@@ -697,8 +733,16 @@ url属性:
   
 </div>
 
+<div class="powered-by">
+<i class="fa fa-user-md"></i><span id="busuanzi_container_site_uv">
+  本站访客数:<span id="busuanzi_value_site_uv"></span>
+</span>
+</div>
+
 
   <div class="powered-by">Powered by <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> v3.9.0</div>
+
+
 
 
 
@@ -710,6 +754,11 @@ url属性:
 
 
 
+
+<div class="theme-info">
+  <div class="powered-by"></div>
+  <span class="post-count">博客全站共22.5k字</span>
+</div>
 
         
 
@@ -868,6 +917,26 @@ window.addEventListener("message", function(e) {
 
 
 
+
+
+  
+    
+
+
+
+<script>
+  window.livereOptions = {
+    refer: '2019/08/04/Mybatis介绍_02/'
+  };
+  (function(d, s) {
+    var j, e = d.getElementsByTagName(s)[0];
+    if (typeof LivereTower === 'function') { return; }
+    j = d.createElement(s);
+    j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+    j.async = true;
+    e.parentNode.insertBefore(j, e);
+  })(document, 'script');
+</script>
 
 
   

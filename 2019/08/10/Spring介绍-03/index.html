@@ -60,6 +60,13 @@
 
 
 
+  
+  
+    
+    
+  <script src="/lib/pace/pace.min.js?v=1.0.2"></script>
+  <link rel="stylesheet" href="/lib/pace/pace-theme-minimal.min.css?v=1.0.2">
+
 
 
 
@@ -94,18 +101,18 @@
   };
 </script>
 
-  <meta name="description" content="AOP概述 AOP：全称是Aspect Oriented Programming 面向切面编程 把程序中重复的代码抽取出来，在需要执行的时候，使用动态代理的技术，在不修改源码的基础上，对我们的已有方法进行增强。">
+  <meta name="description" content="AOP概述  AOP：全称是Aspect Oriented Programming 面向切面编程 把程序中重复的代码抽取出来，在需要执行的时候，使用动态代理的技术，在不修改源码的基础上，对我们的已有方法进行增强。">
 <meta name="keywords" content="Spring">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Spring介绍_03">
+<meta property="og:title" content="Spring中AOP编程介绍">
 <meta property="og:url" content="http://yoursite.com/2019/08/10/Spring介绍-03/index.html">
 <meta property="og:site_name" content="Aaron">
-<meta property="og:description" content="AOP概述 AOP：全称是Aspect Oriented Programming 面向切面编程 把程序中重复的代码抽取出来，在需要执行的时候，使用动态代理的技术，在不修改源码的基础上，对我们的已有方法进行增强。">
+<meta property="og:description" content="AOP概述  AOP：全称是Aspect Oriented Programming 面向切面编程 把程序中重复的代码抽取出来，在需要执行的时候，使用动态代理的技术，在不修改源码的基础上，对我们的已有方法进行增强。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-08-11T14:07:04.871Z">
+<meta property="og:updated_time" content="2019-08-12T06:00:49.705Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Spring介绍_03">
-<meta name="twitter:description" content="AOP概述 AOP：全称是Aspect Oriented Programming 面向切面编程 把程序中重复的代码抽取出来，在需要执行的时候，使用动态代理的技术，在不修改源码的基础上，对我们的已有方法进行增强。">
+<meta name="twitter:title" content="Spring中AOP编程介绍">
+<meta name="twitter:description" content="AOP概述  AOP：全称是Aspect Oriented Programming 面向切面编程 把程序中重复的代码抽取出来，在需要执行的时候，使用动态代理的技术，在不修改源码的基础上，对我们的已有方法进行增强。">
 
 
 
@@ -124,7 +131,7 @@
 </script>
 
   
-  <title>Spring介绍_03 | Aaron</title>
+  <title>Spring中AOP编程介绍 | Aaron</title>
   
 
 
@@ -319,7 +326,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">Spring介绍_03
+          <h1 class="post-title" itemprop="name headline">Spring中AOP编程介绍
 
               
             
@@ -360,7 +367,7 @@
                 
                   <span class="post-meta-item-text">Edited on</span>
                 
-                <time title="Modified: 2019-08-11 22:07:04" itemprop="dateModified" datetime="2019-08-11T22:07:04+08:00">2019-08-11</time>
+                <time title="Modified: 2019-08-12 14:00:49" itemprop="dateModified" datetime="2019-08-12T14:00:49+08:00">2019-08-12</time>
               </span>
             
           
@@ -395,15 +402,197 @@
 
       
         <ul>
-<li>AOP概述<ul>
+<li><p>AOP概述</p>
+<ul>
 <li>AOP：全称是Aspect Oriented Programming 面向切面编程</li>
-<li>把程序中重复的代码抽取出来，在需要执行的时候，使用动态代理的技术，在不修改源码的基础上，对我们的已有方法进行增强。</li>
+<li>把程序中重复的代码抽取出来，在需要执行的时候，使用动态代理的技术，在不修改源码的基础上，对我们的已有方法进行增强。<a id="more"></a></li>
+</ul>
+</li>
+<li><p>AOP编程中Spring框架需要干的事</p>
+<ul>
+<li>Spring框架监控切入点方法的执行。一旦监控到切入点方法被运行，使用代理机制，动态创建目标对象的代理对象，根据通知类别，在代理对象的对应位置，将通知对应的功能织入，完成完整的代码逻辑运行。</li>
+</ul>
+</li>
+<li><p>Spring中基于XML的AOP配置步骤</p>
+<ul>
+<li><p>写一个模拟打印日志的类，让其成为AOP的前置通知</p>
+<pre><code>/*
+* 用于记录日志的工具类，里面提供了公共的代码
+* */
+public class Logger {
+    /*
+    * 用于打印日志，计划让其在切入点方法执行之前执行
+    * */
+    public void printLog(){
+        System.out.println(&quot;Logger中的printLog方法开始记录日志了&quot;);
+    }
+}</code></pre></li>
+<li><p>把通知bean也交给Spring来管理</p>
+</li>
+<li><p>使用aop:config表明开始AOP的配置</p>
+</li>
+<li><p>使用aop:aspect标签表明配置切面</p>
+<ul>
+<li>id属性：是给切面提供一个唯一标识</li>
+<li>ref属性：是指定通知类bean的id</li>
+</ul>
+</li>
+<li><p>在aop:aspect标签的内部使用对应标签来配置通知的类型</p>
+<ul>
+<li><p>aop:before：表示配置前置通知</p>
+<ul>
+<li><p>method属性：用于指定Logger类中那个方法是前置通知</p>
+</li>
+<li><p>pointCut属性：用于指定切入点表达式，该表达式含义指的是对业务层中哪些方法增强</p>
+<ul>
+<li><p>切入点表达式写法：</p>
+<ul>
+<li>关键字：execution（表达式）</li>
+<li>表达式：访问修饰符 返回值 包名.包名…类名.方法名（参数列表）(访问修饰符可以省略）</li>
+</ul>
+</li>
+<li><p>切入点表达式全通配写法：</p>
+<pre><code>* *..*.*(..)</code></pre></li>
+<li><p>实际开发中切入点表达式的通常写法</p>
+<pre><code>* com.xxx.service.impl.*.*(..)</code></pre></li>
+<li><p>还可以在配置文件中通用化切入点表达式，详情见配置代码展示。</p>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>配置代码展示：</p>
+<pre><code>&lt;!-- 配置Spring的IOC，把service对象配置进去 --&gt;
+&lt;bean id=&quot;accountService&quot; class=&quot;com.itheima.service.impl.AccountServiceImpl&quot;&gt;&lt;/bean&gt;
+&lt;!-- Spring中基于XML的AOP配置 --&gt;
+&lt;!-- 配置Logger类 --&gt;
+&lt;bean id=&quot;logger&quot; class=&quot;com.itheima.utils.Logger&quot;&gt;&lt;/bean&gt;
+&lt;!-- 配置AOP--&gt;
+&lt;aop:config&gt;
+    &lt;!-- 配置切入点表达式
+                id属性用于指定表达式的唯一标识
+                expression属性用于指定表达式内容
+             此标签写在aop:aspect标签内部，只能在当前切面使用
+             还可以写在aop:aspect标签外部（必须写在aop:aspect标签前面)，此时所有切面都可使用
+         --&gt;
+    &lt;aop:pointcut id=&quot;pt1&quot; expression=&quot;execution(* com.itheima.service.impl.*.*(..))&quot;&gt;&lt;/aop:pointcut&gt;
+    &lt;!-- 配置切面 --&gt;
+    &lt;aop:aspect id=&quot;logAdvice&quot; ref=&quot;logger&quot;&gt;
+        &lt;!-- 配置前置通知 --&gt;
+        &lt;aop:before method=&quot;beforePrintLog&quot; pointcut-ref=&quot;pt1&quot;
+        &gt;&lt;/aop:before&gt;
+        &lt;aop:after-returning method=&quot;afterReturningPrintLog&quot; pointcut-ref=&quot;pt1&quot;
+        &gt;&lt;/aop:after-returning&gt;
+        &lt;aop:after-throwing method=&quot;afterThrowingPrintLog&quot; pointcut-ref=&quot;pt1&quot;
+        &gt;&lt;/aop:after-throwing&gt;
+        &lt;aop:after method=&quot;afterPrintLog&quot; pointcut-ref=&quot;pt1&quot;
+        &gt;&lt;/aop:after&gt;
+    &lt;/aop:aspect&gt;
+&lt;/aop:config&gt;</code></pre></li>
+</ul>
+</li>
+<li><p>四种常用通知类型：</p>
+<ul>
+<li>前置通知，在切入点方法执行之前执行</li>
+<li>后置通知，在切入点方法执行之后执行</li>
+<li>异常通知，在切入点方法执行产生异常之后执行</li>
+<li>最终通知，无论切入点方法是否正常执行都会在 其后面执行</li>
+</ul>
+</li>
+<li><p>Spring中的环绕通知：</p>
+<ul>
+<li><p>问题：</p>
+<ul>
+<li>单单配置环绕通知之后，会导致切入点方法不再执行，只执行通知方法。</li>
+</ul>
+</li>
+<li><p>解决：</p>
+<ul>
+<li>在环绕通知中要明确的调用切入点方法</li>
+<li>Spring框架为我们提供了一个接口，ProceedingJoinPoint。该接口有一个方法proceed()，此方法相当于明确调用切入点方法。</li>
+<li>该接口可以作为环绕通知的方法参数，在程序执行时，Spring框架或为我们提供该接口的实现类供使用。</li>
+</ul>
+</li>
+<li><p>注意：</p>
+<ul>
+<li>它是Spring框架为我们提供的一种可以在代码中手动控制增强方法何时执行的方式。</li>
+</ul>
+</li>
+<li><p>代码展示：</p>
+<pre><code>//环绕通知
+public Object aroundPrintLog(ProceedingJoinPoint pjp) {
+    Object rtValue = null;
+    try {
+        Object[] args = pjp.getArgs();
+        System.out.println(&quot;Logger中的aroundPrintLog方法开始记录日志了--前置&quot;);
+        rtValue = pjp.proceed(args);//明确调用切入点方法
+        System.out.println(&quot;Logger中的aroundPrintLog方法开始记录日志了--后置&quot;);
+        return rtValue;
+    } catch (Throwable throwable) {
+        System.out.println(&quot;Logger中的aroundPrintLog方法开始记录日志了--异常&quot;);
+        throw new RuntimeException(throwable);
+    } finally {
+        System.out.println(&quot;Logger中的aroundPrintLog方法开始记录日志了--最终&quot;);
+    }
+}</code></pre></li>
+</ul>
+</li>
+<li><p>使用注解进行AOP编程</p>
+<ul>
+<li><p>编写如下基本配置文件代码：</p>
+<pre><code>&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
+&lt;beans xmlns=&quot;http://www.springframework.org/schema/beans&quot;
+       xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot;
+       xmlns:aop=&quot;http://www.springframework.org/schema/aop&quot;
+       xmlns:context=&quot;http://www.springframework.org/schema/context&quot;
+       xsi:schemaLocation=&quot;http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/aop
+        http://www.springframework.org/schema/aop/spring-aop.xsd
+        http://www.springframework.org/schema/context
+        http://www.springframework.org/schema/context/spring-context.xsd&quot;&gt;
+    &lt;!-- 配置扫描包 --&gt;
+    &lt;context:component-scan base-package=&quot;com.itheima&quot;&gt;&lt;/context:component-scan&gt;
+    &lt;!-- 配置Spring开启注解AOP的支持 --&gt;
+    &lt;aop:aspectj-autoproxy&gt;&lt;/aop:aspectj-autoproxy&gt;
+&lt;/beans&gt;</code></pre></li>
+<li><p>注意：使用注解配置通知方法会出现执行顺序上的问题</p>
+</li>
+<li><p>代码展示：</p>
+<pre><code>@Pointcut(&quot;execution(* com.itheima.service.impl.*.*(..))&quot;)
+private void pt1(){}
+//前置通知
+@Before(&quot;pt1()&quot;)
+public void beforePrintLog() {
+    System.out.println(&quot;Logger中的beforePrintLog方法开始记录日志了&quot;);
+}
+//后置通知
+@AfterReturning(&quot;pt1()&quot;)
+public void afterReturningPrintLog() {
+    System.out.println(&quot;Logger中的afterReturningPrintLog方法开始记录日志了&quot;);
+}
+//异常通知
+@AfterThrowing(&quot;pt1()&quot;)
+public void afterThrowingPrintLog() {
+    System.out.println(&quot;Logger中的afterThrowingPrintLog方法开始记录日志了&quot;);
+}
+//最终通知
+@After(&quot;pt1()&quot;)
+public void afterPrintLog() {
+    System.out.println(&quot;Logger中的afterPrintLog方法开始记录日志了&quot;);
+}</code></pre></li>
 </ul>
 </li>
 </ul>
 
       
     </div>
+
+    
+      
+
 
     
 
@@ -444,8 +633,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2019/08/09/Spring介绍-02/" rel="next" title="Spring介绍_02">
-                <i class="fa fa-chevron-left"></i> Spring介绍_02
+              <a href="/2019/08/09/Spring介绍-02/" rel="next" title="Spring中注解开发">
+                <i class="fa fa-chevron-left"></i> Spring中注解开发
               </a>
             
           </div>
@@ -476,6 +665,13 @@
 
           </div>
           
+  
+    
+    
+  <div class="comments" id="comments">
+    <div id="lv-container" data-id="city" data-uid="MTAyMC80NjAyMC8yMjUzMQ=="></div>
+  </div>
+  
   
 
 
@@ -515,7 +711,7 @@
         
           <a href="/archives/">
         
-          <span class="site-state-item-count">32</span>
+          <span class="site-state-item-count">33</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -582,6 +778,21 @@
 
 
 
+  <div class="links-of-author motion-element">
+    
+      <span class="links-of-author-item">
+      
+      
+        
+      
+      
+        
+      
+        <a href="https://www.zhihu.com/people/ba-kuai-fu-ji-67/activities" title="知乎 &rarr; https://www.zhihu.com/people/ba-kuai-fu-ji-67/activities" rel="noopener" target="_blank"><i class="fa fa-fw fa-heartbeat"></i>知乎</a>
+      </span>
+    
+  </div>
+
 
 
 
@@ -608,7 +819,10 @@
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
-        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+        <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+<div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
   <span class="with-love" id="animate">
     <i class="fa fa-user"></i>
   </span>
@@ -619,8 +833,16 @@
   
 </div>
 
+<div class="powered-by">
+<i class="fa fa-user-md"></i><span id="busuanzi_container_site_uv">
+  本站访客数:<span id="busuanzi_value_site_uv"></span>
+</span>
+</div>
+
 
   <div class="powered-by">Powered by <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> v3.9.0</div>
+
+
 
 
 
@@ -632,6 +854,11 @@
 
 
 
+
+<div class="theme-info">
+  <div class="powered-by"></div>
+  <span class="post-count">博客全站共22.5k字</span>
+</div>
 
         
 
@@ -790,6 +1017,26 @@ window.addEventListener("message", function(e) {
 
 
 
+
+
+  
+    
+
+
+
+<script>
+  window.livereOptions = {
+    refer: '2019/08/10/Spring介绍-03/'
+  };
+  (function(d, s) {
+    var j, e = d.getElementsByTagName(s)[0];
+    if (typeof LivereTower === 'function') { return; }
+    j = d.createElement(s);
+    j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+    j.async = true;
+    e.parentNode.insertBefore(j, e);
+  })(document, 'script');
+</script>
 
 
   
