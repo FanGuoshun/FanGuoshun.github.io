@@ -101,15 +101,18 @@
   };
 </script>
 
-  <meta name="keywords" content="Spring">
+  <meta name="description" content="使用注解进行AOP编程时，通知的执行顺序会出现问题。最终通知会先于后置通知执行，从而导致事务提交出现异常。">
+<meta name="keywords" content="Spring">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Spring中JdbcTemplate使用以及事务控制">
 <meta property="og:url" content="http://yoursite.com/2019/08/12/Spring介绍-04/index.html">
 <meta property="og:site_name" content="Aaron">
+<meta property="og:description" content="使用注解进行AOP编程时，通知的执行顺序会出现问题。最终通知会先于后置通知执行，从而导致事务提交出现异常。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-08-12T14:11:50.930Z">
+<meta property="og:updated_time" content="2019-08-13T08:02:45.575Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Spring中JdbcTemplate使用以及事务控制">
+<meta name="twitter:description" content="使用注解进行AOP编程时，通知的执行顺序会出现问题。最终通知会先于后置通知执行，从而导致事务提交出现异常。">
 
 
 
@@ -349,13 +352,23 @@
                 
               
 
-              <time title="Created: 2019-08-12 15:16:55 / Modified: 22:11:50" itemprop="dateCreated datePublished" datetime="2019-08-12T15:16:55+08:00">2019-08-12</time>
+              <time title="Created: 2019-08-12 15:16:55" itemprop="dateCreated datePublished" datetime="2019-08-12T15:16:55+08:00">2019-08-12</time>
             </span>
           
 
           
             
 
+            
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Edited on</span>
+                
+                <time title="Modified: 2019-08-13 16:02:45" itemprop="dateModified" datetime="2019-08-13T16:02:45+08:00">2019-08-13</time>
+              </span>
             
           
 
@@ -396,7 +409,105 @@
       
 
       
-        
+        <ul>
+<li><p><strong>使用注解进行AOP编程时，通知的执行顺序会出现问题。最终通知会先于后置通知执行，从而导致事务提交出现异常。</strong> <a id="more"></a></p>
+<ul>
+<li><p>解决方法：使用环绕通知，在其中自定义四种通知方法。</p>
+</li>
+<li><p>代码展示：</p>
+<pre><code>@Around(&quot;pt1()&quot;)
+public Object aroundAdvice(ProceedingJoinPoint pjp) {
+    Object rtValue = null;
+    try {
+        Object[] args = pjp.getArgs();
+        this.beginTransaction();
+        rtValue = pjp.proceed(args);
+        this.commit();
+    } catch (Throwable throwable) {
+        this.rollback();
+        throw new RuntimeException(throwable);
+    } finally {
+        this.release();
+    }
+    return rtValue;
+}</code></pre></li>
+</ul>
+</li>
+<li><p>Spring中基于XML的声明式事务控制配置步骤 </p>
+<ul>
+<li><p>配置事务管理器</p>
+<pre><code>&lt;bean id=&quot;transactionManager&quot; class=&quot;org.springframework.jdbc.datasource.DataSourceTransactionManager&quot;&gt;
+    &lt;property name=&quot;dataSource&quot; ref=&quot;dataSource&quot;&gt;&lt;/property&gt;
+&lt;/bean&gt;</code></pre></li>
+<li><p>配置事务通知</p>
+<ul>
+<li><p>先导入事务的约束</p>
+<pre><code>&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
+&lt;beans xmlns=&quot;http://www.springframework.org/schema/beans&quot;
+    xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot;
+    xmlns:aop=&quot;http://www.springframework.org/schema/aop&quot;
+    xmlns:tx=&quot;http://www.springframework.org/schema/tx&quot;
+    xsi:schemaLocation=&quot;
+        http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/tx
+        http://www.springframework.org/schema/tx/spring-tx.xsd
+        http://www.springframework.org/schema/aop
+        http://www.springframework.org/schema/aop/spring-aop.xsd&quot;&gt;</code></pre></li>
+<li><p>配置事务通知</p>
+<pre><code>&lt;!-- 配置事务通知 --&gt;
+&lt;tx:advice id=&quot;txAdvice&quot; transaction-manager=&quot;transactionManager&quot;&gt;&lt;/tx:advice&gt;</code></pre></li>
+</ul>
+</li>
+<li><p>配置AOP中的通用切入点表达式</p>
+<pre><code>&lt;!-- 配置AOP --&gt;
+&lt;aop:config&gt;
+    &lt;aop:pointcut id=&quot;pt1&quot; expression=&quot;execution(* com.itheima.service.impl.*.*(..))&quot;&gt;&lt;/aop:pointcut&gt;
+&lt;/aop:config&gt;    </code></pre></li>
+<li><p>建立事务通知和切入点表达式的对应关系</p>
+<pre><code>&lt;aop:config&gt;
+    &lt;aop:pointcut id=&quot;pt1&quot; expression=&quot;execution(* com.itheima.service.impl.*.*(..))&quot;&gt;&lt;/aop:pointcut&gt;
+
+    &lt;aop:advisor advice-ref=&quot;txAdvice&quot; pointcut-ref=&quot;pt1&quot;&gt;&lt;/aop:advisor&gt;
+
+&lt;/aop:config&gt;</code></pre></li>
+<li><p>配置事务属性</p>
+<ul>
+<li><p>是在事务的通知tx:advice标签内部来配置</p>
+<ul>
+<li>isolation：用于指定事务的隔离级别，默认值是DEFAULT，表示数据库的默认隔离级别</li>
+<li>no-rollback-for：用于指定一个异常，当该异常发生时事务不会滚。产生其他异常时事务回滚。没有默认值，表示任何异常都回滚。</li>
+<li>propagation：用于指定事务的传播行为。默认值是REQUIRED，表示一定会有事务。查询方法可以选择SUPPORTS</li>
+<li>read-only：用于指定事务是否为只读。只有查询方法才能设置为true，默认值为false，表示读写。</li>
+<li>rollback-for：用于指定一个异常，当产生该异常时，事务回滚。当产生其他异常时，不会滚。默认值为发生异常就回滚。</li>
+<li>timeout：用于指定事务的超时时间，默认值是-1，表示永不超时。如果指定了数值，以秒为单位。</li>
+</ul>
+</li>
+<li><p>代码展示：</p>
+<pre><code>&lt;!-- 配置事务通知 --&gt;
+&lt;tx:advice id=&quot;txAdvice&quot; transaction-manager=&quot;transactionManager&quot;&gt;
+    &lt;!-- 配置事务属性 --&gt;
+    &lt;tx:attributes&gt;
+        &lt;tx:method name=&quot;*&quot; propagation=&quot;REQUIRED&quot; read-only=&quot;false&quot;/&gt;
+        &lt;tx:method name=&quot;find*&quot; propagation=&quot;SUPPORTS&quot; read-only=&quot;true&quot;&gt;&lt;/tx:method&gt;
+    &lt;/tx:attributes&gt;
+&lt;/tx:advice&gt;</code></pre></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>Spring中基于注解的声明式事务控制步骤</p>
+<ul>
+<li><p>配置事务管理器</p>
+</li>
+<li><p>开启Spring对注解事务的支持</p>
+<pre><code>&lt;tx:annotation-driven transaction-manager=&quot;transactionManager&quot;&gt;&lt;/tx:annotation-driven&gt;</code></pre></li>
+<li><p>在需要事务支持的地方使用@Transactional注解</p>
+</li>
+</ul>
+</li>
+</ul>
+
       
     </div>
 
@@ -661,7 +772,7 @@
 
 <div class="theme-info">
   <div class="powered-by"></div>
-  <span class="post-count">博客全站共22.5k字</span>
+  <span class="post-count">博客全站共23.4k字</span>
 </div>
 
         
@@ -870,5 +981,5 @@ window.addEventListener("message", function(e) {
 
   
 
-</body>
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"log":false,"model":{"jsonPath":"/live2dw/assets/wanko.model.json"},"display":{"position":"right","width":150,"height":300},"mobile":{"show":true},"react":{"opacity":0.7}});</script></body>
 </html>
