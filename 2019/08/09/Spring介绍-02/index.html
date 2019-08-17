@@ -109,7 +109,7 @@
 <meta property="og:site_name" content="Aaron">
 <meta property="og:description" content="在使用Spring的注解开发之前需要对配置文件做出如下改变：">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-08-12T06:00:05.768Z">
+<meta property="og:updated_time" content="2019-08-14T03:01:17.596Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Spring中注解开发">
 <meta name="twitter:description" content="在使用Spring的注解开发之前需要对配置文件做出如下改变：">
@@ -367,7 +367,7 @@
                 
                   <span class="post-meta-item-text">Edited on</span>
                 
-                <time title="Modified: 2019-08-12 14:00:05" itemprop="dateModified" datetime="2019-08-12T14:00:05+08:00">2019-08-12</time>
+                <time title="Modified: 2019-08-14 11:01:17" itemprop="dateModified" datetime="2019-08-14T11:01:17+08:00">2019-08-14</time>
               </span>
             
           
@@ -426,7 +426,7 @@
 &lt;/beans&gt;</code></pre></li>
 <li><p>Spring中的注解开发：</p>
 <ul>
-<li>创建对象：与XML配置文件中编写一个<bean>标签功能相同<ul>
+<li>创建对象：与XML配置文件中编写一个bean标签功能相同<ul>
 <li>@Component：把当前类对象存入spring容器中<ul>
 <li>属性：<ul>
 <li>value：用于指定bean的id。默认值是当前类名，首字母改成小写。</li>
@@ -439,8 +439,8 @@
 <li>@Repository：一般用在持久层</li>
 <li>以上三个注解它们的作用和属性与Component是一模一样。</li>
 </ul>
-</bean></li>
-<li>注入数据：与XML配置文件中的<bean>标签中的<property>作用相同<ul>
+</li>
+<li>注入数据：与XML配置文件中的bean标签中的property作用相同<ul>
 <li>@Autowired：自动按照类型注入。只要容器中有唯一的一个bean对象类型和要注入的变量类型匹配，就可以成功注入。<ul>
 <li>出现位置：可以是成员变量上，也可以是成员方法上。</li>
 <li>细节：在使用注解注入时，set方法就不是必须的了。</li>
@@ -470,8 +470,8 @@
 </ul>
 </li>
 </ul>
-</property></bean></li>
-<li>改变作用范围：与XML配置文件中的<bean>标签中使用scope属性实现的功能是一样的<ul>
+</li>
+<li>改变作用范围：与XML配置文件中的bean标签中使用scope属性实现的功能是一样的<ul>
 <li>@Scope：用于指定bean的作用范围<ul>
 <li>属性：<ul>
 <li>value：指定范围的取值。常用取值：singleton prototype</li>
@@ -480,12 +480,12 @@
 </ul>
 </li>
 </ul>
-</bean></li>
-<li>生命周期相关：与XML配置文件中的<bean>标签中使用init-method和destroy-method作用一样<ul>
+</li>
+<li>生命周期相关：与XML配置文件中的bean标签中使用init-method和destroy-method作用一样<ul>
 <li>@PreDestroy：用于指定销毁方法</li>
 <li>@PostConstruct：用于指定初始化方法</li>
 </ul>
-</bean></li>
+</li>
 </ul>
 </li>
 <li><p>完全不使用XML配置文件的情况下使用注解开发</p>
@@ -702,7 +702,7 @@
         
           <a href="/archives/">
         
-          <span class="site-state-item-count">33</span>
+          <span class="site-state-item-count">36</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -756,7 +756,11 @@
         
           
         
-        <span class="site-state-item-count">11</span>
+          
+        
+          
+        
+        <span class="site-state-item-count">13</span>
         <span class="site-state-item-name">tags</span>
         </a>
       </div>
@@ -844,7 +848,7 @@
 
 <div class="theme-info">
   <div class="powered-by"></div>
-  <span class="post-count">博客全站共23.4k字</span>
+  <span class="post-count">博客全站共28.3k字</span>
 </div>
 
         

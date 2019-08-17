@@ -101,18 +101,20 @@
   };
 </script>
 
-  <meta name="description" content="MCV: M: Model，模型。 JavaBean 完成具体的也为u操作，如：查询数据库，封装对象   V：View，视图。JSP 展示数据   C: Controller，控制器。Servlet 获取用户的输入 调用模型 将数据交给视图进行展示     优缺点： 优点 耦合性低，方便维护，利于分工协作 重用性高   缺点 使得项目架构变得复杂，对开发人员要求高">
-<meta name="keywords" content="JavaWeb">
+  <meta name="description" content="在创建Maven工程时，在弹出来的第二个对话框中的属性框中点击最右边的+号，添加一组键值对。name为archetypeCatalog，value为internal。">
+<meta name="keywords" content="Maven">
 <meta property="og:type" content="article">
-<meta property="og:title" content="MCV开发模式">
-<meta property="og:url" content="http://yoursite.com/2019/07/18/MCV开发模式/index.html">
+<meta property="og:title" content="解决maven项目创建过慢问题">
+<meta property="og:url" content="http://yoursite.com/2019/08/14/解决maven项目创建过慢问题/index.html">
 <meta property="og:site_name" content="Aaron">
-<meta property="og:description" content="MCV: M: Model，模型。 JavaBean 完成具体的也为u操作，如：查询数据库，封装对象   V：View，视图。JSP 展示数据   C: Controller，控制器。Servlet 获取用户的输入 调用模型 将数据交给视图进行展示     优缺点： 优点 耦合性低，方便维护，利于分工协作 重用性高   缺点 使得项目架构变得复杂，对开发人员要求高">
+<meta property="og:description" content="在创建Maven工程时，在弹出来的第二个对话框中的属性框中点击最右边的+号，添加一组键值对。name为archetypeCatalog，value为internal。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-07-27T09:53:02.698Z">
+<meta property="og:image" content="https://i.loli.net/2019/08/14/IMkPLB2UTGVYtfe.png">
+<meta property="og:updated_time" content="2019-08-14T01:36:42.763Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="MCV开发模式">
-<meta name="twitter:description" content="MCV: M: Model，模型。 JavaBean 完成具体的也为u操作，如：查询数据库，封装对象   V：View，视图。JSP 展示数据   C: Controller，控制器。Servlet 获取用户的输入 调用模型 将数据交给视图进行展示     优缺点： 优点 耦合性低，方便维护，利于分工协作 重用性高   缺点 使得项目架构变得复杂，对开发人员要求高">
+<meta name="twitter:title" content="解决maven项目创建过慢问题">
+<meta name="twitter:description" content="在创建Maven工程时，在弹出来的第二个对话框中的属性框中点击最右边的+号，添加一组键值对。name为archetypeCatalog，value为internal。">
+<meta name="twitter:image" content="https://i.loli.net/2019/08/14/IMkPLB2UTGVYtfe.png">
 
 
 
@@ -120,7 +122,7 @@
 
   
   
-  <link rel="canonical" href="http://yoursite.com/2019/07/18/MCV开发模式/">
+  <link rel="canonical" href="http://yoursite.com/2019/08/14/解决maven项目创建过慢问题/">
 
 
 
@@ -131,7 +133,7 @@
 </script>
 
   
-  <title>MCV开发模式 | Aaron</title>
+  <title>解决maven项目创建过慢问题 | Aaron</title>
   
 
 
@@ -309,7 +311,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/07/18/MCV开发模式/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/08/14/解决maven项目创建过慢问题/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Aaron">
@@ -326,7 +328,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">MCV开发模式
+          <h1 class="post-title" itemprop="name headline">解决maven项目创建过慢问题
 
               
             
@@ -352,23 +354,13 @@
                 
               
 
-              <time title="Created: 2019-07-18 10:16:25" itemprop="dateCreated datePublished" datetime="2019-07-18T10:16:25+08:00">2019-07-18</time>
+              <time title="Created: 2019-08-14 09:30:30 / Modified: 09:36:42" itemprop="dateCreated datePublished" datetime="2019-08-14T09:30:30+08:00">2019-08-14</time>
             </span>
           
 
           
             
 
-            
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">Edited on</span>
-                
-                <time title="Modified: 2019-07-27 17:53:02" itemprop="dateModified" datetime="2019-07-27T17:53:02+08:00">2019-07-27</time>
-              </span>
             
           
 
@@ -409,36 +401,9 @@
       
 
       
-        <a id="more"></a>
-<ul>
-<li>MCV:<ul>
-<li>M: Model，模型。 JavaBean<ul>
-<li>完成具体的也为u操作，如：查询数据库，封装对象</li>
-</ul>
-</li>
-<li>V：View，视图。JSP<ul>
-<li>展示数据</li>
-</ul>
-</li>
-<li>C: Controller，控制器。Servlet<ul>
-<li>获取用户的输入</li>
-<li>调用模型</li>
-<li>将数据交给视图进行展示</li>
-</ul>
-</li>
-</ul>
-</li>
-<li>优缺点：<ul>
-<li>优点<ul>
-<li>耦合性低，方便维护，利于分工协作</li>
-<li>重用性高</li>
-</ul>
-</li>
-<li>缺点<ul>
-<li>使得项目架构变得复杂，对开发人员要求高</li>
-</ul>
-</li>
-</ul>
+        <ul>
+<li><p>在创建Maven工程时，在弹出来的第二个对话框中的属性框中点击最右边的+号，添加一组键值对。name为archetypeCatalog，value为internal。</p>
+<p>  <img src="https://i.loli.net/2019/08/14/IMkPLB2UTGVYtfe.png" alt="E1MUZX_RFQ_2NJX_G___5LH.png"></p>
 </li>
 </ul>
 
@@ -475,7 +440,7 @@
         
         <div class="post-tags">
           
-            <a href="/tags/JavaWeb/" rel="tag"># JavaWeb</a>
+            <a href="/tags/Maven/" rel="tag"># Maven</a>
           
         </div>
       
@@ -488,8 +453,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2019/07/16/Session介绍/" rel="next" title="Session介绍">
-                <i class="fa fa-chevron-left"></i> Session介绍
+              <a href="/2019/08/14/SpringMVC入门以及常用注解/" rel="next" title="SpringMVC入门以及常用注解">
+                <i class="fa fa-chevron-left"></i> SpringMVC入门以及常用注解
               </a>
             
           </div>
@@ -498,8 +463,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2019/07/18/EL表达式/" rel="prev" title="EL表达式">
-                EL表达式 <i class="fa fa-chevron-right"></i>
+              <a href="/2019/08/16/SpringMVC中数据响应以及拦截器/" rel="prev" title="SpringMVC中数据响应以及拦截器">
+                SpringMVC中数据响应以及拦截器 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -908,7 +873,7 @@ window.addEventListener("message", function(e) {
 
 <script>
   window.livereOptions = {
-    refer: '2019/07/18/MCV开发模式/'
+    refer: '2019/08/14/解决maven项目创建过慢问题/'
   };
   (function(d, s) {
     var j, e = d.getElementsByTagName(s)[0];

@@ -1,0 +1,1313 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/yawei.jpg?v=7.2.0">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/yawei.jpg?v=7.2.0">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/yawei.jpg?v=7.2.0">
+
+
+  <link rel="mask-icon" href="/images/yawei.jpg?v=7.2.0" color="#222">
+
+
+
+
+
+
+<link rel="stylesheet" href="/css/main.css?v=7.2.0">
+
+
+
+
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.7.0">
+
+
+
+
+  
+  
+    
+    
+  <script src="/lib/pace/pace.min.js?v=1.0.2"></script>
+  <link rel="stylesheet" href="/lib/pace/pace-theme-minimal.min.css?v=1.0.2">
+
+
+
+
+
+<script id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '7.2.0',
+    sidebar: {"position":"left","display":"post","offset":12,"onmobile":false},
+    back2top: {"enable":true,"sidebar":false,"scrollpercent":false},
+    copycode: {"enable":false,"show_result":false,"style":null},
+    fancybox: false,
+    mediumzoom: false,
+    lazyload: false,
+    pangu: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    },
+    translation: {
+      copy_button: 'Copy',
+      copy_success: 'Copied',
+      copy_failure: 'Copy failed'
+    }
+  };
+</script>
+
+  <meta name="description" content="SpringMVC是什么：  一种基于Java的实现MVC设置模型的请求驱动类型的轻量级Web框架">
+<meta name="keywords" content="SpringMVC">
+<meta property="og:type" content="article">
+<meta property="og:title" content="SpringMVC入门以及常用注解">
+<meta property="og:url" content="http://yoursite.com/2019/08/14/SpringMVC入门以及常用注解/index.html">
+<meta property="og:site_name" content="Aaron">
+<meta property="og:description" content="SpringMVC是什么：  一种基于Java的实现MVC设置模型的请求驱动类型的轻量级Web框架">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2019-08-16T02:30:51.151Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="SpringMVC入门以及常用注解">
+<meta name="twitter:description" content="SpringMVC是什么：  一种基于Java的实现MVC设置模型的请求驱动类型的轻量级Web框架">
+
+
+
+
+
+  
+  
+  <link rel="canonical" href="http://yoursite.com/2019/08/14/SpringMVC入门以及常用注解/">
+
+
+
+<script id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  
+  <title>SpringMVC入门以及常用注解 | Aaron</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .motion-element,
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-title { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+    <a href="https://github.com/FanGuoshun" class="github-corner" aria-label="View source on GitHub"><svg width="80" height="80" viewbox="0 0 250 250" style="fill:#151513; color:#fff; position: absolute; top: 0; border: 0; right: 0;" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"/><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"/><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"/></svg></a><style>.github-corner:hover .octo-arm{animation:octocat-wave 560ms ease-in-out}@keyframes octocat-wave{0%,100%{transform:rotate(0)}20%,60%{transform:rotate(-25deg)}40%,80%{transform:rotate(10deg)}}@media (max-width:500px){.github-corner:hover .octo-arm{animation:none}.github-corner .octo-arm{animation:octocat-wave 560ms ease-in-out}}</style>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Aaron</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+      
+        <p class="site-subtitle">俗人昭昭，我独昏昏。俗人察察，我独闷闷。</p>
+      
+    
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="Toggle navigation bar">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+
+    
+    
+      
+    
+
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>Home</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+
+    
+    
+      
+    
+
+    
+
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>Tags</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+
+    
+    
+      
+    
+
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>Archives</a>
+
+  </li>
+
+      
+      
+    </ul>
+  
+
+  
+
+  
+</nav>
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+            
+
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+      
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/08/14/SpringMVC入门以及常用注解/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Aaron">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/yawei.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Aaron">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">SpringMVC入门以及常用注解
+
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+
+          
+          
+          
+
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2019-08-14 08:53:09" itemprop="dateCreated datePublished" datetime="2019-08-14T08:53:09+08:00">2019-08-14</time>
+            </span>
+          
+
+          
+            
+
+            
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Edited on</span>
+                
+                <time title="Modified: 2019-08-16 10:30:51" itemprop="dateModified" datetime="2019-08-16T10:30:51+08:00">2019-08-16</time>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+                 Views:  
+                <span class="busuanzi-value" id="busuanzi_value_page_pv"></span>
+              </span>
+            </span>
+          
+
+          
+
+          <br>
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <ul>
+<li><p>SpringMVC是什么：</p>
+<ul>
+<li>一种基于Java的实现MVC设置模型的请求驱动类型的轻量级Web框架<a id="more"></a></li>
+</ul>
+</li>
+<li><p>SpringMVC入门程序搭建：</p>
+<ul>
+<li><p>首先创建Maven的Webapp工程，并在pom.xml文件中导入以下坐标</p>
+<pre><code>&lt;properties&gt;
+    &lt;project.build.sourceEncoding&gt;UTF-8&lt;/project.build.sourceEncoding&gt;
+    &lt;maven.compiler.source&gt;1.8&lt;/maven.compiler.source&gt;
+    &lt;maven.compiler.target&gt;1.8&lt;/maven.compiler.target&gt;
+    &lt;spring.version&gt;5.0.2.RELEASE&lt;/spring.version&gt;
+&lt;/properties&gt;
+
+&lt;dependencies&gt;
+    &lt;dependency&gt;
+        &lt;groupId&gt;org.springframework&lt;/groupId&gt;
+        &lt;artifactId&gt;spring-context&lt;/artifactId&gt;
+        &lt;version&gt;${spring.version}&lt;/version&gt;
+    &lt;/dependency&gt;
+    &lt;dependency&gt;
+        &lt;groupId&gt;org.springframework&lt;/groupId&gt;
+        &lt;artifactId&gt;spring-web&lt;/artifactId&gt;
+        &lt;version&gt;${spring.version}&lt;/version&gt;
+    &lt;/dependency&gt;
+    &lt;dependency&gt;
+        &lt;groupId&gt;org.springframework&lt;/groupId&gt;
+        &lt;artifactId&gt;spring-webmvc&lt;/artifactId&gt;
+        &lt;version&gt;${spring.version}&lt;/version&gt;
+    &lt;/dependency&gt;
+    &lt;dependency&gt;
+        &lt;groupId&gt;javax.servlet&lt;/groupId&gt;
+        &lt;artifactId&gt;servlet-api&lt;/artifactId&gt;
+        &lt;version&gt;2.5&lt;/version&gt;
+        &lt;scope&gt;provided&lt;/scope&gt;
+    &lt;/dependency&gt;
+    &lt;dependency&gt;
+        &lt;groupId&gt;javax.servlet.jsp&lt;/groupId&gt;
+        &lt;artifactId&gt;jsp-api&lt;/artifactId&gt;
+        &lt;version&gt;2.0&lt;/version&gt;
+        &lt;scope&gt;provided&lt;/scope&gt;
+    &lt;/dependency&gt;
+&lt;/dependencies&gt;</code></pre></li>
+<li><p>配置核心控制器</p>
+<ul>
+<li><p>在web.xml文件下配置servlet</p>
+<pre><code>&lt;web-app&gt;
+  &lt;display-name&gt;Archetype Created Web Application&lt;/display-name&gt;
+  &lt;!-- SpringMVC的核心控制器 --&gt;
+  &lt;servlet&gt;
+    &lt;servlet-name&gt;dispatcherServlet&lt;/servlet-name&gt;
+    &lt;servlet-class&gt;org.springframework.web.servlet.DispatcherServlet&lt;/servlet-class&gt;
+    &lt;!-- 配置Servlet的初始化参数，读取SpringMVC的配置文件，创建spring容器--&gt;
+    &lt;init-param&gt;
+      &lt;param-name&gt;contextConfigLocation&lt;/param-name&gt;
+      &lt;param-value&gt;classpath:springmvc.xml&lt;/param-value&gt;
+    &lt;/init-param&gt;
+    &lt;!-- 配置Servlet启动时加载对象 --&gt;
+    &lt;load-on-startup&gt;1&lt;/load-on-startup&gt;
+  &lt;/servlet&gt;
+  &lt;servlet-mapping&gt;
+    &lt;servlet-name&gt;dispatcherServlet&lt;/servlet-name&gt;
+    &lt;url-pattern&gt;/&lt;/url-pattern&gt;
+  &lt;/servlet-mapping&gt;
+&lt;/web-app&gt;</code></pre></li>
+</ul>
+</li>
+<li><p>编写springmvc.xml的配置文件</p>
+<pre><code>&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
+&lt;beans xmlns=&quot;http://www.springframework.org/schema/beans&quot;
+       xmlns:mvc=&quot;http://www.springframework.org/schema/mvc&quot;
+       xmlns:context=&quot;http://www.springframework.org/schema/context&quot;
+       xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot;
+       xsi:schemaLocation=&quot;http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans.xsd
+       http://www.springframework.org/schema/mvc
+       http://www.springframework.org/schema/mvc/spring-mvc.xsd
+       http://www.springframework.org/schema/context
+       http://www.springframework.org/schema/context/spring-context.xsd&quot;&gt;
+
+    &lt;context:component-scan base-package=&quot;cn.itcast&quot;&gt;&lt;/context:component-scan&gt;
+
+    &lt;!-- 配置视图解析器 --&gt;
+    &lt;bean id=&quot;internalResourceViewResolver&quot; class=&quot;org.springframework.web.servlet.view.InternalResourceViewResolver&quot;&gt;
+        &lt;property name=&quot;prefix&quot; value=&quot;/WEB-INF/pages/&quot;/&gt;
+        &lt;property name=&quot;suffix&quot; value=&quot;.jsp&quot;/&gt;
+    &lt;/bean&gt;
+
+    &lt;!-- 开启SpringMVC框架注解的支持 --&gt;
+    &lt;mvc:annotation-driven/&gt;
+&lt;/beans&gt;</code></pre></li>
+<li><p>编写index.jsp和HelloController的控制器类</p>
+<ul>
+<li><p>index.jsp</p>
+<pre><code>&lt;%@ page contentType=&quot;text/html;charset=UTF-8&quot; language=&quot;java&quot; %&gt;
+&lt;html&gt;
+&lt;head&gt;
+    &lt;title&gt;Title&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+&lt;h3&gt;入门程序&lt;/h3&gt;
+&lt;a href=&quot;hello&quot;&gt;入门程序&lt;/a&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre></li>
+<li><p>HelloController</p>
+<pre><code>@Controller
+public class HelloController {
+    @RequestMapping(path = &quot;/hello&quot;)
+    public String sayHello(){
+        System.out.println(&quot;hello springmvc&quot;);
+        return &quot;success&quot;;
+    }
+}</code></pre></li>
+</ul>
+</li>
+<li><p>在WEB-INF目录下创建pages文件夹，编写success.jsp的成功页面</p>
+<pre><code>&lt;%@ page contentType=&quot;text/html;charset=UTF-8&quot; language=&quot;java&quot; %&gt;
+&lt;html&gt;
+&lt;head&gt;
+    &lt;title&gt;Title&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+&lt;h3&gt;入门成功了&lt;/h3&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre></li>
+<li><p>启动tomcat服务器，进行测试</p>
+</li>
+</ul>
+</li>
+<li><p>入门程序流程总结</p>
+<ul>
+<li>启动服务器，加载配置文件<ul>
+<li>因为配置了load-on-startup标签，所以会自动创建DispatcherServlet对象</li>
+<li>加载springmvc.xml</li>
+</ul>
+</li>
+<li>由于开启了注解扫描，HelloController对象就会创建</li>
+<li>从index.jsp发送请求，请求会先达到DispatcherServlet核心控制器，根据配置@RequestMapping注解找到执行的具体办法</li>
+<li>根据执行方法的返回值和配置的视图解析器，去指定的目录下查找指定名称的JSP文件</li>
+<li>tomcat服务器渲染页面，做出响应</li>
+</ul>
+</li>
+<li><p>@RequestMapping注解</p>
+<ul>
+<li>用于建立请求URL和处理请求方法之间的对应关系</li>
+<li>该注解可以作用在类和方法上<ul>
+<li>出现在类上：<ul>
+<li>表示请求URL的第一级访问目录。此处不写相当于应用的根目录，写的话需要以/开头。</li>
+</ul>
+</li>
+<li>出现在方法上：<ul>
+<li>表示请求URL的第二级访问目录</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>属性：<ul>
+<li>value：用于指定请求的URL，作用和path相同</li>
+<li>method：用于指定请求的方式</li>
+<li>params：用于指定限制请求参数的条件。支持简单的表达式。<ul>
+<li>params={“accountName”}，表示请求参数必须有accountName</li>
+<li>params={“moeny!100”}，表示请求参数中money不能是100。</li>
+</ul>
+</li>
+<li>headers：用于指定限制请求消息头的条件</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>请求参数的绑定</p>
+<ul>
+<li>将请求参数中键值对中的值与控制器中方法中的参数绑定，要求键名与形参名字相同才可实现绑定</li>
+<li>使用要求<ul>
+<li>基本类型或者式String类型<ul>
+<li>要求我们的参数名称必须和控制器中方法的形参名称保持一致。(严格区分大小写) </li>
+</ul>
+</li>
+<li>POJO类型或者它的关联对象<ul>
+<li>要求表单中参数名称和 POJO 类的属性名称保持一致。并且控制器方法的参数类型是 POJO 类型。</li>
+</ul>
+</li>
+<li>集合类型<ul>
+<li>要求集合类型的请求参数必须在 POJO 中。在表单中请求参数名称要和 POJO 中集合属性名称相同。给List 集合中的元素赋值，使用下标。给 Map 集合中的元素赋值，使用键值对。</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li><p>配置解决中文乱码的过滤器</p>
+<ul>
+<li><p>在web.xml中配置如下：</p>
+<pre><code>&lt;!-- 配置解决中文乱码的过滤器 --&gt;
+&lt;filter&gt;
+    &lt;filter-name&gt;characterEncodingFilter&lt;/filter-name&gt;
+    &lt;filter-class&gt;org.springframework.web.filter.CharacterEncodingFilter&lt;/filter-class&gt;
+    &lt;!-- 指定字符集 --&gt;
+    &lt;init-param&gt;
+        &lt;param-name&gt;encoding&lt;/param-name&gt;
+        &lt;param-value&gt;UTF-8&lt;/param-value&gt;
+    &lt;/init-param&gt;
+&lt;/filter&gt;
+&lt;filter-mapping&gt;
+    &lt;filter-name&gt;characterEncodingFilter&lt;/filter-name&gt;
+    &lt;url-pattern&gt;/*&lt;/url-pattern&gt;
+&lt;/filter-mapping&gt;</code></pre></li>
+</ul>
+</li>
+<li><p>自定义类型转换器步骤</p>
+<ul>
+<li><p>定义一个类，实现Converter接口，该接口有两个泛型</p>
+<pre><code>/* 把字符串转换成日期 */
+public class StringToDateConverter implements Converter&lt;String, Date&gt;{
+    @Override
+    public Date convert(String source) {
+        if(source == null){
+            throw new RuntimeException(&quot;请您传入数据&quot;);
+        }
+        DateFormat df = new SimpleDateFormat(&quot;yyyy-MM-dd&quot;);
+        //把字符串转换为日期
+        Date date = null;
+        try {
+            date = df.parse(source);
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+        return date;
+    }
+}</code></pre></li>
+<li><p>在Spring配置文件中配置类型转换器</p>
+<pre><code>&lt;!-- 配置类型转换器工厂 --&gt;
+&lt;bean id=&quot;conversionService&quot; class=&quot;org.springframework.context.support.ConversionServiceFactoryBean&quot;&gt;
+    &lt;!-- 给工厂注入一个新的类型转换器 --&gt;
+    &lt;property name=&quot;converters&quot;&gt;
+        &lt;set&gt;
+            &lt;!-- 配置自定义类型转换器 --&gt;
+            &lt;bean class=&quot;cn.itcast.utils.StringToDateConverter&quot;/&gt;
+        &lt;/set&gt;
+    &lt;/property&gt;
+&lt;/bean&gt;</code></pre></li>
+<li><p>在annotation-driven标签中引用自定义配置类型转换服务</p>
+<pre><code>&lt;mvc:annotation-driven conversion-service=&quot;conversionService&quot;/&gt;</code></pre></li>
+</ul>
+</li>
+<li><p>在控制器中使用原生的ServletAPI对象</p>
+<ul>
+<li>只需要在控制器的方法参数定义HttpServletRequest和HttpServletResponse对象</li>
+</ul>
+</li>
+<li><p>常用注解：</p>
+<ul>
+<li><p>RequestParam</p>
+<ul>
+<li><p>作用：把请求中的指定名称的参数传递给控制器中的形参赋值作用在参数前面。</p>
+</li>
+<li><p>属性：</p>
+<ul>
+<li>value：请求参数中的名称</li>
+<li>required：请求参数中是否必须提供该参数，默认值为true，必须提供</li>
+</ul>
+</li>
+<li><p>代码展示</p>
+<pre><code>@RequestMapping(path=&quot;/hello&quot;)    
+public String sayHello(@RequestParam(value=&quot;username&quot;,required=false)String name) {        
+    System.out.println(&quot;aaaa&quot;);
+    System.out.println(name);
+    return &quot;success&quot;;    
+}    </code></pre></li>
+</ul>
+</li>
+<li><p>RequestBody：</p>
+<ul>
+<li><p>用于获取请求体的内容（只限于post方法）</p>
+</li>
+<li><p>属性：</p>
+<ul>
+<li>required：是否必须有请求体，默认值是true </li>
+</ul>
+</li>
+<li><p>代码展示：</p>
+<pre><code>@RequestMapping(path=&quot;/hello&quot;)
+public String sayHello(@RequestBody String body) {
+   System.out.println(&quot;aaaa&quot;);
+   System.out.println(body);
+   return &quot;success&quot;; 
+}</code></pre></li>
+</ul>
+</li>
+<li><p>PathVariable：</p>
+<ul>
+<li><p>绑定url中的占位符的。例如：url中有/delete/{id}，{id}就是占位符</p>
+</li>
+<li><p>属性：</p>
+<ul>
+<li>value：指定url中的占位符名称</li>
+</ul>
+</li>
+<li><p>代码展示：    </p>
+<pre><code>@RequestMapping(path=&quot;/hello/{id}&quot;)
+public String sayHello(@PathVariable(value=&quot;id&quot;) String id) {
+   System.out.println(id);
+   return &quot;success&quot;;
+}  </code></pre></li>
+</ul>
+</li>
+<li><p>CookieValue：</p>
+<ul>
+<li><p>作用：用于获取指定cookie名称的值</p>
+</li>
+<li><p>属性：</p>
+<ul>
+<li>value：cookie的名称</li>
+</ul>
+</li>
+<li><p>代码展示：</p>
+<pre><code>@RequestMapping(path=&quot;/hello&quot;)
+public String sayHello(@CookieValue(value=&quot;JSESSIONID&quot;) String cookieValue) {        
+    System.out.println(cookieValue);
+    return &quot;success&quot;;
+}</code></pre></li>
+</ul>
+</li>
+<li><p>ModelAttribute:</p>
+<ul>
+<li><p>作用：</p>
+<ul>
+<li>出现在方法上：表示当前方法会在控制器方法执行前先执行</li>
+<li>出现在参数上：获取指定的数据给参数赋值</li>
+</ul>
+</li>
+<li><p>代码展示：</p>
+<ul>
+<li><p>修饰的方法有返回值</p>
+<pre><code>@ModelAttribute
+public User showUser(String name) {
+    System.out.println(&quot;showUser执行了...&quot;);
+    // 模拟从数据库中查询对象
+    User user = new User();
+    user.setName(&quot;哈哈&quot;);
+    user.setPassword(&quot;123&quot;);
+    user.setMoney(100d);
+    return user;
+}
+@RequestMapping(path=&quot;/updateUser&quot;)
+public String updateUser(User user) {
+    System.out.println(user);
+    return &quot;success&quot;;
+}</code></pre></li>
+<li><p>修饰的方法没有返回值</p>
+<pre><code> @ModelAttribute
+ public void showUser(String name,Map&lt;String, User&gt; map) {
+    System.out.println(&quot;showUser执行了...&quot;);
+    // 模拟从数据库中查询对象
+    User user = new User();
+    user.setName(&quot;哈哈&quot;);
+    user.setPassword(&quot;123&quot;);
+    user.setMoney(100d);
+    map.put(&quot;abc&quot;, user);
+} 
+@RequestMapping(path=&quot;/updateUser&quot;)
+public String updateUser(@ModelAttribute(value=&quot;abc&quot;) User user) {
+    System.out.println(user);
+    return &quot;success&quot;;
+}</code></pre></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>SessionAttribute注解</p>
+<ul>
+<li><p>作用：用于多次执行控制器方法间的参数共享。</p>
+</li>
+<li><p>属性：</p>
+<ul>
+<li>value：指定存入属性的名称</li>
+<li>types：指定存入属性的数据类型</li>
+</ul>
+</li>
+<li><p>代码展示：</p>
+<pre><code>@Controller
+@RequestMapping(path=&quot;/user&quot;)
+@SessionAttributes(value= {&quot;username&quot;,&quot;password&quot;,&quot;age&quot;},types={String.class,Integer.class})
+// 把数据存入到session域对象中
+public class HelloController {
+/**     * 向session中存入值     * @return     */    
+    @RequestMapping(path=&quot;/save&quot;)    
+    public String save(Model model) {
+        System.out.println(&quot;向session域中保存数据&quot;);
+        model.addAttribute(&quot;username&quot;, &quot;root&quot;);
+        model.addAttribute(&quot;password&quot;, &quot;123&quot;);
+        model.addAttribute(&quot;age&quot;, 20);
+        return &quot;success&quot;;
+    }
+    /**     * 从session中获取值     * @return     */
+    @RequestMapping(path=&quot;/find&quot;)
+    public String find(ModelMap modelMap) {
+        String username = (String) modelMap.get(&quot;username&quot;);
+        String password = (String) modelMap.get(&quot;password&quot;);
+        Integer age = (Integer) modelMap.get(&quot;age&quot;);
+        System.out.println(username + &quot; : &quot;+password +&quot; : &quot;+age);
+        return &quot;success&quot;;
+    }        
+    /**     * 清除值     * @return     */
+    @RequestMapping(path=&quot;/delete&quot;)
+    public String delete(SessionStatus status) {
+        status.setComplete();
+        return &quot;success&quot;;
+    }
+}</code></pre></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+      
+    </div>
+
+    
+      
+
+
+    
+
+    
+      
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+        
+          
+        
+        <div class="post-tags">
+          
+            <a href="/tags/SpringMVC/" rel="tag"># SpringMVC</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/08/12/Spring介绍-04/" rel="next" title="Spring中JdbcTemplate使用以及事务控制">
+                <i class="fa fa-chevron-left"></i> Spring中JdbcTemplate使用以及事务控制
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/08/14/解决maven项目创建过慢问题/" rel="prev" title="解决maven项目创建过慢问题">
+                解决maven项目创建过慢问题 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+  </div>
+
+
+          </div>
+          
+  
+    
+    
+  <div class="comments" id="comments">
+    <div id="lv-container" data-id="city" data-uid="MTAyMC80NjAyMC8yMjUzMQ=="></div>
+  </div>
+  
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+
+      <div class="site-overview-wrap sidebar-panel sidebar-panel-active">
+        <div class="site-overview">
+
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  
+    <img class="site-author-image" itemprop="image" src="/images/yawei.jpg" alt="Aaron">
+  
+  <p class="site-author-name" itemprop="name">Aaron</p>
+  <div class="site-description motion-element" itemprop="description"></div>
+</div>
+
+
+  <nav class="site-state motion-element">
+    
+      <div class="site-state-item site-state-posts">
+        
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">36</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+    
+
+    
+      
+      
+      <div class="site-state-item site-state-categories">
+        
+        
+        
+          
+        
+        <span class="site-state-item-count">1</span>
+        <span class="site-state-item-name">categories</span>
+        
+      </div>
+    
+
+    
+      
+      
+      <div class="site-state-item site-state-tags">
+        
+          
+            <a href="/tags/">
+          
+        
+        
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+        <span class="site-state-item-count">13</span>
+        <span class="site-state-item-name">tags</span>
+        </a>
+      </div>
+    
+  </nav>
+
+
+
+
+
+
+
+  <div class="links-of-author motion-element">
+    
+      <span class="links-of-author-item">
+      
+      
+        
+      
+      
+        
+      
+        <a href="https://www.zhihu.com/people/ba-kuai-fu-ji-67/activities" title="知乎 &rarr; https://www.zhihu.com/people/ba-kuai-fu-ji-67/activities" rel="noopener" target="_blank"><i class="fa fa-fw fa-heartbeat"></i>知乎</a>
+      </span>
+    
+  </div>
+
+
+
+
+
+
+
+          
+          
+        </div>
+      </div>
+
+      
+
+      
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        
+
+
+<div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Aaron</span>
+
+  
+
+  
+</div>
+
+
+
+
+  <div class="powered-by">Powered by <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> v3.9.0</div>
+
+
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a> v7.2.0</div>
+
+
+
+
+<div class="theme-info">
+  <div class="powered-by"></div>
+  <span class="post-count">博客全站共28.3k字</span>
+</div>
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="post-meta-item-icon">
+      <i class="fa fa-user"></i>
+    </span>
+    <span class="site-uv" title="Total Visitors">
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+    </span>
+  
+
+  
+    <span class="post-meta-divider">|</span>
+  
+
+  
+    <span class="post-meta-item-icon">
+      <i class="fa fa-eye"></i>
+    </span>
+    <span class="site-pv" title="Total Views">
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+    </span>
+  
+</div>
+
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+    
+
+    
+
+  </div>
+
+  
+
+<script>
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+
+
+
+  
+    
+    
+  
+  <script color="0,0,255" opacity="0.5" zindex="-1" count="99" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+
+
+
+
+
+
+
+  
+  <script src="/lib/jquery/index.js?v=3.4.1"></script>
+
+  
+  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+
+
+
+  <script src="/js/utils.js?v=7.2.0"></script>
+
+  <script src="/js/motion.js?v=7.2.0"></script>
+
+
+
+  
+  
+
+
+  <script src="/js/affix.js?v=7.2.0"></script>
+
+  <script src="/js/schemes/pisces.js?v=7.2.0"></script>
+
+
+
+  
+  <script src="/js/scrollspy.js?v=7.2.0"></script>
+<script src="/js/post-details.js?v=7.2.0"></script>
+
+
+
+  <script src="/js/next-boot.js?v=7.2.0"></script>
+
+  
+
+  
+
+  
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<script>
+// GET RESPONSIVE HEIGHT PASSED FROM IFRAME
+
+window.addEventListener("message", function(e) {
+  var data = e.data;
+  if ((typeof data === 'string') && (data.indexOf('ciu_embed') > -1)) {
+    var featureID = data.split(':')[1];
+    var height = data.split(':')[2];
+    $(`iframe[data-feature=${featureID}]`).height(parseInt(height) + 30);
+  }
+}, false);
+</script>
+
+
+
+
+
+
+
+
+  
+    
+
+
+
+<script>
+  window.livereOptions = {
+    refer: '2019/08/14/SpringMVC入门以及常用注解/'
+  };
+  (function(d, s) {
+    var j, e = d.getElementsByTagName(s)[0];
+    if (typeof LivereTower === 'function') { return; }
+    j = d.createElement(s);
+    j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+    j.async = true;
+    e.parentNode.insertBefore(j, e);
+  })(document, 'script');
+</script>
+
+
+  
+
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"log":false,"model":{"jsonPath":"/live2dw/assets/wanko.model.json"},"display":{"position":"right","width":150,"height":300},"mobile":{"show":true},"react":{"opacity":0.7}});</script></body>
+</html>
